@@ -1,10 +1,10 @@
-App = Class { __includes = InputComponent }
+App = Class { __includes = Input }
 
 function App:init()
     math.randomseed(os.time())
     self.setupWindow()
 
-    InputComponent.init(self)
+    Input.init(self)
 end
 
 function App:update()

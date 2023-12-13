@@ -4,7 +4,7 @@ Class = require "src.libraries.class"
 Push = require "src.libraries.push"
 -- Timer = require "src.libraries.knife.timer"
 
-require "src.components.InputComponent"
+require "src.components.Input"
 App = require "src.App"
 require "src.StateMachine"
 
@@ -22,9 +22,12 @@ require "src.states.StartState"
 -- require "src.states.player.PlayerFallingState"
 -- require "src.states.player.PlayerJumpingState"
 
--- require "objects.GameObject"
+require "src.components.GameObject"
+require "src.components.GravityBundle"
+require "src.components.MoveBundle"
+
+require "objects.PlayerCharacter"
 -- require "objects.Level"
 -- require "objects.Tile"
--- require "objects.Character"
 -- require "objects.Hitbox"
 -- require "objects.Block"

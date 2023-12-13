@@ -1,11 +1,11 @@
-InputComponent = Class()
+Input = Class()
 
-function InputComponent:init()
+function Input:init()
     self.keysPressed = {}
     self.canInput = true
 end
 
-function InputComponent:pressKey(key)
+function Input:pressKey(key)
     if self.canInput then
         self.keysPressed[key] = true
     end
@@ -13,14 +13,14 @@ function InputComponent:pressKey(key)
     return self.canInput
 end
 
-function InputComponent:keyPressed(key)
+function Input:keyPressed(key)
     return self.keysPressed[key]
 end
 
-function InputComponent:flushKeys()
+function Input:flushKeys()
     self.keysPressed = {}
 end
 
-function InputComponent:enableInput(bool)
+function Input:enableInput(bool)
     self.canInput = bool
 end
