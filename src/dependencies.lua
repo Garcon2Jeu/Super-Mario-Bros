@@ -5,11 +5,11 @@ Push = require "src.libraries.push"
 
 require "src.components.InputComponent"
 App = require "src.App"
+require "src.StateMachine"
 
 -- Assets = require "src.managers.AssetManager"
 -- Quads = require "src.managers.QuadManager"
 -- Timer = require "src.libraries.knife.timer"
--- require "src.managers.StateManager"
 -- require "src.managers.AnimationManager"
 -- require "src.managers.CameraManager"
 -- TileMap = require "src.managers.TileMapGenerator"
