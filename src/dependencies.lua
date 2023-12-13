@@ -17,10 +17,11 @@ Quads = require "src.managers.QuadManager"
 
 require "src.states.BaseState"
 require "src.states.StartState"
--- require "src.states.player.PlayerIdleState"
--- require "src.states.player.PlayerRunningState"
--- require "src.states.player.PlayerFallingState"
--- require "src.states.player.PlayerJumpingState"
+
+require "src.states.player.PlayerIdleState"
+require "src.states.player.PlayerRunState"
+require "src.states.player.PlayerFallState"
+require "src.states.player.PlayerJumpState"
 
 require "src.components.GameObject"
 require "src.components.GravityBundle"

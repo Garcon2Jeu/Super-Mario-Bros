@@ -21,3 +21,7 @@ end
 function GravityBundle:applyJumpForce(jumpforce)
     self.dy = jumpforce
 end
+
+function GravityBundle:isFalling()
+    return self.dy > 0
+end
