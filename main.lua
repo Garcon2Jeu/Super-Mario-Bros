@@ -14,7 +14,9 @@ function love.update(dt)
 end
 
 function love.draw()
+    Push:start()
     State:draw()
+    Push:finish()
 end
 
 function love.keypressed(key)

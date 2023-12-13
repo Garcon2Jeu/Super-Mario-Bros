@@ -2,14 +2,14 @@ require "src.globals"
 
 Class = require "src.libraries.class"
 Push = require "src.libraries.push"
+-- Timer = require "src.libraries.knife.timer"
 
 require "src.components.InputComponent"
 App = require "src.App"
 require "src.StateMachine"
 
 Assets = require "src.managers.AssetManager"
--- Quads = require "src.managers.QuadManager"
--- Timer = require "src.libraries.knife.timer"
+Quads = require "src.managers.QuadManager"
 -- require "src.managers.AnimationManager"
 -- require "src.managers.CameraManager"
 -- TileMap = require "src.managers.TileMapGenerator"
