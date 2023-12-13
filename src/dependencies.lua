@@ -7,7 +7,7 @@ require "src.components.InputComponent"
 App = require "src.App"
 require "src.StateMachine"
 
--- Assets = require "src.managers.AssetManager"
+Assets = require "src.managers.AssetManager"
 -- Quads = require "src.managers.QuadManager"
 -- Timer = require "src.libraries.knife.timer"
 -- require "src.managers.AnimationManager"
