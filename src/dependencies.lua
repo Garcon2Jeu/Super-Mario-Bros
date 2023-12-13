@@ -15,8 +15,8 @@ require "src.StateMachine"
 -- TileMap = require "src.managers.TileMapGenerator"
 
 
--- require "src.states.BaseState"
--- require "src.states.StartState"
+require "src.states.BaseState"
+require "src.states.StartState"
 -- require "src.states.player.PlayerIdleState"
 -- require "src.states.player.PlayerRunningState"
 -- require "src.states.player.PlayerFallingState"

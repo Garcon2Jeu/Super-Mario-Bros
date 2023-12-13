@@ -1,8 +1,8 @@
 StateMachine = Class()
 
 function StateMachine:init(states)
-    self.current = BaseState()
     self.states = states
+    self.current = BaseState()
     self.placeholde = nil
 end
 
