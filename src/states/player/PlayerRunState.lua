@@ -9,13 +9,13 @@ function PlayerRunState:init(player, interval, frames)
 end
 
 function PlayerRunState:update(dt)
-    self.player.quad = self:getCurrentFrame()
+    self.player:setQuad(self:getCurrentFrame())
 
     if App:keyPressed("space") then
         self.player:changeState("jump")
     end
 
-    if not self.player.isRunning then
+    if not self.player:isRunning() then
         self.player:changeState("idle")
     end
 end

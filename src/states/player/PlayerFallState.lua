@@ -2,7 +2,7 @@ PlayerFallState = Class { __includes = BaseState }
 
 function PlayerFallState:init(player, quad)
     self.player = player
-    self.player.quad = quad
+    self.player:setQuad(quad)
 end
 
 function PlayerFallState:update(dt)
@@ -14,7 +14,7 @@ function PlayerFallState:update(dt)
         return
     end
 
-    if self.player.isRunning then
+    if self.player:isRunning() then
         self.player:changeState("run")
     else
         self.player:changeState("idle")

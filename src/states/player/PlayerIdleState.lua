@@ -2,7 +2,7 @@ PlayerIdleState = Class { __includes = BaseState }
 
 function PlayerIdleState:init(player, quad)
     self.player = player
-    self.player.quad = quad
+    self.player:setQuad(quad)
 end
 
 function PlayerIdleState:update(dt)
@@ -10,11 +10,11 @@ function PlayerIdleState:update(dt)
         self.player:changeState("jump")
     end
 
-    if self.player.isRunning then
+    if self.player:isRunning() then
         self.player:changeState("run")
     end
 
-    -- self.player:applyGravity(GRAVITY)
-    -- self.player:applyDY(dt)
-    -- self.player:stand()
+    if self.player:isGrounded() then
+        self.player:stand()
+    end
 end

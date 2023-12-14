@@ -17,15 +17,13 @@ function PlayerCharacter:init()
     }
 
     GameObject.init(self, {
-        x            = 50,
+        x            = CENTER_WIDTH - CHARACTER_WIDTH / 2,
         y            = -150,
         width        = CHARACTER_WIDTH,
         height       = CHARACTER_HEIGHT,
         texture      = pinkAtlas,
         stateMachine = stateMachine
     })
-
-    self.isRunning = false
 
     GravityBundle.init(self)
 
@@ -44,10 +42,8 @@ function PlayerCharacter:jump()
 end
 
 function PlayerCharacter:stand()
-    if self.dy > 0 and self.y >= 6 * TILESIZE then
-        self.y = 6 * TILESIZE
-        self:stopDY()
-    end
+    self.y = 6 * TILESIZE
+    self:stopDY()
 end
 
 function PlayerCharacter:isGrounded()
@@ -57,11 +53,13 @@ end
 function PlayerCharacter:run(dt)
     if love.keyboard.isDown("right") then
         self:moveX(dt, CHARACTER_SPEED)
-        self.isRunning = true
+        self:setRunning(true)
+        self:setFacingRight(true)
     elseif love.keyboard.isDown("left") then
         self:moveX(dt, -CHARACTER_SPEED)
-        self.isRunning = true
+        self:setRunning(true)
+        self:setFacingRight(false)
     else
-        self.isRunning = false
+        self:setRunning(false)
     end
 end

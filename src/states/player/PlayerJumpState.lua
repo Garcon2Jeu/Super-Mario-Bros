@@ -2,7 +2,7 @@ PlayerJumpState = Class { __includes = BaseState }
 
 function PlayerJumpState:init(player, quad)
     self.player = player
-    self.player.quad = quad
+    self.player:setQuad(quad)
     self.player:applyJumpForce(JUMPFORCE)
 end
 

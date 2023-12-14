@@ -6,14 +6,35 @@ function GameObject:init(def)
     self.width        = def.width
     self.height       = def.height
     self.texture      = def.texture
-    self.quad         = def.quad
+    self.xOffset      = def.width and self.width / 2
     self.stateMachine = def.stateMachine
+
+    self.facingRight  = true
 end
 
 function GameObject:draw()
-    love.graphics.draw(self.texture, self.quad, self.x, self.y)
+    love.graphics.draw(
+        self.texture, self.quad,
+        self.x + self.xOffset,
+        self.y,
+        0,
+        self.facingRight and 1 or -1, 1,
+        self.xOffset
+    )
 end
 
 function GameObject:changeState(state, params)
     self.stateMachine:change(state, params)
+end
+
+function GameObject:isFacingRight()
+    return self.facingRight
+end
+
+function GameObject:setFacingRight(bool)
+    self.facingRight = bool
+end
+
+function GameObject:setQuad(quad)
+    self.quad = quad
 end
