@@ -9,14 +9,10 @@ function PlayerFallState:update(dt)
     self.player:applyGravity(GRAVITY)
     self.player:applyDY(dt)
 
-    if not self.player:isFalling()
-        or not self.player:isGrounded() then
-        return
-    end
+    local t1, t2 = State.current.level:hitboxPointsToTiles(self.player, "bottom")
 
-    if self.player:isRunning() then
-        self.player:changeState("run")
-    else
+    if (t1 and t2) and t1.ground or t2.ground then
+        self.player:stand(t1.y - CHARACTER_HEIGHT)
         self.player:changeState("idle")
     end
 end

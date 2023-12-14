@@ -27,7 +27,7 @@ end
 
 function TileMap:pointToTile(x, y)
     if x < 0 or y < 0 or x > VIRTUAL_WIDTH or y > VIRTUAL_HEIGHT then
-        return self.tileMap[1][1]
+        return
     end
 
     local column = math.floor(x / TILESIZE) + 1
@@ -36,9 +36,9 @@ function TileMap:pointToTile(x, y)
     return self.tileMap[column][row]
 end
 
-function TileMap:hitboxPointsToTiles(p1, p2)
-    local t1 = self:pointToTile(p1.x, p1.y)
-    local t2 = self:pointToTile(p2.x, p2.y)
+function TileMap:hitboxPointsToTiles(object, edgeDirection)
+    local x1, y1, x2, y2 = object:getHitboxOffset(edgeDirection)
+    local p1, p2 = object:getHitboxEdge(edgeDirection, x1, y1, x2, y2)
 
-    return t1, t2
+    return self:pointToTile(p1.x, p1.y), self:pointToTile(p2.x, p2.y)
 end

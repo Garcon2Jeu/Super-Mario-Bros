@@ -8,6 +8,12 @@ PlayerCharacter = Class { __includes = {
 local pinkAtlas = Assets.graphics["pink_alien"]()
 local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEIGHT)
 
+local hitboxOffsets = {
+    bottom = { 2, 0, -2, 0 },
+    right  = { -1, 1, -1, -1 },
+    left   = { 1, 1, 1, -1 },
+    top    = {}
+}
 
 function PlayerCharacter:init()
     local stateMachine = StateMachine {
@@ -28,16 +34,11 @@ function PlayerCharacter:init()
 
     GravityBundle.init(self)
 
-    self.hitbox = Hitbox()
-
-    -- Hitbox.init(self)
-
     self:changeState("fall")
 end
 
 function PlayerCharacter:update(dt)
-    self.hitbox:updateHitbox(self.x, self.y, CHARACTER_WIDTH, CHARACTER_HEIGHT)
-    -- self:updateHitbox(self.x, self.y, CHARACTER_WIDTH, CHARACTER_HEIGHT)
+    self:updateHitbox()
     self:run(dt)
     self.stateMachine:update(dt)
 end
@@ -48,13 +49,9 @@ function PlayerCharacter:jump()
     end
 end
 
-function PlayerCharacter:stand()
-    self.y = 6 * TILESIZE
+function PlayerCharacter:stand(y)
+    self:setY(y)
     self:stopDY()
-end
-
-function PlayerCharacter:isGrounded()
-    return self.y >= 5 * TILESIZE - CHARACTER_HEIGHT
 end
 
 function PlayerCharacter:run(dt)
@@ -69,4 +66,17 @@ function PlayerCharacter:run(dt)
     else
         self:setRunning(false)
     end
+end
+
+function PlayerCharacter:float(dt)
+    if love.keyboard.isDown("down") then
+        self:moveY(dt, CHARACTER_SPEED)
+    elseif love.keyboard.isDown("up") then
+        self:moveY(dt, -CHARACTER_SPEED)
+    end
+end
+
+function PlayerCharacter:getHitboxOffset(direction)
+    return hitboxOffsets[direction][1], hitboxOffsets[direction][2],
+        hitboxOffsets[direction][3], hitboxOffsets[direction][4]
 end

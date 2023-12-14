@@ -2,14 +2,14 @@ Hitbox = Class()
 
 local radius = .5
 
-function Hitbox:updateHitbox(x, y, width, height)
-    self.topLeft     = { x = x, y = y }
-    self.topRight    = { x = x + width, y = y }
-    self.bottomLeft  = { x = x, y = y + height }
-    self.bottomRight = { x = x + width, y = y + height }
+function Hitbox:updateHitbox()
+    self.topLeft     = { x = self.x, y = self.y }
+    self.topRight    = { x = self.x + self.width, y = self.y }
+    self.bottomLeft  = { x = self.x, y = self.y + self.height }
+    self.bottomRight = { x = self.x + self.width, y = self.y + self.height }
 end
 
-function Hitbox:getEdgePoints(direction, p1XOffset, p1YOffset, p2XOffset, p2YOffset)
+function Hitbox:getHitboxEdge(direction, p1XOffset, p1YOffset, p2XOffset, p2YOffset)
     local p1 = { x = p1XOffset or 0, y = p1YOffset or 0 }
     local p2 = { x = p2XOffset or 0, y = p2YOffset or 0 }
 

@@ -13,8 +13,4 @@ function PlayerIdleState:update(dt)
     if self.player:isRunning() then
         self.player:changeState("run")
     end
-
-    -- if self.player:isGrounded() then
-    --     self.player:stand()
-    -- end
 end

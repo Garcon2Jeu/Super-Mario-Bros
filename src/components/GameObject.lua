@@ -38,3 +38,7 @@ end
 function GameObject:setQuad(quad)
     self.quad = quad
 end
+
+function GameObject:setY(y)
+    self.y = y
+end
