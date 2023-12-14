@@ -25,3 +25,7 @@ end
 function GravityBundle:isFalling()
     return self.dy > 0
 end
+
+function GravityBundle:stopDY()
+    self.dy = 0
+end

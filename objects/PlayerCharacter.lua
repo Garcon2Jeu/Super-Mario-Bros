@@ -46,7 +46,7 @@ end
 function PlayerCharacter:stand()
     if self.dy > 0 and self.y >= 6 * TILESIZE then
         self.y = 6 * TILESIZE
-        self.dy = 0
+        self:stopDY()
     end
 end
 
