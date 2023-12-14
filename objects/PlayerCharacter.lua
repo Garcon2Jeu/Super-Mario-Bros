@@ -11,7 +11,7 @@ local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEI
 function PlayerCharacter:init()
     local stateMachine = StateMachine {
         ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
-        ["run"]  = function() return PlayerRunState(self, pinkQuads[10]) end,
+        ["run"]  = function() return PlayerRunState(self, .1, { pinkQuads[10], pinkQuads[11] }) end,
         ["jump"] = function() return PlayerJumpState(self, pinkQuads[3]) end,
         ["fall"] = function() return PlayerFallState(self, pinkQuads[8]) end,
     }

@@ -1,11 +1,16 @@
-PlayerRunState = Class { __includes = BaseState }
+PlayerRunState = Class { __includes = {
+    BaseState,
+    Animation,
+} }
 
-function PlayerRunState:init(player, quad)
+function PlayerRunState:init(player, interval, frames)
     self.player = player
-    self.player.quad = quad
+    Animation.init(self, interval, frames)
 end
 
 function PlayerRunState:update(dt)
+    self.player.quad = self:getCurrentFrame()
+
     if App:keyPressed("space") then
         self.player:changeState("jump")
     end
@@ -13,4 +18,8 @@ function PlayerRunState:update(dt)
     if not self.player.isRunning then
         self.player:changeState("idle")
     end
+end
+
+function PlayerRunState:exit()
+    self:removeTimer(self)
 end
