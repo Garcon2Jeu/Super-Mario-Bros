@@ -24,6 +24,7 @@ function TileMapGenerator.addGround(tileMap)
         for index, tile in ipairs(column) do
             if index == 7 then
                 tile.topper = true
+                -- tile.hitbox = Hitbox()
             end
 
             if index >= 7 then

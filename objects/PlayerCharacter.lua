@@ -1,7 +1,8 @@
 PlayerCharacter = Class { __includes = {
     GameObject,
     GravityBundle,
-    MoveBundle
+    MoveBundle,
+    Hitbox
 } }
 
 local pinkAtlas = Assets.graphics["pink_alien"]()
@@ -18,7 +19,7 @@ function PlayerCharacter:init()
 
     GameObject.init(self, {
         x            = CENTER_WIDTH - CHARACTER_WIDTH / 2,
-        y            = -150,
+        y            = 0,
         width        = CHARACTER_WIDTH,
         height       = CHARACTER_HEIGHT,
         texture      = pinkAtlas,
@@ -27,10 +28,16 @@ function PlayerCharacter:init()
 
     GravityBundle.init(self)
 
+    self.hitbox = Hitbox()
+
+    -- Hitbox.init(self)
+
     self:changeState("fall")
 end
 
 function PlayerCharacter:update(dt)
+    self.hitbox:updateHitbox(self.x, self.y, CHARACTER_WIDTH, CHARACTER_HEIGHT)
+    -- self:updateHitbox(self.x, self.y, CHARACTER_WIDTH, CHARACTER_HEIGHT)
     self:run(dt)
     self.stateMachine:update(dt)
 end

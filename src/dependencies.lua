@@ -10,6 +10,7 @@ require "src.components.GravityBundle"
 require "src.components.MoveBundle"
 require "src.components.Animation"
 require "src.components.TileMap"
+require "src.components.Hitbox"
 
 App = require "src.App"
 require "src.StateMachine"
@@ -32,5 +33,5 @@ require "src.states.player.PlayerJumpState"
 require "objects.PlayerCharacter"
 require "objects.Level"
 
--- require "objects.Hitbox"
+
 -- require "objects.Block"

@@ -24,3 +24,21 @@ function TileMap:drawTileMap(tilesSheet, tileQuad, topperSheet, topperQuad)
         end
     end
 end
+
+function TileMap:pointToTile(x, y)
+    if x < 0 or y < 0 or x > VIRTUAL_WIDTH or y > VIRTUAL_HEIGHT then
+        return self.tileMap[1][1]
+    end
+
+    local column = math.floor(x / TILESIZE) + 1
+    local row = math.floor(y / TILESIZE) + 1
+
+    return self.tileMap[column][row]
+end
+
+function TileMap:hitboxPointsToTiles(p1, p2)
+    local t1 = self:pointToTile(p1.x, p1.y)
+    local t2 = self:pointToTile(p2.x, p2.y)
+
+    return t1, t2
+end
