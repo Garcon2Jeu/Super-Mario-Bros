@@ -2,6 +2,7 @@ StartState = Class { __includes = BaseState }
 
 function StartState:init()
     self.player = PlayerCharacter()
+    self.level = Level()
 end
 
 function StartState:update(dt)
@@ -10,7 +11,5 @@ end
 
 function StartState:draw()
     self.player:draw()
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    love.graphics.print(tostring(self.player.stateMachine.debug), 50, 50)
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    self.level:draw()
 end

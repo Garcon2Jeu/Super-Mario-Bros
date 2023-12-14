@@ -9,6 +9,7 @@ require "src.components.GameObject"
 require "src.components.GravityBundle"
 require "src.components.MoveBundle"
 require "src.components.Animation"
+require "src.components.TileMap"
 
 App = require "src.App"
 require "src.StateMachine"
@@ -16,7 +17,7 @@ require "src.StateMachine"
 Assets = require "src.managers.AssetManager"
 Quads  = require "src.managers.QuadManager"
 -- require "src.managers.CameraManager"
--- TileMap = require "src.managers.TileMapGenerator"
+require "src.managers.TileMapGenerator"
 
 
 require "src.states.BaseState"
@@ -29,7 +30,7 @@ require "src.states.player.PlayerJumpState"
 
 
 require "objects.PlayerCharacter"
--- require "objects.Level"
--- require "objects.Tile"
+require "objects.Level"
+
 -- require "objects.Hitbox"
 -- require "objects.Block"

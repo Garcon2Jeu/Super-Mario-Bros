@@ -47,7 +47,7 @@ function PlayerCharacter:stand()
 end
 
 function PlayerCharacter:isGrounded()
-    return self.y >= 6 * TILESIZE
+    return self.y >= 5 * TILESIZE - CHARACTER_HEIGHT
 end
 
 function PlayerCharacter:run(dt)
