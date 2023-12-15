@@ -9,10 +9,11 @@ local pinkAtlas = Assets.graphics["pink_alien"]()
 local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEIGHT)
 
 local hitboxOffsets = {
-    bottom = { 2, 0, -2, 0 },
-    right  = { -1, 1, -1, -1 },
-    left   = { 1, 1, 1, -1 },
-    top    = {}
+    ["bottom"] = { 2, 0, -2, 0 },
+    ["right"]  = { -1, 1, -1, -1 },
+    ["left"]   = { 1, 1,
+        1, -1 },
+    ["top"]    = {}
 }
 
 function PlayerCharacter:init()
@@ -59,12 +60,22 @@ function PlayerCharacter:run(dt)
         self:moveX(dt, CHARACTER_SPEED)
         self:setRunning(true)
         self:setFacingRight(true)
+        self:blockRun("right")
     elseif love.keyboard.isDown("left") then
         self:moveX(dt, -CHARACTER_SPEED)
         self:setRunning(true)
         self:setFacingRight(false)
+        self:blockRun("left")
     else
         self:setRunning(false)
+    end
+end
+
+function PlayerCharacter:blockRun(direction)
+    local t1, t2 = State.current.level:hitboxPointsToTiles(self, direction)
+
+    if (t1 and t2) and (t1.ground or t2.ground) then
+        self.x = direction == "right" and t1.x - CHARACTER_WIDTH + 1 or t2.x + TILESIZE - 2
     end
 end
 

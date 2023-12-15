@@ -16,7 +16,7 @@ end
 
 function TileMap:pointToTile(x, y)
     if x < 0 or y < 0 or x > VIRTUAL_WIDTH or y > VIRTUAL_HEIGHT then
-        return
+        return nil
     end
 
     local column = math.floor(x / TILESIZE) + 1

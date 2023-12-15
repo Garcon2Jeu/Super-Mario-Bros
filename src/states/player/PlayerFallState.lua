@@ -11,7 +11,7 @@ function PlayerFallState:update(dt)
 
     local t1, t2 = State.current.level:hitboxPointsToTiles(self.player, "bottom")
 
-    if (t1 and t2) and t1.ground or t2.ground then
+    if (t1 and t2) and (t1.ground or t2.ground) then
         self.player:stand(t1.y - CHARACTER_HEIGHT)
         self.player:changeState("idle")
     end

@@ -24,6 +24,7 @@ require "src.managers.TileMapGenerator"
 require "src.states.BaseState"
 require "src.states.StartState"
 
+require "src.states.player.BasePlayerState"
 require "src.states.player.PlayerIdleState"
 require "src.states.player.PlayerRunState"
 require "src.states.player.PlayerFallState"

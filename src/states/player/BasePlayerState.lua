@@ -1,0 +1,1 @@
+BasePlayerState = Class()
