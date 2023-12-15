@@ -7,7 +7,7 @@ local toppersSheet = Assets.graphics["tile_tops"]()
 local toppersQuads = Quads:getSetsOfQuads(toppersSheet, TILESIZE, TILESIZE, 6, 18)
 
 function Level:init()
-    TileMap.init(self)
+    self.tileMap = TileMapGenerator.factory(20, MAP_HEIGHT)
 end
 
 function Level:draw()

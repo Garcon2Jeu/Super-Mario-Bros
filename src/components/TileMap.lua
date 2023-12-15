@@ -1,16 +1,5 @@
 TileMap = Class()
 
-function TileMap:init()
-    self.tileMap = self:factory()
-end
-
-function TileMap:factory()
-    local map = TileMapGenerator.generateEmpty()
-    TileMapGenerator.addGround(map)
-
-    return map
-end
-
 function TileMap:drawTileMap(tilesSheet, tileQuad, topperSheet, topperQuad)
     for key, column in pairs(self.tileMap) do
         for key, tile in pairs(column) do
