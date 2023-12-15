@@ -1,15 +1,22 @@
-StartState = Class { __includes = BaseState }
+StartState = Class { __includes = {
+    BaseState,
+    Camera
+} }
 
 function StartState:init()
     self.player = PlayerCharacter()
     self.level = Level()
+
+    Camera.init(self)
 end
 
 function StartState:update(dt)
     self.player:update(dt)
+    self:updateCamera(self.player.x)
 end
 
 function StartState:draw()
+    self:scrollCamera()
     self.player:draw()
     self.level:draw()
 end

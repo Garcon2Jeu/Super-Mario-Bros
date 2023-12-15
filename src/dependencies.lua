@@ -11,13 +11,13 @@ require "src.components.MoveBundle"
 require "src.components.Animation"
 require "src.components.TileMap"
 require "src.components.Hitbox"
+require "src.components.Camera"
 
 App = require "src.App"
 require "src.StateMachine"
 
 Assets = require "src.managers.AssetManager"
 Quads  = require "src.managers.QuadManager"
--- require "src.managers.CameraManager"
 require "src.managers.TileMapGenerator"
 
 

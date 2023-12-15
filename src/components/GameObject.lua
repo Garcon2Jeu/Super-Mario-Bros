@@ -15,8 +15,8 @@ end
 function GameObject:draw()
     love.graphics.draw(
         self.texture, self.quad,
-        self.x + self.xOffset,
-        self.y,
+        math.floor(self.x + self.xOffset),
+        math.floor(self.y),
         0,
         self.facingRight and 1 or -1, 1,
         self.xOffset
