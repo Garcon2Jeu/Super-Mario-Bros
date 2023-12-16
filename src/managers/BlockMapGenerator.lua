@@ -10,7 +10,7 @@ end
 function BlockMapGenerator.addBlock(map, blockSheet, blockQuad)
     local tile = map[10][4]
 
-    local block = Block {
+    local block = GameObject {
         x       = tile.x,
         y       = tile.y,
         width   = TILESIZE,

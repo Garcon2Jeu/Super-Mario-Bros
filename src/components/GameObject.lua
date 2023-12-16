@@ -11,7 +11,7 @@ function GameObject:init(def)
     -- debug -- to tie with state ---
     self.quad         = def.quad
     ---------------------------------
-
+    self.collidable   = true
     self.facingRight  = true
 end
 
