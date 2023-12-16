@@ -44,7 +44,7 @@ end
 -- NOT FINISHED --
 function TileMapGenerator.addPillars(tileMap)
     for row = pillarHeightMax, GROUND_ROW - 1 do
-        tileMap[10][row].ground = true
+        tileMap[15][row].ground = true
     end
 end
 

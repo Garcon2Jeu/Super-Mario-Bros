@@ -11,9 +11,8 @@ local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEI
 local hitboxOffsets = {
     ["bottom"] = { 2, 0, -2, 0 },
     ["right"]  = { -1, 1, -1, -1 },
-    ["left"]   = { 1, 1,
-        1, -1 },
-    ["top"]    = {}
+    ["left"]   = { 1, 1, 1, -1 },
+    ["top"]    = { 3, 0, -3, 0 }
 }
 
 function PlayerCharacter:init()

@@ -1,8 +1,11 @@
 require "src.globals"
 
-Class = require "src.libraries.class"
-Push  = require "src.libraries.push"
-Timer = require "src.libraries.knife.timer"
+Class  = require "src.libraries.class"
+Push   = require "src.libraries.push"
+Timer  = require "src.libraries.knife.timer"
+
+Assets = require "src.managers.AssetManager"
+Quads  = require "src.managers.QuadManager"
 
 require "src.components.Input"
 require "src.components.GameObject"
@@ -12,13 +15,15 @@ require "src.components.Animation"
 require "src.components.TileMap"
 require "src.components.Hitbox"
 require "src.components.Camera"
+require "src.components.BlockMap"
+
 
 App = require "src.App"
 require "src.StateMachine"
 
-Assets = require "src.managers.AssetManager"
-Quads  = require "src.managers.QuadManager"
+
 require "src.managers.TileMapGenerator"
+require "src.managers.BlockMapGenerator"
 
 
 require "src.states.BaseState"
@@ -35,4 +40,4 @@ require "objects.PlayerCharacter"
 require "objects.Level"
 
 
--- require "objects.Block"
+require "objects.Block"
