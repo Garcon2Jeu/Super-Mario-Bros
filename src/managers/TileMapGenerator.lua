@@ -6,7 +6,7 @@ local pillarHeightMax = 4
 
 function TileMapGenerator.factory(map, mapWidth, mapHeight)
     TileMapGenerator.addGround(map)
-    TileMapGenerator.addPillars(map)
+    -- TileMapGenerator.addPillars(map)
     TileMapGenerator.addToppers(map)
 
     return map
@@ -33,7 +33,7 @@ end
 
 function TileMapGenerator.addToppers(tileMap)
     for key, column in pairs(tileMap) do
-        for index, tile in ipairs(column) do
+        for key, tile in pairs(column) do
             if tile.ground then
                 tile.topper = true
                 goto continue

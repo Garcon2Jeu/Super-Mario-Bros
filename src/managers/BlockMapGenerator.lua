@@ -8,7 +8,7 @@ function BlockMapGenerator:factory(map, blockSheet, blockQuad)
 end
 
 function BlockMapGenerator.addBlock(map, blockSheet, blockQuad)
-    local tile = map[10][4]
+    local tile = map[10][6]
 
     local block = GameObject {
         x       = tile.x,
@@ -19,5 +19,5 @@ function BlockMapGenerator.addBlock(map, blockSheet, blockQuad)
         quad    = blockQuad
     }
 
-    map[10][4] = block
+    map[10][6] = block
 end
