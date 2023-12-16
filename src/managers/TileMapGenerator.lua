@@ -16,7 +16,8 @@ function TileMapGenerator.addGround(tileMap)
     for key, column in pairs(tileMap) do
         for index, tile in ipairs(column) do
             if index >= GROUND_ROW then
-                tile.ground = true
+                -- tile.ground = true
+                tile.collidable = true
             end
         end
     end
@@ -25,7 +26,7 @@ end
 -- NOT FINISHED --
 function TileMapGenerator.addPillars(tileMap)
     for row = pillarHeightMax, GROUND_ROW - 1 do
-        tileMap[15][row].ground = true
+        tileMap[15][row].collidable = true
     end
 end
 
@@ -34,7 +35,7 @@ end
 function TileMapGenerator.addToppers(tileMap)
     for key, column in pairs(tileMap) do
         for key, tile in pairs(column) do
-            if tile.ground then
+            if tile.collidable then
                 tile.topper = true
                 goto continue
             end

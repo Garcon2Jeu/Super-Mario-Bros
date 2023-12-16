@@ -29,7 +29,7 @@ end
 function BaseMap:drawTileMap(tilesSheet, tileQuad, topperSheet, topperQuad)
     for key, column in pairs(self.tileMap) do
         for key, tile in pairs(column) do
-            if tile.ground then
+            if tile.collidable then
                 love.graphics.draw(tilesSheet, tileQuad, tile.x, tile.y)
             end
 

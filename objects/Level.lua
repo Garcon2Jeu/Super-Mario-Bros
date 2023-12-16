@@ -55,3 +55,11 @@ function Level.drawMap(map)
 
     Assets.colors.reset()
 end
+
+function Level:isCollidable(tile)
+    if not tile then
+        return false
+    end
+
+    return tile.collidable
+end

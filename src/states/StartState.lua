@@ -20,21 +20,25 @@ function StartState:draw()
     self.player:draw()
     self.level:draw()
 
-    self:drawHitboxToTiles()
+    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    love.graphics.print(tostring(self.player.stateMachine.debug), 50, 50)
+    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+
+    -- self:drawHitboxToTiles()
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
 function StartState:drawHitboxToTiles()
     self.player:drawPoints()
 
-    local tile1, tile2 = self.level:getTilesFromHitPoints(self.level.tileMap, self.player, "bottom")
+    local t1, t2 = self.level:getTilesFromHitPoints(self.level.tileMap, self.player, "bottom")
 
-    if not tile1 or not tile2 then
+    if not t1 and not t2 or not t1.collidable and not t2.collidable then
         return
     end
 
-    love.graphics.rectangle("line", tile1.x, tile1.y, TILESIZE, TILESIZE)
-    love.graphics.rectangle("line", tile2.x, tile2.y, TILESIZE, TILESIZE)
+    love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
+    love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------

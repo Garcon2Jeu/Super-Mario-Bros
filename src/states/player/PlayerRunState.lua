@@ -20,8 +20,7 @@ function PlayerRunState:update(dt)
 
     local t1, t2 = self.level:getTilesFromHitPoints(self.level.tileMap, self.player, "bottom")
 
-    if (t1 and t2) and (not t1.ground and not t2.ground) then
-        self.player:stand(t1.y - CHARACTER_HEIGHT)
+    if not self.level:isCollidable(t1) or not self.level:isCollidable(t2) then
         self.player:changeState("fall")
         return
     end

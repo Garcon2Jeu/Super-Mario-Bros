@@ -16,9 +16,14 @@ function PlayerFallState:update(dt)
     local b1, b2 = self.level:getTilesFromHitPoints(
         self.level.blockMap, self.player, "bottom")
 
-    if (t1 and t2) and (t1.ground or t2.ground) or
-        (b1 and b2) and (b1.collidable or b2.collidable) then
-        self.player:stand(t1.y - CHARACTER_HEIGHT)
+    if self.level:isCollidable(t1)
+        or self.level:isCollidable(t2)
+        or self.level:isCollidable(b1)
+        or self.level:isCollidable(b2) then
+        local y = t1 and t1.y or t2.y
+
+        self.player:stand(y - CHARACTER_HEIGHT)
         self.player:changeState("idle")
+        return
     end
 end
