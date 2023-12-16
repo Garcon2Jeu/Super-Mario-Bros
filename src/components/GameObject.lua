@@ -11,8 +11,15 @@ function GameObject:init(def)
     -- debug -- to tie with state ---
     self.quad         = def.quad
     ---------------------------------
-    self.collidable   = true
     self.facingRight  = true
+
+    -- if def.onConsume then
+    --     Consummable.init(self, def.onConsume)
+    -- end
+
+    if def.onCollide then
+        Collidable.init(self, def.onCollide)
+    end
 end
 
 function GameObject:draw()

@@ -15,6 +15,8 @@ require "src.components.Animation"
 require "src.components.Hitbox"
 require "src.components.Camera"
 require "src.components.BaseMap"
+require "src.components.Collidable"
+require "src.components.Consummable"
 
 -- require "src.components.TileMap"
 -- require "src.components.BlockMap"

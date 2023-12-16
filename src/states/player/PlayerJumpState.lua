@@ -8,12 +8,14 @@ function PlayerJumpState:init(level, player, quad)
 end
 
 function PlayerJumpState:update(dt)
-    local t1, t2 = self.level:getTilesFromHitPoints(
+    local b1, b2 = self.level:getTilesFromHitPoints(
         self.level.blockMap, self.player, "top")
 
-    if (t1 and t2) and (t1.collidable or t2.collidable) then
-        self.player.dy = 0
-        self.player.y = t1.y + TILESIZE
+    if self.level:isCollidable(b1) then
+        b1:onCollide(self.player, TILESIZE)
+        self.player:changeState("fall")
+    elseif self.level:isCollidable(b2) then
+        b2:onCollide(self.player, TILESIZE)
         self.player:changeState("fall")
     end
 

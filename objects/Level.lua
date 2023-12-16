@@ -14,7 +14,7 @@ function Level:init()
     local baseMap = BaseMap.init(self, 20, MAP_HEIGHT)
 
     self.tileMap = TileMapGenerator.factory(App:deepCopy(baseMap))
-    self.blockMap = BlockMapGenerator:factory(App:deepCopy(baseMap), blockSheet, blockQuads[1])
+    self.blockMap = BlockMapGenerator:factory(App:deepCopy(baseMap))
 end
 
 function Level:draw()

@@ -49,7 +49,7 @@ function PlayerCharacter:jump()
     end
 end
 
-function PlayerCharacter:stand(y)
+function PlayerCharacter:blockY(y)
     self:setY(y)
     self:stopDY()
 end

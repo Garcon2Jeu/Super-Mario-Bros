@@ -16,7 +16,6 @@ function TileMapGenerator.addGround(tileMap)
     for key, column in pairs(tileMap) do
         for index, tile in ipairs(column) do
             if index >= GROUND_ROW then
-                -- tile.ground = true
                 tile.collidable = true
             end
         end

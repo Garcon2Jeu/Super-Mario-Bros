@@ -21,7 +21,7 @@ function StartState:draw()
     self.level:draw()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    -- love.graphics.print(tostring(self.player.stateMachine.debug), 50, 50)
+    love.graphics.print(tostring(self.level.blockMap[10][4].consummable), 50, 50)
     -- self:drawHitboxToTiles()
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
 end

@@ -41,5 +41,5 @@ function BaseMap:drawTileMap(tilesSheet, tileQuad, topperSheet, topperQuad)
 end
 
 function BaseMap:drawBlockMap()
-    self.blockMap[10][6]:draw()
+    self.blockMap[10][4]:draw()
 end
