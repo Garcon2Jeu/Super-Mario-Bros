@@ -12,10 +12,12 @@ require "src.components.GameObject"
 require "src.components.GravityBundle"
 require "src.components.MoveBundle"
 require "src.components.Animation"
-require "src.components.TileMap"
 require "src.components.Hitbox"
 require "src.components.Camera"
-require "src.components.BlockMap"
+require "src.components.BaseMap"
+
+-- require "src.components.TileMap"
+-- require "src.components.BlockMap"
 
 
 App = require "src.App"

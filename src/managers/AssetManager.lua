@@ -51,6 +51,7 @@ end
 
 function AssetsManager.getColorsMethods()
     return {
+        reset     = function() love.graphics.setColor(1, 1, 1, 1) end,
         setBlack  = function(alpha) love.graphics.setColor(0, 0, 0, alpha or 1) end,
         setWhite  = function(alpha) love.graphics.setColor(1, 1, 1, alpha or 1) end,
         setRed    = function(alpha) love.graphics.setColor(1, 0, 0, alpha or 1) end,
