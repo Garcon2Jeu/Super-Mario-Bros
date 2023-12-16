@@ -4,8 +4,8 @@ StartState = Class { __includes = {
 } }
 
 function StartState:init()
-    self.player = PlayerCharacter()
     self.level = Level()
+    self.player = PlayerCharacter(self.level)
 
     Camera.init(self)
 end

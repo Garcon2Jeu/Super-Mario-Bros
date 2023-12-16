@@ -3,8 +3,10 @@ PlayerRunState = Class { __includes = {
     Animation,
 } }
 
-function PlayerRunState:init(player, interval, frames)
+function PlayerRunState:init(level, player, interval, frames)
+    self.level = level
     self.player = player
+
     Animation.init(self, interval, frames)
 end
 
@@ -16,7 +18,7 @@ function PlayerRunState:update(dt)
         return
     end
 
-    local t1, t2 = State.current.level:getTilesFromHitPoints(State.current.level.tileMap, self.player, "bottom")
+    local t1, t2 = self.level:getTilesFromHitPoints(self.level.tileMap, self.player, "bottom")
 
     if (t1 and t2) and (not t1.ground and not t2.ground) then
         self.player:stand(t1.y - CHARACTER_HEIGHT)

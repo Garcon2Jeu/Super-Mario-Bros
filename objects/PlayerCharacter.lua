@@ -15,12 +15,12 @@ local hitboxOffsets = {
     ["top"]    = { 3, 0, -3, 0 }
 }
 
-function PlayerCharacter:init()
+function PlayerCharacter:init(level)
     local stateMachine = StateMachine {
         ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
-        ["run"]  = function() return PlayerRunState(self, .1, { pinkQuads[10], pinkQuads[11] }) end,
-        ["jump"] = function() return PlayerJumpState(self, pinkQuads[3]) end,
-        ["fall"] = function() return PlayerFallState(self, pinkQuads[8]) end,
+        ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
+        ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
+        ["fall"] = function() return PlayerFallState(level, self, pinkQuads[8]) end,
     }
 
     GameObject.init(self, {

@@ -24,30 +24,6 @@ function Level:draw()
     )
 
     self:drawBlockMap()
-
-
-    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    -- -- check colision between player and block using grid system
-
-
-    -- local t1, t2 = self:getTilesFromHitPoints(self.blockMap, State.current.player, "top")
-    -- local debug = false
-
-    -- if t1 or t2 then
-    --     love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
-    --     love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
-
-    --     if t1.collidable or t2.collidable then
-    --         debug = true
-    --         State.current.player.dy = 0
-    --         State.current.player.y = t1.y + TILESIZE
-    --     else
-    --         debug = false
-    --     end
-    -- end
-
-    -- love.graphics.print(tostring(debug), 50, 50)
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
 end
 
 function Level.generateEmptyMap(mapWidth, mapHeight)
