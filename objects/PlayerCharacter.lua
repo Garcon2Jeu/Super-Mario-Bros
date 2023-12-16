@@ -71,7 +71,7 @@ function PlayerCharacter:run(dt)
 end
 
 function PlayerCharacter:blockRun(direction)
-    local t1, t2 = State.current.level:hitboxPointsToTiles(self, direction)
+    local t1, t2 = State.current.level:getTilesFromHitPoints(State.current.level.tileMap, self, direction)
 
     if (t1 and t2) and (t1.ground or t2.ground) then
         self.x = direction == "right" and t1.x - CHARACTER_WIDTH + 1 or t2.x + TILESIZE - 2

@@ -28,4 +28,17 @@ function App:quit()
     end
 end
 
+function App:deepCopy(original)
+    if type(original) ~= "table" then
+        return original
+    end
+
+    local copy = {}
+    for key, value in pairs(original) do
+        copy[self:deepCopy(key)] = self:deepCopy(value)
+    end
+
+    return copy
+end
+
 return App()

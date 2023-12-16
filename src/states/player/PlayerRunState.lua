@@ -16,7 +16,7 @@ function PlayerRunState:update(dt)
         return
     end
 
-    local t1, t2 = State.current.level:hitboxPointsToTiles(self.player, "bottom")
+    local t1, t2 = State.current.level:getTilesFromHitPoints(State.current.level.tileMap, self.player, "bottom")
 
     if (t1 and t2) and (not t1.ground and not t2.ground) then
         self.player:stand(t1.y - CHARACTER_HEIGHT)

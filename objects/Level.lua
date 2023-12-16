@@ -11,8 +11,10 @@ local blockQuads = Quads:getSetsOfQuads(blockSheet, TILESIZE, TILESIZE)
 
 
 function Level:init()
-    self.tileMap = TileMapGenerator.factory(20, MAP_HEIGHT)
-    self.blockMap = BlockMapGenerator:factory(self.tileMap, blockSheet, blockQuads[1])
+    local baseMap = self.generateEmptyMap(20, MAP_HEIGHT)
+
+    self.tileMap = TileMapGenerator.factory(App:deepCopy(baseMap))
+    self.blockMap = BlockMapGenerator:factory(App:deepCopy(baseMap), blockSheet, blockQuads[1])
 end
 
 function Level:draw()
@@ -22,4 +24,65 @@ function Level:draw()
     )
 
     self:drawBlockMap()
+
+
+    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    -- -- check colision between player and block using grid system
+
+
+    -- local t1, t2 = self:getTilesFromHitPoints(self.blockMap, State.current.player, "top")
+    -- local debug = false
+
+    -- if t1 or t2 then
+    --     love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
+    --     love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
+
+    --     if t1.collidable or t2.collidable then
+    --         debug = true
+    --         State.current.player.dy = 0
+    --         State.current.player.y = t1.y + TILESIZE
+    --     else
+    --         debug = false
+    --     end
+    -- end
+
+    -- love.graphics.print(tostring(debug), 50, 50)
+    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+end
+
+function Level.generateEmptyMap(mapWidth, mapHeight)
+    local map = {}
+
+    for column = 1, mapWidth do
+        local tileColumn = {}
+        local x = (column - 1) * TILESIZE
+        for row = 1, mapHeight do
+            table.insert(tileColumn, {
+                x = x,
+                y = (row - 1) * TILESIZE,
+            })
+        end
+
+        table.insert(map, tileColumn)
+    end
+
+    return map
+end
+
+function Level:pointToTile(map, x, y)
+    if x < 0 or y < 0 or x > VIRTUAL_WIDTH or y > VIRTUAL_HEIGHT then
+        return nil
+    end
+
+    local column = math.floor(x / TILESIZE) + 1
+    local row = math.floor(y / TILESIZE) + 1
+
+    return map[column][row]
+end
+
+function Level:getTilesFromHitPoints(map, object, edgeDirection)
+    local x1, y1, x2, y2 = object:getHitboxOffset(edgeDirection)
+    local p1, p2 = object:getHitboxEdge(edgeDirection, x1, y1, x2, y2)
+
+    return self:pointToTile(map, p1.x, p1.y), self:pointToTile(map, p2.x, p2.y)
 end

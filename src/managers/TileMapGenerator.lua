@@ -1,34 +1,15 @@
 TileMapGenerator = Class()
 
+
 local pillarHeightMax = 4
 
 
-function TileMapGenerator.factory(mapWidth, mapHeight)
-    local map = TileMapGenerator.generateEmpty(mapWidth, mapHeight)
+function TileMapGenerator.factory(map, mapWidth, mapHeight)
     TileMapGenerator.addGround(map)
     TileMapGenerator.addPillars(map)
     TileMapGenerator.addToppers(map)
 
     return map
-end
-
-function TileMapGenerator.generateEmpty(mapWidth, mapHeight)
-    local tileMap = {}
-
-    for column = 1, mapWidth do
-        local tileColumn = {}
-        local x = (column - 1) * TILESIZE
-        for row = 1, mapHeight do
-            table.insert(tileColumn, {
-                x = x,
-                y = (row - 1) * TILESIZE,
-            })
-        end
-
-        table.insert(tileMap, tileColumn)
-    end
-
-    return tileMap
 end
 
 function TileMapGenerator.addGround(tileMap)
