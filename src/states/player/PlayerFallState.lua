@@ -20,9 +20,7 @@ function PlayerFallState:update(dt)
         or self.level:isCollidable(t2)
         or self.level:isCollidable(b1)
         or self.level:isCollidable(b2) then
-        local y = t1 and t1.y or t2.y
-
-        self.player:stand(y - CHARACTER_HEIGHT)
+        self.player:stand((t1 and t1.y or t2.y) - CHARACTER_HEIGHT)
         self.player:changeState("idle")
         return
     end

@@ -10,8 +10,8 @@ local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEI
 
 local hitboxOffsets = {
     ["bottom"] = { 2, 0, -2, 0 },
-    ["right"]  = { -1, 1, -1, -1 },
-    ["left"]   = { 1, 1, 1, -1 },
+    ["right"]  = { -1, 1, -1, -5 },
+    ["left"]   = { 1, 1, 1, -5 },
     ["top"]    = { 3, 0, -3, 0 }
 }
 
@@ -39,8 +39,8 @@ end
 
 function PlayerCharacter:update(dt)
     self:updateHitbox()
-    self:run(dt)
     self.stateMachine:update(dt)
+    self:run(dt)
 end
 
 function PlayerCharacter:jump()
