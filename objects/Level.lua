@@ -44,7 +44,17 @@ function Level:getTilesFromHitPoints(map, object, edgeDirection)
     return self:pointToTile(map, p1.x, p1.y), self:pointToTile(map, p2.x, p2.y)
 end
 
-function Level.drawMap(map)
+function Level:isCollidable(tile)
+    if not tile then
+        return false
+    end
+
+    return tile.collidable
+end
+
+-- Debug --
+
+function Level.drawBaseMap(map)
     Assets.colors.setYellow(.5)
 
     for key, column in pairs(map) do
@@ -54,12 +64,4 @@ function Level.drawMap(map)
     end
 
     Assets.colors.reset()
-end
-
-function Level:isCollidable(tile)
-    if not tile then
-        return false
-    end
-
-    return tile.collidable
 end

@@ -42,3 +42,4 @@ require "src.states.player.PlayerJumpState"
 
 require "objects.PlayerCharacter"
 require "objects.Level"
+require "objects.Tile"

@@ -71,14 +71,17 @@ function PlayerCharacter:run(dt)
 end
 
 function PlayerCharacter:blockRun(direction)
-    local t1, t2 = State.current.level:getTilesFromHitPoints(State.current.level.tileMap, self, direction)
-    local b1, b2 = State.current.level:getTilesFromHitPoints(State.current.level.blockMap, self, direction)
+    local t1, t2 = State.current.level:getTilesFromHitPoints(
+        State.current.level.tileMap, self, direction)
 
-    if State.current.level:isCollidable(t1)
-        or State.current.level:isCollidable(t2)
-        or State.current.level:isCollidable(b1)
-        or State.current.level:isCollidable(b2) then
-        self.x = direction == "right" and t1.x - CHARACTER_WIDTH + 1 or t2.x + TILESIZE - 2
+    local b1, b2 = State.current.level:getTilesFromHitPoints(
+        State.current.level.blockMap, self, direction)
+
+    for key, object in pairs { t1, t2, b1, b2 } do
+        if State.current.level:isCollidable(object) then
+            self.x = direction == "right" and
+                object.x - CHARACTER_WIDTH + 1 or object.x + TILESIZE - 2
+        end
     end
 end
 

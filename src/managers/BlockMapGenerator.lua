@@ -20,14 +20,8 @@ function BlockMapGenerator.addBlock(map)
         texture   = blockSheet,
         quad      = blockQuads[7],
         -- onConsume = onConsume,
-        onCollide = BlockMapGenerator.getOnCollide()
+        onCollide = true
     }
 
     map[10][4] = block
-end
-
-function BlockMapGenerator.getOnCollide()
-    return function(self, player, yOffset)
-        player:blockY(self.y + yOffset)
-    end
 end

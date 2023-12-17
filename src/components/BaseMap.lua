@@ -14,7 +14,7 @@ function BaseMap.generateEmptyMap(mapWidth, mapHeight)
         local tileColumn = {}
         local x = (column - 1) * TILESIZE
         for row = 1, mapHeight do
-            table.insert(tileColumn, {
+            table.insert(tileColumn, Tile {
                 x = x,
                 y = (row - 1) * TILESIZE,
             })
