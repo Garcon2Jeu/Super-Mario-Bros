@@ -2,7 +2,7 @@ Collidable = Class()
 
 function Collidable:init(def)
     self.collidable = true
-    self.onCollide = Collidable.getOnCollide()
+    self.onCollide = def or Collidable.getOnCollide()
 end
 
 function Collidable.getOnCollide()

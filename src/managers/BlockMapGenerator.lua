@@ -19,9 +19,25 @@ function BlockMapGenerator.addBlock(map)
         height    = TILESIZE,
         texture   = blockSheet,
         quad      = blockQuads[7],
-        -- onConsume = onConsume,
-        onCollide = true
+        onCollide = BlockMapGenerator.getOnCollide(),
+        onConsume = BlockMapGenerator.getOnConsume(),
     }
 
     map[10][4] = block
+end
+
+function BlockMapGenerator.getOnCollide()
+    return function(self, player, yOffset)
+        Collidable.getOnCollide()(self, player, yOffset)
+        self:OnConsume()
+    end
+end
+
+function BlockMapGenerator.getOnConsume()
+    return function(self)
+        if not self.consummed then
+            self:consumme(true)
+            self.quad = blockQuads[20]
+        end
+    end
 end

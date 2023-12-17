@@ -13,12 +13,12 @@ function GameObject:init(def)
     ---------------------------------
     self.facingRight  = true
 
-    -- if def.onConsume then
-    --     Consummable.init(self, def.onConsume)
-    -- end
-
     if def.onCollide then
         Collidable.init(self, def.onCollide)
+    end
+
+    if def.onConsume then
+        Consummable.init(self, def.onConsume)
     end
 end
 
