@@ -18,8 +18,8 @@ require "src.components.BaseMap"
 require "src.components.Collidable"
 require "src.components.Consummable"
 
--- require "src.components.TileMap"
--- require "src.components.BlockMap"
+require "src.components.TileMap"
+require "src.components.BlockMap"
 
 
 App = require "src.App"

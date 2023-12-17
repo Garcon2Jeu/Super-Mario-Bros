@@ -62,11 +62,9 @@ function GameObject:init(def)
     self.width        = def.width
     self.height       = def.height
     self.texture      = def.texture
+    self.quad         = def.quad
     self.xOffset      = def.width and self.width / 2 or 0
     self.stateMachine = def.stateMachine
-    -- debug -- to tie with state ---
-    self.quad         = def.quad
-    ---------------------------------
     self.facingRight  = true
 end
 

@@ -1,13 +1,14 @@
-Level = Class { __includes = BaseMap }
+Level = Class { __includes = {
+    BaseMap,
+    TileMap,
+    BlockMap
+} }
 
 local tilesSheet = Assets.graphics["tiles"]()
 local tilesQuads = Quads:getSetsOfQuads(tilesSheet, TILESIZE, TILESIZE, 6, 10)
 
 local toppersSheet = Assets.graphics["tile_tops"]()
 local toppersQuads = Quads:getSetsOfQuads(toppersSheet, TILESIZE, TILESIZE, 6, 18)
-
-local blockSheet = Assets.graphics["jump_blocks"]()
-local blockQuads = Quads:getSetsOfQuads(blockSheet, TILESIZE, TILESIZE)
 
 
 function Level:init()
@@ -24,10 +25,6 @@ function Level:draw()
     )
 
     self:drawBlockMap()
-
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    -- love.graphics.print(tostring(), 50, 50)
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
 end
 
 function Level:pointToTile(map, x, y)

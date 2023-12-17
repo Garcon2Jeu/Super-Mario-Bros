@@ -26,6 +26,8 @@ end
 function TileMapGenerator.addPillars(tileMap)
     for row = pillarHeightMax, GROUND_ROW - 1 do
         Collidable.init(tileMap[15][row])
+        Collidable.init(tileMap[14][row])
+        Collidable.init(tileMap[13][row])
     end
 end
 

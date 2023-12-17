@@ -1,4 +1,8 @@
-JumpBlock = Class { __includes = { GameObject, Collidable, Consummable } }
+JumpBlock = Class { __includes = {
+    GameObject,
+    Collidable,
+    Consummable
+} }
 
 local JumpBlockSheet = Assets.graphics["jump_blocks"]()
 local JumpBlockQuads = Quads:getSetsOfQuads(JumpBlockSheet, TILESIZE, TILESIZE)

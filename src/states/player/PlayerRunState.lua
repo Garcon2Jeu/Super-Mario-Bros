@@ -19,11 +19,35 @@ function PlayerRunState:update(dt)
     end
 
     local t1, t2 = self.level:getTilesFromHitPoints(self.level.tileMap, self.player, "bottom")
+    local b1, b2 = self.level:getTilesFromHitPoints(self.level.blockMap, self.player, "bottom")
 
-    if not self.level:isCollidable(t1) or not self.level:isCollidable(t2) then
+    -- TOFIX!!!!!! ----------------------------------------------------------------------------------------------------------------------
+
+    -- for key, objectPairs in pairs { { t1, t2 }, { b1, b2 } } do
+    --     if not self.level:isCollidable(objectPairs[1])
+    --         and not self.level:isCollidable(objectPairs[2]) then
+    --         self.player:changeState("fall")
+    --         return
+    --     end
+    -- end
+
+    -- if not self.level:isCollidable(t1) and not self.level:isCollidable(t2)
+    --     or not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
+    --     self.player:changeState("fall")
+    --     return
+    -- end
+
+    if not self.level:isCollidable(t1) and not self.level:isCollidable(t2) then
         self.player:changeState("fall")
         return
     end
+
+    -- if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
+    --     self.player:changeState("fall")
+    --     return
+    -- end
+
+    ------------------------------------------------------------------------------------------------------------------------------------
 
     if not self.player:isRunning() then
         self.player:changeState("idle")
