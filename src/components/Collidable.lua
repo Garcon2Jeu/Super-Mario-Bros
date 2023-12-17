@@ -10,3 +10,11 @@ function Collidable.getOnCollide()
         player:blockY(self.y + yOffset)
     end
 end
+
+-- function Collidable:setOnCollide(def)
+--     self.onCollide = def
+-- end
+
+-- function Collidable:isCollidable()
+--     return self.collidable
+-- end
