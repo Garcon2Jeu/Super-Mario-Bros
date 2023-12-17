@@ -1,18 +1,21 @@
 Level = Class { __includes = {
     BaseMap,
     TileMap,
-    BlockMap
+    BlockMap,
+    CoinMap
 } }
 
 function Level:init()
     local baseMap = BaseMap.init(self, 20, MAP_HEIGHT)
 
-    self.tileMap = TileMapGenerator:factory(baseMap)
-    self.blockMap = BlockMapGenerator:factory(baseMap)
+    TileMap.init(self, baseMap)
+    BlockMap.init(self, baseMap)
+    CoinMap.init(self)
 end
 
 function Level:draw()
     self:drawTileMap()
+    self:drawCoinMap()
     self:drawBlockMap()
 end
 

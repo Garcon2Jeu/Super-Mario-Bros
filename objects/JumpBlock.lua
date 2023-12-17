@@ -33,6 +33,7 @@ function JumpBlock.getOnConsume()
             if not self:isConsummed() then
                 self:consumme(true)
                 self:setQuad(JumpBlockQuads[20])
+                State.current.level:spawnCoin(self.x, self.y)
             end
         end
 end
