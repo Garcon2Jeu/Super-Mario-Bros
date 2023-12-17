@@ -17,6 +17,7 @@ require "src.components.Camera"
 require "src.components.BaseMap"
 require "src.components.Collidable"
 require "src.components.Consummable"
+require "src.components.ObjectStateMachine"
 
 require "src.components.TileMap"
 require "src.components.BlockMap"

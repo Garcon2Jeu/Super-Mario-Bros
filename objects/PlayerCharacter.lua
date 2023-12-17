@@ -2,7 +2,8 @@ PlayerCharacter = Class { __includes = {
     GameObject,
     GravityBundle,
     MoveBundle,
-    Hitbox
+    Hitbox,
+    ObjectStateMachine
 } }
 
 local pinkAtlas = Assets.graphics["pink_alien"]()
@@ -16,31 +17,48 @@ local hitboxOffsets = {
 }
 
 function PlayerCharacter:init(level)
-    local stateMachine = StateMachine {
-        ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
-        ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
-        ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
-        ["fall"] = function() return PlayerFallState(level, self, pinkQuads[8]) end,
-    }
-
     GameObject.init(self, {
-        x            = CENTER_WIDTH - CHARACTER_WIDTH / 2,
-        y            = 0,
-        width        = CHARACTER_WIDTH,
-        height       = CHARACTER_HEIGHT,
-        texture      = pinkAtlas,
-        stateMachine = stateMachine
+        x       = CENTER_WIDTH - CHARACTER_WIDTH / 2,
+        y       = 0,
+        width   = CHARACTER_WIDTH,
+        height  = CHARACTER_HEIGHT,
+        texture = pinkAtlas,
     })
 
     GravityBundle.init(self)
-
+    ObjectStateMachine.init(self, self:getStates(level))
     self:changeState("fall")
+
+    self.width       = CHARACTER_WIDTH
+    self.height      = CHARACTER_HEIGHT
+    self.xOffset     = CHARACTER_WIDTH / 2 or 0
+    self.facingRight = true
 end
 
 function PlayerCharacter:update(dt)
     self:updateHitbox()
     self.stateMachine:update(dt)
     self:run(dt)
+end
+
+function PlayerCharacter:draw()
+    love.graphics.draw(
+        self.texture, self.quad,
+        math.floor(self.x + self.xOffset),
+        math.floor(self.y),
+        0,
+        self.facingRight and 1 or -1, 1,
+        self.xOffset
+    )
+end
+
+function PlayerCharacter:getStates(level)
+    return {
+        ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
+        ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
+        ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
+        ["fall"] = function() return PlayerFallState(level, self, pinkQuads[8]) end,
+    }
 end
 
 function PlayerCharacter:jump()
@@ -96,4 +114,12 @@ end
 function PlayerCharacter:getHitboxOffset(direction)
     return hitboxOffsets[direction][1], hitboxOffsets[direction][2],
         hitboxOffsets[direction][3], hitboxOffsets[direction][4]
+end
+
+function PlayerCharacter:isFacingRight()
+    return self.facingRight
+end
+
+function PlayerCharacter:setFacingRight(bool)
+    self.facingRight = bool
 end
