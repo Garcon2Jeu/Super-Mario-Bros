@@ -4,19 +4,36 @@ TileMapGenerator = Class()
 local pillarHeightMax = 4
 
 
-function TileMapGenerator.factory(map)
-    TileMapGenerator.addGround(map)
-    TileMapGenerator.addPillars(map)
-    TileMapGenerator.addToppers(map)
+function TileMapGenerator:factory(baseMap)
+    local tileMap = self.getEmptyTileMap(baseMap)
 
-    return map
+    self.addGround(tileMap)
+    self.addPillars(tileMap)
+    self.addToppers(tileMap)
+
+    return tileMap
+end
+
+function TileMapGenerator.getEmptyTileMap(baseMap)
+    local tileMap = {}
+
+    for columnIndex, baseColumn in ipairs(baseMap) do
+        tileMap[columnIndex] = {}
+        for key, baseTile in pairs(baseColumn) do
+            table.insert(tileMap[columnIndex],
+                Tile { x = baseTile.x, y = baseTile.y }
+            )
+        end
+    end
+
+    return tileMap
 end
 
 function TileMapGenerator.addGround(tileMap)
     for key, column in pairs(tileMap) do
         for index, tile in ipairs(column) do
             if index >= GROUND_ROW then
-                Collidable.init(tile)
+                tile:addCollidable()
             end
         end
     end
@@ -25,9 +42,9 @@ end
 -- NOT FINISHED --
 function TileMapGenerator.addPillars(tileMap)
     for row = pillarHeightMax, GROUND_ROW - 1 do
-        Collidable.init(tileMap[15][row])
-        Collidable.init(tileMap[14][row])
-        Collidable.init(tileMap[13][row])
+        tileMap[15][row]:addCollidable()
+        tileMap[14][row]:addCollidable()
+        tileMap[13][row]:addCollidable()
     end
 end
 

@@ -4,12 +4,11 @@ Level = Class { __includes = {
     BlockMap
 } }
 
-
 function Level:init()
     local baseMap = BaseMap.init(self, 20, MAP_HEIGHT)
 
-    self.tileMap = TileMapGenerator.factory(App:deepCopy(baseMap))
-    self.blockMap = BlockMapGenerator:factory(App:deepCopy(baseMap))
+    self.tileMap = TileMapGenerator:factory(baseMap)
+    self.blockMap = BlockMapGenerator:factory(baseMap)
 end
 
 function Level:draw()

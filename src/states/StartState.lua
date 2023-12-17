@@ -17,11 +17,12 @@ end
 
 function StartState:draw()
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    love.graphics.print(tostring(self.player.stateMachine.debug), 10, 10)
+    love.graphics.print(tostring(self.level.tileMap[1][1].test), 10, 10)
+    -- love.graphics.print(tostring(self.level.tileMap[1][1]:draw()), 10, 10)
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     self:scrollCamera()
-    self.player:draw()
     self.level:draw()
+    self.player:draw()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     -- self:drawHitboxToTiles()
