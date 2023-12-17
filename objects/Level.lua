@@ -4,12 +4,6 @@ Level = Class { __includes = {
     BlockMap
 } }
 
-local tilesSheet = Assets.graphics["tiles"]()
-local tilesQuads = Quads:getSetsOfQuads(tilesSheet, TILESIZE, TILESIZE, 6, 10)
-
-local toppersSheet = Assets.graphics["tile_tops"]()
-local toppersQuads = Quads:getSetsOfQuads(toppersSheet, TILESIZE, TILESIZE, 6, 18)
-
 
 function Level:init()
     local baseMap = BaseMap.init(self, 20, MAP_HEIGHT)
@@ -19,11 +13,7 @@ function Level:init()
 end
 
 function Level:draw()
-    self:drawTileMap(
-        tilesSheet, tilesQuads[21][3],
-        toppersSheet, toppersQuads[3][1]
-    )
-
+    self:drawTileMap()
     self:drawBlockMap()
 end
 
