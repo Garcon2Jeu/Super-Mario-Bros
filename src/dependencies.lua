@@ -14,19 +14,19 @@ require "objects.BaseObject"
 require "src.modules.PositionModule"
 require "src.modules.DimensionsModule"
 require "src.modules.TextureModule"
+require "src.modules.GravityModule"
 
 -- Doing
+require "src.modules.StateMachineModule"
 
 --TODO
 require "src.components.Input"
-require "src.components.GravityBundle"
 require "src.components.MoveBundle"
 require "src.components.Animation"
 require "src.components.Hitbox"
 require "src.components.Camera"
 require "src.components.Collidable"
 require "src.components.Consummable"
-require "src.components.ObjectStateMachine"
 require "src.components.GameObject"
 
 require "src.components.BaseMap"

@@ -2,11 +2,13 @@ ModuleManager = Class()
 
 function ModuleManager:init()
     self.modules = {
-        ["BaseObject"] = function() return BaseObject end,
+        ["BaseObject"]         = function() return BaseObject end,
 
-        ["Position"] = function() return PositionModule end,
-        ["Dimensions"] = function() return DimensionsModule end,
-        ["Texture"] = function() return TextureModule end,
+        ["Position"]           = function() return PositionModule end,
+        ["Dimensions"]         = function() return DimensionsModule end,
+        ["Texture"]            = function() return TextureModule end,
+        ["Gravity"]            = function() return GravityModule end,
+        ["StateMachineModule"] = function() return StateMachineModule end,
     }
 end
 

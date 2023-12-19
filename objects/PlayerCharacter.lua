@@ -1,9 +1,8 @@
 PlayerCharacter = Class { __includes = {
-    GameObject,
-    GravityBundle,
+
     MoveBundle,
     Hitbox,
-    ObjectStateMachine
+
 } }
 
 local pinkAtlas = Assets.graphics["pink_alien"]()
@@ -45,12 +44,14 @@ function PlayerCharacter:init(level)
         quad        = pinkQuads[1]
     })
 
-    GravityBundle.init(self)
-    ObjectStateMachine.init(self, self:getStates(level))
+    ModuleManager:plugInBulk(self, {
+        ["Gravity"] = {},
+        ["StateMachineModule"] = self:getStates(level)
+    })
+
+    -- ObjectStateMachine.init(self, self:getStates(level))
     self:changeState("fall")
 
-    self.width       = CHARACTER_WIDTH
-    self.height      = CHARACTER_HEIGHT
     self.xOffset     = CHARACTER_WIDTH / 2 or 0
     self.facingRight = true
 end
