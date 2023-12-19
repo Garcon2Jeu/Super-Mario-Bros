@@ -1,11 +1,18 @@
 require "src.globals"
 
-Class  = require "src.libraries.class"
-Push   = require "src.libraries.push"
-Timer  = require "src.libraries.knife.timer"
+Class       = require "src.libraries.class"
+Push        = require "src.libraries.push"
+Timer       = require "src.libraries.knife.timer"
 
-Assets = require "src.managers.AssetManager"
-Quads  = require "src.managers.QuadManager"
+Assets      = require "src.managers.AssetManager"
+Quads       = require "src.managers.QuadManager"
+
+ObjectMaker = require "src.ObjectMaker"
+
+require "src.components.BaseObject"
+require "src.components.Position"
+require "src.components.Dimensions"
+require "src.components.Texture"
 
 require "src.components.Input"
 require "src.components.GameObject"
@@ -26,6 +33,8 @@ require "src.components.CoinMap"
 
 App = require "src.App"
 require "src.StateMachine"
+
+require "objects.Test"
 
 
 require "src.managers.TileMapGenerator"
