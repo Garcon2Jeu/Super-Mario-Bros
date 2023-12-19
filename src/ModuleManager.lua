@@ -19,7 +19,7 @@ end
 
 function ModuleManager.extractMethods(from, to)
     for key, value in pairs(from) do
-        to[key] = value
+        to[key] = to[key] or value
     end
 end
 

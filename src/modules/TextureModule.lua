@@ -1,8 +1,8 @@
 TextureModule = Class()
 
 function TextureModule:init(def)
-    self.spriteSheet = def.spriteSheet or 0
-    self.quad = def.quad or 0
+    self.spriteSheet = def.spriteSheet
+    self.quad = def.quad
 end
 
 function TextureModule:setSpriteSheet(spriteSheet)

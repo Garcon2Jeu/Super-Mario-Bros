@@ -16,13 +16,33 @@ local hitboxOffsets = {
     ["top"]    = { 3, 0, -3, 0 }
 }
 
+-- function PlayerCharacter:init(level)
+--     GameObject.init(self, {
+--         x       = CENTER_WIDTH - CHARACTER_WIDTH / 2,
+--         y       = 0,
+--         width   = CHARACTER_WIDTH,
+--         height  = CHARACTER_HEIGHT,
+--         texture = pinkAtlas,
+--     })
+
+--     GravityBundle.init(self)
+--     ObjectStateMachine.init(self, self:getStates(level))
+--     self:changeState("fall")
+
+--     self.width       = CHARACTER_WIDTH
+--     self.height      = CHARACTER_HEIGHT
+--     self.xOffset     = CHARACTER_WIDTH / 2 or 0
+--     self.facingRight = true
+-- end
+
 function PlayerCharacter:init(level)
-    GameObject.init(self, {
-        x       = CENTER_WIDTH - CHARACTER_WIDTH / 2,
-        y       = 0,
-        width   = CHARACTER_WIDTH,
-        height  = CHARACTER_HEIGHT,
-        texture = pinkAtlas,
+    BaseObject.init(self, {
+        x           = CENTER_WIDTH - CHARACTER_WIDTH / 2,
+        y           = 0,
+        width       = CHARACTER_WIDTH,
+        height      = CHARACTER_HEIGHT,
+        spriteSheet = pinkAtlas,
+        quad        = pinkQuads[1]
     })
 
     GravityBundle.init(self)
@@ -43,7 +63,7 @@ end
 
 function PlayerCharacter:draw()
     love.graphics.draw(
-        self.texture, self.quad,
+        self.spriteSheet, self.quad,
         math.floor(self.x + self.xOffset),
         math.floor(self.y),
         0,

@@ -5,32 +5,20 @@ StartState = Class { __includes = {
 
 function StartState:init()
     self.level = Level()
-    -- self.player = PlayerCharacter(self.level)
+    self.player = PlayerCharacter(self.level)
 
-    -- Camera.init(self)
-
-    self.test = Test()
+    Camera.init(self)
 end
 
 function StartState:update(dt)
-    -- self.player:update(dt)
-    -- self:updateCamera(self.player.x)
+    self.player:update(dt)
+    self:updateCamera(self.player.x)
 end
 
 function StartState:draw()
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    love.graphics.print(tostring(self.test.init), 10, 10)
-
-    self.test:draw()
-    -- love.graphics.print(tostring(self.level.tileMap[1][1]:draw()), 10, 10)
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    -- self:scrollCamera()
+    self:scrollCamera()
     self.level:draw()
-    -- self.player:draw()
-
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    -- self:drawHitboxToTiles()
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    self.player:draw()
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
