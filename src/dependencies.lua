@@ -9,13 +9,16 @@ Assets        = require "src.managers.AssetManager"
 Quads         = require "src.managers.QuadManager"
 ModuleManager = require "src.ModuleManager"
 
-require "src.components.BaseObject"
-require "src.components.Position"
-require "src.components.Dimensions"
-require "src.components.Texture"
+-- Done
+require "objects.BaseObject"
+require "src.modules.PositionModule"
+require "src.modules.DimensionsModule"
+require "src.modules.TextureModule"
 
+-- Doing
+
+--TODO
 require "src.components.Input"
-require "src.components.GameObject"
 require "src.components.GravityBundle"
 require "src.components.MoveBundle"
 require "src.components.Animation"
@@ -24,6 +27,7 @@ require "src.components.Camera"
 require "src.components.Collidable"
 require "src.components.Consummable"
 require "src.components.ObjectStateMachine"
+require "src.components.GameObject"
 
 require "src.components.BaseMap"
 require "src.components.TileMap"

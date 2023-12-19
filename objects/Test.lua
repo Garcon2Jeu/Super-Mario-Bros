@@ -4,7 +4,7 @@ local pinkAtlas = Assets.graphics["pink_alien"]()
 local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEIGHT)
 
 function Test:init()
-    ModuleManager:plug(self, "BaseObject", {
+    BaseObject.init(self, {
         x           = 50,
         y           = 50,
         width       = TILESIZE,
