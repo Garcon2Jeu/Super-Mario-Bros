@@ -1,13 +1,13 @@
 require "src.globals"
 
-Class       = require "src.libraries.class"
-Push        = require "src.libraries.push"
-Timer       = require "src.libraries.knife.timer"
+Class = require "src.libraries.class"
+Push  = require "src.libraries.push"
+Timer = require "src.libraries.knife.timer"
 
-Assets      = require "src.managers.AssetManager"
-Quads       = require "src.managers.QuadManager"
 
-ObjectMaker = require "src.ObjectMaker"
+Assets        = require "src.managers.AssetManager"
+Quads         = require "src.managers.QuadManager"
+ModuleManager = require "src.ModuleManager"
 
 require "src.components.BaseObject"
 require "src.components.Position"

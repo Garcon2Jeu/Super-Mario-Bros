@@ -1,7 +1,7 @@
-ObjectMaker = Class()
+ModuleManager = Class()
 
-function ObjectMaker:init()
-    self.components = {
+function ModuleManager:init()
+    self.modules = {
         ["BaseObject"] = function() return BaseObject end,
 
         ["Position"] = function() return Position end,
@@ -10,26 +10,26 @@ function ObjectMaker:init()
     }
 end
 
-function ObjectMaker:factory(object, def)
-    for name, params in pairs(def) do
-        self:plugComponent(object, name, params)
-    end
+function ModuleManager:plug(object, moduleName, params)
+    assert(self.modules[moduleName])
+    local module = self.modules[moduleName]()
+    self.extractMethods(module, object)
+    module.init(object, params)
 end
 
-function ObjectMaker:plugComponent(object, componentName, params)
-    assert(self.components[componentName])
-    local component = self.components[componentName]()
-    self.extractMethods(component, object)
-    component.init(object, params)
-end
-
-function ObjectMaker.extractMethods(from, to)
+function ModuleManager.extractMethods(from, to)
     for key, value in pairs(from) do
         to[key] = value
     end
 end
 
-return ObjectMaker()
+function ModuleManager:plugInBulk(object, def)
+    for name, params in pairs(def) do
+        self:plug(object, name, params)
+    end
+end
+
+return ModuleManager()
 
 -- function ObjectMaker:assertComponents(def)
 --     for name, value in pairs(def) do
