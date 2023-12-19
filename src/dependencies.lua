@@ -15,15 +15,15 @@ require "src.modules.PositionModule"
 require "src.modules.DimensionsModule"
 require "src.modules.TextureModule"
 require "src.modules.GravityModule"
+require "src.modules.StateMachineModule"
+require "src.modules.HitboxModule"
 
 -- Doing
-require "src.modules.StateMachineModule"
+require "src.modules.MoveModule"
 
 --TODO
 require "src.components.Input"
-require "src.components.MoveBundle"
 require "src.components.Animation"
-require "src.components.Hitbox"
 require "src.components.Camera"
 require "src.components.Collidable"
 require "src.components.Consummable"

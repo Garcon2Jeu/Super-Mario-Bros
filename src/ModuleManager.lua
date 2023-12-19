@@ -9,6 +9,8 @@ function ModuleManager:init()
         ["Texture"]            = function() return TextureModule end,
         ["Gravity"]            = function() return GravityModule end,
         ["StateMachineModule"] = function() return StateMachineModule end,
+        ["Hitbox"]             = function() return HitboxModule end,
+        ["Move"]               = function() return MoveModule end,
     }
 end
 

@@ -1,15 +1,15 @@
-Hitbox = Class()
+HitboxModule = Class()
 
 local radius = .5
 
-function Hitbox:updateHitbox()
+function HitboxModule:updateHitbox()
     self.topLeft     = { x = self.x, y = self.y }
     self.topRight    = { x = self.x + self.width, y = self.y }
     self.bottomLeft  = { x = self.x, y = self.y + self.height }
     self.bottomRight = { x = self.x + self.width, y = self.y + self.height }
 end
 
-function Hitbox:getHitboxEdge(direction, p1XOffset, p1YOffset, p2XOffset, p2YOffset)
+function HitboxModule:getHitboxEdge(direction, p1XOffset, p1YOffset, p2XOffset, p2YOffset)
     local p1 = { x = p1XOffset or 0, y = p1YOffset or 0 }
     local p2 = { x = p2XOffset or 0, y = p2YOffset or 0 }
 
@@ -30,7 +30,7 @@ function Hitbox:getHitboxEdge(direction, p1XOffset, p1YOffset, p2XOffset, p2YOff
     return p1, p2
 end
 
-function Hitbox:drawPoints()
+function HitboxModule:drawPoints()
     love.graphics.circle("fill", self.topLeft.x, self.topLeft.y, radius)
     love.graphics.circle("fill", self.topRight.x, self.topRight.y, radius)
     love.graphics.circle("fill", self.bottomLeft.x, self.bottomLeft.y, radius)

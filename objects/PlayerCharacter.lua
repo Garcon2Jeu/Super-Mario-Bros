@@ -1,9 +1,4 @@
-PlayerCharacter = Class { __includes = {
-
-    MoveBundle,
-    Hitbox,
-
-} }
+PlayerCharacter = Class()
 
 local pinkAtlas = Assets.graphics["pink_alien"]()
 local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEIGHT)
@@ -15,41 +10,17 @@ local hitboxOffsets = {
     ["top"]    = { 3, 0, -3, 0 }
 }
 
--- function PlayerCharacter:init(level)
---     GameObject.init(self, {
---         x       = CENTER_WIDTH - CHARACTER_WIDTH / 2,
---         y       = 0,
---         width   = CHARACTER_WIDTH,
---         height  = CHARACTER_HEIGHT,
---         texture = pinkAtlas,
---     })
-
---     GravityBundle.init(self)
---     ObjectStateMachine.init(self, self:getStates(level))
---     self:changeState("fall")
-
---     self.width       = CHARACTER_WIDTH
---     self.height      = CHARACTER_HEIGHT
---     self.xOffset     = CHARACTER_WIDTH / 2 or 0
---     self.facingRight = true
--- end
-
 function PlayerCharacter:init(level)
-    BaseObject.init(self, {
-        x           = CENTER_WIDTH - CHARACTER_WIDTH / 2,
-        y           = 0,
-        width       = CHARACTER_WIDTH,
-        height      = CHARACTER_HEIGHT,
-        spriteSheet = pinkAtlas,
-        quad        = pinkQuads[1]
-    })
-
     ModuleManager:plugInBulk(self, {
-        ["Gravity"] = {},
-        ["StateMachineModule"] = self:getStates(level)
+        ["Position"]           = { x = CENTER_WIDTH - CHARACTER_WIDTH / 2, y = 0 },
+        ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
+        ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },
+        ["StateMachineModule"] = self:getStates(level),
+        ["Gravity"]            = {},
+        ["Hitbox"]             = {},
+        ["Move"]               = {}
     })
 
-    -- ObjectStateMachine.init(self, self:getStates(level))
     self:changeState("fall")
 
     self.xOffset     = CHARACTER_WIDTH / 2 or 0
