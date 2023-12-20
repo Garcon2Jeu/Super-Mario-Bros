@@ -6,12 +6,10 @@ local toppersQuads = Quads:getSetsOfQuads(toppersSheet, TILESIZE, TILESIZE, 6, 1
 
 
 function TileTopper:init(def)
-    BaseObject.init(self, {
-        x = def.x,
-        y = def.y,
-        width = TILESIZE,
-        height = TILESIZE,
-        spriteSheet = toppersSheet,
-        quad = toppersQuads[3][1]
-    })
+    def.width       = TILESIZE
+    def.height      = TILESIZE
+    def.spriteSheet = toppersSheet
+    def.quad        = toppersQuads[3][1]
+
+    BaseObject.init(self, def)
 end

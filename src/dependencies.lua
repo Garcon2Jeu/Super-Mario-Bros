@@ -27,9 +27,9 @@ require "src.modules.CameraModule"
 require "src.modules.CollidableModule"
 
 -- Doing
+require "src.modules.ConsummableModule"
 
 --TODO
-require "src.components.Consummable"
 require "src.components.GameObject"
 
 

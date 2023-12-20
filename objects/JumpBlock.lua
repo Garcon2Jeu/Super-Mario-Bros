@@ -1,20 +1,19 @@
-JumpBlock = Class { __includes = {
-    GameObject,
-    -- Collidable,
-    Consummable
-} }
+JumpBlock = Class()
 
-local JumpBlockSheet = Assets.graphics["jump_blocks"]()
-local JumpBlockQuads = Quads:getSetsOfQuads(JumpBlockSheet, TILESIZE, TILESIZE)
+local jumpBlockSheet = Assets.graphics["jump_blocks"]()
+local jumpBlockQuads = Quads:getSetsOfQuads(jumpBlockSheet, TILESIZE, TILESIZE)
 
 function JumpBlock:init(def)
-    def.texture = JumpBlockSheet
-    def.quad    = JumpBlockQuads[7]
+    def.spriteSheet = jumpBlockSheet
+    def.quad = jumpBlockQuads[7]
 
-    GameObject.init(self, def)
-    -- Collidable.init(self, self.getOnCollide())
-    ModuleManager:plug(self, "Collidable")
-    Consummable.init(self, self.getOnConsume())
+    ModuleManager:plugInBulk(self, {
+        ["Position"]    = def,
+        ["Dimensions"]  = def,
+        ["Texture"]     = def,
+        ["Collidable"]  = self.getOnCollide(),
+        ["Consummable"] = self.getOnConsume()
+    })
 end
 
 function JumpBlock.getOnCollide()
@@ -33,7 +32,7 @@ function JumpBlock.getOnConsume()
         function(self)
             if not self:isConsummed() then
                 self:consumme(true)
-                self:setQuad(JumpBlockQuads[20])
+                self:setQuad(jumpBlockQuads[20])
                 State.current.level:spawnCoin(self.x, self.y)
             end
         end
