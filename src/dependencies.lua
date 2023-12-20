@@ -36,7 +36,8 @@ require "modules.ConsummableModule"
 
 -- States
 require "states.BaseState"
-require "states.StartState"
+
+require "states.main.StartState"
 
 require "states.player.BasePlayerState"
 require "states.player.PlayerIdleState"
