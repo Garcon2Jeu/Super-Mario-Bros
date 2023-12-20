@@ -1,55 +1,52 @@
 require "src.globals"
 
 -- Libraries
-Class = require "src.libraries.class"
-Push  = require "src.libraries.push"
-Timer = require "src.libraries.knife.timer"
+Class = require "libraries.class"
+Push  = require "libraries.push"
+Timer = require "libraries.knife.timer"
 
 
 -- Managers
-Assets  = require "src.managers.AssetManager"
-Quads   = require "src.managers.QuadManager"
-Modules = require "src.ModuleManager"
-require "src.managers.TileMapGenerator"
-require "src.managers.BlockMapGenerator"
+Assets  = require "managers.AssetManager"
+Quads   = require "managers.QuadManager"
+Modules = require "managers.ModuleManager"
+require "managers.StateMachine"
+require "managers.TileMapGenerator"
+require "managers.BlockMapGenerator"
 
 
 -- Modules
-require "src.modules.PositionModule"
-require "src.modules.DimensionsModule"
-require "src.modules.TextureModule"
-require "src.modules.GravityModule"
-require "src.modules.StateMachineModule"
-require "src.modules.HitboxModule"
-require "src.modules.MoveModule"
-require "src.modules.InputModule"
-require "src.modules.BaseMapModule"
-require "src.modules.TileMapModule"
-require "src.modules.BlockMapModule"
-require "src.modules.CoinMapModule"
-require "src.modules.AnimationModule"
-require "src.modules.CameraModule"
-require "src.modules.CollidableModule"
-require "src.modules.ConsummableModule"
+require "modules.PositionModule"
+require "modules.DimensionsModule"
+require "modules.TextureModule"
+require "modules.GravityModule"
+require "modules.StateMachineModule"
+require "modules.HitboxModule"
+require "modules.MoveModule"
+require "modules.InputModule"
+require "modules.BaseMapModule"
+require "modules.TileMapModule"
+require "modules.BlockMapModule"
+require "modules.CoinMapModule"
+require "modules.AnimationModule"
+require "modules.CameraModule"
+require "modules.CollidableModule"
+require "modules.ConsummableModule"
 
 
 -- States
-require "src.states.BaseState"
-require "src.states.StartState"
+require "states.BaseState"
+require "states.StartState"
 
-require "src.states.player.BasePlayerState"
-require "src.states.player.PlayerIdleState"
-require "src.states.player.PlayerRunState"
-require "src.states.player.PlayerFallState"
-require "src.states.player.PlayerJumpState"
-
-
--- App
-App = require "src.App"
-require "src.StateMachine"
+require "states.player.BasePlayerState"
+require "states.player.PlayerIdleState"
+require "states.player.PlayerRunState"
+require "states.player.PlayerFallState"
+require "states.player.PlayerJumpState"
 
 
 -- Objects
+App = require "objects.App"
 require "objects.BaseObject"
 require "objects.PlayerCharacter"
 require "objects.Level"
