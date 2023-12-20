@@ -1,7 +1,7 @@
 TileMapModule = Class()
 
-function TileMapModule:init(def)
-    self.tileMap = TileMapGenerator:factory(def.baseMap)
+function TileMapModule:init(baseMap)
+    self.tileMap = TileMapGenerator:factory(baseMap)
 end
 
 function TileMapModule:drawTileMap()

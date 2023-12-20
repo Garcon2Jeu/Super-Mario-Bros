@@ -5,9 +5,11 @@ function Level:init()
     local baseMap = self:generateEmptyMap()
 
     Modules:plugInBulk(self, {
-        ["TileMap"]  = { baseMap = baseMap },
-        ["BlockMap"] = { baseMap = baseMap },
-        ["CoinMap"]  = { baseMap = baseMap }
+        ["TileMap"]  = baseMap,
+        ["BlockMap"] = baseMap,
+        -- TOFIX
+        -- ["CoinMap"]  = baseMap
+        ["CoinMap"]  = {}
     })
 end
 

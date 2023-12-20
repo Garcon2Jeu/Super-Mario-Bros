@@ -17,8 +17,8 @@ function PlayerCharacter:init(level)
         ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },
         ["StateMachineModule"] = self:getStates(level),
         ["Gravity"]            = {},
-        ["Hitbox"]             = {},
-        ["Move"]               = {}
+        ["Move"]               = {},
+        ["Hitbox"]             = {}
     })
 
     self:changeState("fall")

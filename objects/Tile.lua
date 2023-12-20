@@ -12,25 +12,19 @@ function Tile:init(def)
     })
 end
 
--- TOFIX!!!!--
 function Tile:addCollidable()
-    Modules:plug(self, "Collidable")
-    Modules:plug(self, "Texture", {
-        spriteSheet = tilesSheet,
-        quad = tilesQuads[21][3]
+    Modules:plugInBulk(self, {
+        ["Collidable"] = self:getOnCollide(),
+        ["Texture"] = { spriteSheet = tilesSheet, quad = tilesQuads[21][3] }
     })
-
-    -- Modules:plugInBulk(self, {
-    --     ["Texture"] = {
-    --         spriteSheet = tilesSheet,
-    --         quad = tilesQuads[21][3]
-    --     },
-    --     ["Collidable"] = {}
-    -- })
 end
-
--- TOFIX!!!!--
 
 function Tile:addTopper(def)
     self.topper = TileTopper(def)
+end
+
+function Tile.getOnCollide()
+    return function(self, player, yOffset)
+        player:blockY(self.y + yOffset)
+    end
 end

@@ -1,7 +1,7 @@
 BlockMapModule = Class()
 
-function BlockMapModule:init(def)
-    self.blockMap = BlockMapGenerator:factory(def.baseMap)
+function BlockMapModule:init(baseMap)
+    self.blockMap = BlockMapGenerator:factory(baseMap)
 end
 
 function BlockMapModule:drawBlockMap()

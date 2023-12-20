@@ -1,11 +1,13 @@
-JumpBlock = Class()
+JumpBlock            = Class()
 
 local jumpBlockSheet = Assets.graphics["jump_blocks"]()
 local jumpBlockQuads = Quads:getSetsOfQuads(jumpBlockSheet, TILESIZE, TILESIZE)
 
 function JumpBlock:init(def)
+    def.width       = TILESIZE
+    def.height      = TILESIZE
     def.spriteSheet = jumpBlockSheet
-    def.quad = jumpBlockQuads[7]
+    def.quad        = jumpBlockQuads[7]
 
     Modules:plugInBulk(self, {
         ["Position"]    = def,

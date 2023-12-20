@@ -44,6 +44,12 @@ function Modules:plugInBulk(object, def)
     end
 end
 
+function Modules:plugInBulkTest(object, modules, def)
+    for key, module in pairs(modules) do
+        self:plug(object, module, def)
+    end
+end
+
 return Modules()
 
 -- function ObjectMaker:assertComponents(def)
