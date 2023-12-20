@@ -1,13 +1,13 @@
-Camera = Class()
+CameraModule = Class()
 
-function Camera:init()
+function CameraModule:init()
     self.cameraScroll = 0
 end
 
-function Camera:updateCamera(referenceX)
+function CameraModule:updateCamera(referenceX)
     self.cameraScroll = math.floor(referenceX - (VIRTUAL_WIDTH / 2) + (CHARACTER_WIDTH / 2))
 end
 
-function Camera:scrollCamera()
+function CameraModule:scrollCamera()
     love.graphics.translate(-self.cameraScroll, 0)
 end

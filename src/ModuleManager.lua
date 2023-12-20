@@ -2,16 +2,20 @@ ModuleManager = Class()
 
 function ModuleManager:init()
     self.modules = {
-        ["BaseObject"]         = function() return BaseObject end,
+        ["Input"]              = function() return InputModule end,
+        ["Camera"]             = function() return CameraModule end,
 
+        ["BaseObject"]         = function() return BaseObject end,
         ["Position"]           = function() return PositionModule end,
         ["Dimensions"]         = function() return DimensionsModule end,
         ["Texture"]            = function() return TextureModule end,
-        ["Gravity"]            = function() return GravityModule end,
-        ["StateMachineModule"] = function() return StateMachineModule end,
         ["Hitbox"]             = function() return HitboxModule end,
+        ["Gravity"]            = function() return GravityModule end,
         ["Move"]               = function() return MoveModule end,
-        ["Input"]              = function() return InputModule end,
+
+        ["StateMachineModule"] = function() return StateMachineModule end,
+        ["Animation"]          = function() return AnimationModule end,
+
         ["BaseMap"]            = function() return BaseMapModule end,
         ["TileMap"]            = function() return TileMapModule end,
         ["BlockMap"]           = function() return BlockMapModule end,

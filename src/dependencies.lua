@@ -22,13 +22,13 @@ require "src.modules.InputModule"
 require "src.modules.BaseMapModule"
 require "src.modules.TileMapModule"
 require "src.modules.BlockMapModule"
+require "src.modules.CoinMapModule"
+require "src.modules.AnimationModule"
 
 -- Doing
-require "src.modules.CoinMapModule"
+require "src.modules.CameraModule"
 
 --TODO
-require "src.components.Animation"
-require "src.components.Camera"
 require "src.components.Collidable"
 require "src.components.Consummable"
 require "src.components.GameObject"

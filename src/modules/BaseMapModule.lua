@@ -1,12 +1,5 @@
 BaseMapModule = Class()
 
--- function BaseMapModule:init(mapWidth, mapHeight)
---     self.width = mapWidth * TILESIZE
---     self.height = mapHeight * TILESIZE
-
---     return self.generateEmptyMap(mapWidth, mapHeight)
--- end
-
 function BaseMapModule:init(def)
     self.columns = def.columns
     self.rows    = def.rows

@@ -1,13 +1,13 @@
 PlayerRunState = Class { __includes = {
     BaseState,
-    Animation,
 } }
 
 function PlayerRunState:init(level, player, interval, frames)
     self.level = level
     self.player = player
 
-    Animation.init(self, interval, frames)
+    ModuleManager:plug(self, "Animation",
+        { interval = interval, frames = frames })
 end
 
 function PlayerRunState:update(dt)

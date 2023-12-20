@@ -1,13 +1,10 @@
-StartState = Class { __includes = {
-    BaseState,
-    Camera
-} }
+StartState = Class { __includes = BaseState }
 
 function StartState:init()
     self.level = Level()
     self.player = PlayerCharacter(self.level)
 
-    Camera.init(self)
+    ModuleManager:plug(self, "Camera")
 end
 
 function StartState:update(dt)
