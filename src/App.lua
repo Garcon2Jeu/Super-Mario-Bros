@@ -4,7 +4,7 @@ function App:init()
     math.randomseed(os.time())
     self.setupWindow()
 
-    ModuleManager:plug(self, "Input", {})
+    Modules:plug(self, "Input", {})
 end
 
 function App:update()

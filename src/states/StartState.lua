@@ -4,7 +4,7 @@ function StartState:init()
     self.level = Level()
     self.player = PlayerCharacter(self.level)
 
-    ModuleManager:plug(self, "Camera")
+    Modules:plug(self, "Camera")
 end
 
 function StartState:update(dt)

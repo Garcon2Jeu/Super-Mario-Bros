@@ -6,7 +6,7 @@ function PlayerRunState:init(level, player, interval, frames)
     self.level = level
     self.player = player
 
-    ModuleManager:plug(self, "Animation",
+    Modules:plug(self, "Animation",
         { interval = interval, frames = frames })
 end
 

@@ -7,7 +7,7 @@ function JumpBlock:init(def)
     def.spriteSheet = jumpBlockSheet
     def.quad = jumpBlockQuads[7]
 
-    ModuleManager:plugInBulk(self, {
+    Modules:plugInBulk(self, {
         ["Position"]    = def,
         ["Dimensions"]  = def,
         ["Texture"]     = def,

@@ -11,7 +11,7 @@ local hitboxOffsets = {
 }
 
 function PlayerCharacter:init(level)
-    ModuleManager:plugInBulk(self, {
+    Modules:plugInBulk(self, {
         ["Position"]           = { x = CENTER_WIDTH - CHARACTER_WIDTH / 2, y = 0 },
         ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
         ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },

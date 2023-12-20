@@ -1,15 +1,20 @@
 require "src.globals"
 
+-- Libraries
 Class = require "src.libraries.class"
 Push  = require "src.libraries.push"
 Timer = require "src.libraries.knife.timer"
 
 
-Assets        = require "src.managers.AssetManager"
-Quads         = require "src.managers.QuadManager"
-ModuleManager = require "src.ModuleManager"
+-- Managers
+Assets  = require "src.managers.AssetManager"
+Quads   = require "src.managers.QuadManager"
+Modules = require "src.ModuleManager"
+require "src.managers.TileMapGenerator"
+require "src.managers.BlockMapGenerator"
 
--- Done
+
+-- Modules
 require "src.modules.PositionModule"
 require "src.modules.DimensionsModule"
 require "src.modules.TextureModule"
@@ -25,25 +30,10 @@ require "src.modules.CoinMapModule"
 require "src.modules.AnimationModule"
 require "src.modules.CameraModule"
 require "src.modules.CollidableModule"
-
--- Doing
 require "src.modules.ConsummableModule"
 
---TODO
-require "src.components.GameObject"
 
-
-
-App = require "src.App"
-require "src.StateMachine"
-
-require "objects.Test"
-
-
-require "src.managers.TileMapGenerator"
-require "src.managers.BlockMapGenerator"
-
-
+-- States
 require "src.states.BaseState"
 require "src.states.StartState"
 
@@ -53,6 +43,13 @@ require "src.states.player.PlayerRunState"
 require "src.states.player.PlayerFallState"
 require "src.states.player.PlayerJumpState"
 
+
+-- App
+App = require "src.App"
+require "src.StateMachine"
+
+
+-- Objects
 require "objects.BaseObject"
 require "objects.PlayerCharacter"
 require "objects.Level"

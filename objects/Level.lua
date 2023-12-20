@@ -1,10 +1,10 @@
 Level = Class()
 
 function Level:init()
-    ModuleManager:plug(self, "BaseMap", { columns = 20, rows = MAP_HEIGHT })
+    Modules:plug(self, "BaseMap", { columns = 20, rows = MAP_HEIGHT })
     local baseMap = self:generateEmptyMap()
 
-    ModuleManager:plugInBulk(self, {
+    Modules:plugInBulk(self, {
         ["TileMap"]  = { baseMap = baseMap },
         ["BlockMap"] = { baseMap = baseMap },
         ["CoinMap"]  = { baseMap = baseMap }

@@ -1,6 +1,6 @@
-ModuleManager = Class()
+Modules = Class()
 
-function ModuleManager:init()
+function Modules:init()
     self.modules = {
         ["Input"]              = function() return InputModule end,
         ["Camera"]             = function() return CameraModule end,
@@ -25,26 +25,26 @@ function ModuleManager:init()
     }
 end
 
-function ModuleManager:plug(object, moduleName, params)
+function Modules:plug(object, moduleName, params)
     assert(self.modules[moduleName])
     local module = self.modules[moduleName]()
     self.extractMethods(module, object)
     module.init(object, params)
 end
 
-function ModuleManager.extractMethods(from, to)
+function Modules.extractMethods(from, to)
     for key, value in pairs(from) do
         to[key] = to[key] or value
     end
 end
 
-function ModuleManager:plugInBulk(object, def)
+function Modules:plugInBulk(object, def)
     for name, params in pairs(def) do
         self:plug(object, name, params)
     end
 end
 
-return ModuleManager()
+return Modules()
 
 -- function ObjectMaker:assertComponents(def)
 --     for name, value in pairs(def) do

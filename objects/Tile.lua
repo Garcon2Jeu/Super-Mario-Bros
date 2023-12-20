@@ -6,7 +6,7 @@ local tilesQuads = Quads:getSetsOfQuads(tilesSheet, TILESIZE, TILESIZE, 6, 10)
 
 
 function Tile:init(def)
-    ModuleManager:plugInBulk(self, {
+    Modules:plugInBulk(self, {
         ["Position"] = def,
         ["Dimensions"] = def
     })
@@ -14,13 +14,13 @@ end
 
 -- TOFIX!!!!--
 function Tile:addCollidable()
-    ModuleManager:plug(self, "Collidable")
-    ModuleManager:plug(self, "Texture", {
+    Modules:plug(self, "Collidable")
+    Modules:plug(self, "Texture", {
         spriteSheet = tilesSheet,
         quad = tilesQuads[21][3]
     })
 
-    -- ModuleManager:plugInBulk(self, {
+    -- Modules:plugInBulk(self, {
     --     ["Texture"] = {
     --         spriteSheet = tilesSheet,
     --         quad = tilesQuads[21][3]
