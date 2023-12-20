@@ -18,9 +18,13 @@ require "src.modules.GravityModule"
 require "src.modules.StateMachineModule"
 require "src.modules.HitboxModule"
 require "src.modules.MoveModule"
+require "src.modules.InputModule"
+require "src.modules.BaseMapModule"
+require "src.modules.TileMapModule"
+require "src.modules.BlockMapModule"
 
 -- Doing
-require "src.modules.InputModule"
+require "src.modules.CoinMapModule"
 
 --TODO
 require "src.components.Animation"
@@ -29,10 +33,6 @@ require "src.components.Collidable"
 require "src.components.Consummable"
 require "src.components.GameObject"
 
-require "src.components.BaseMap"
-require "src.components.TileMap"
-require "src.components.BlockMap"
-require "src.components.CoinMap"
 
 
 App = require "src.App"

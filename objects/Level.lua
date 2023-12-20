@@ -1,16 +1,14 @@
-Level = Class { __includes = {
-    BaseMap,
-    TileMap,
-    BlockMap,
-    CoinMap
-} }
+Level = Class()
 
 function Level:init()
-    local baseMap = BaseMap.init(self, 20, MAP_HEIGHT)
+    ModuleManager:plug(self, "BaseMap", { columns = 20, rows = MAP_HEIGHT })
+    local baseMap = self:generateEmptyMap()
 
-    TileMap.init(self, baseMap)
-    BlockMap.init(self, baseMap)
-    CoinMap.init(self)
+    ModuleManager:plugInBulk(self, {
+        ["TileMap"]  = { baseMap = baseMap },
+        ["BlockMap"] = { baseMap = baseMap },
+        ["CoinMap"]  = { baseMap = baseMap }
+    })
 end
 
 function Level:draw()

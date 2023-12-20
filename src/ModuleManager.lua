@@ -12,6 +12,10 @@ function ModuleManager:init()
         ["Hitbox"]             = function() return HitboxModule end,
         ["Move"]               = function() return MoveModule end,
         ["Input"]              = function() return InputModule end,
+        ["BaseMap"]            = function() return BaseMapModule end,
+        ["TileMap"]            = function() return TileMapModule end,
+        ["BlockMap"]           = function() return BlockMapModule end,
+        ["CoinMap"]            = function() return CoinMapModule end,
     }
 end
 
