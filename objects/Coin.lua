@@ -1,4 +1,4 @@
-Coin = Class { __includes = { GameObject, Hitbox } }
+Coin = Class { __includes = { GameObject } }
 
 local coinsSheet = Assets.graphics["coins_and_bombs"]()
 local coinsQuads = Quads:getSetsOfQuads(Assets.graphics["coins_and_bombs"](), TILESIZE, TILESIZE)

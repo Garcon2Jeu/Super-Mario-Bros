@@ -1,10 +1,10 @@
-App = Class { __includes = Input }
+App = Class()
 
 function App:init()
     math.randomseed(os.time())
     self.setupWindow()
 
-    Input.init(self)
+    ModuleManager:plug(self, "Input", {})
 end
 
 function App:update()

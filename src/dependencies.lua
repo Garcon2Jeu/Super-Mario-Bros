@@ -17,12 +17,12 @@ require "src.modules.TextureModule"
 require "src.modules.GravityModule"
 require "src.modules.StateMachineModule"
 require "src.modules.HitboxModule"
-
--- Doing
 require "src.modules.MoveModule"
 
+-- Doing
+require "src.modules.InputModule"
+
 --TODO
-require "src.components.Input"
 require "src.components.Animation"
 require "src.components.Camera"
 require "src.components.Collidable"

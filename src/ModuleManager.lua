@@ -11,6 +11,7 @@ function ModuleManager:init()
         ["StateMachineModule"] = function() return StateMachineModule end,
         ["Hitbox"]             = function() return HitboxModule end,
         ["Move"]               = function() return MoveModule end,
+        ["Input"]              = function() return InputModule end,
     }
 end
 

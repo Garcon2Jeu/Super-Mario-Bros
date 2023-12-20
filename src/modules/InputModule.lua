@@ -1,11 +1,11 @@
-Input = Class()
+InputModule = Class()
 
-function Input:init()
+function InputModule:init()
     self.keysPressed = {}
     self.canInput = true
 end
 
-function Input:pressKey(key)
+function InputModule:pressKey(key)
     if self.canInput then
         self.keysPressed[key] = true
     end
@@ -13,14 +13,14 @@ function Input:pressKey(key)
     return self.canInput
 end
 
-function Input:keyPressed(key)
+function InputModule:keyPressed(key)
     return self.keysPressed[key]
 end
 
-function Input:flushKeys()
+function InputModule:flushKeys()
     self.keysPressed = {}
 end
 
-function Input:enableInput(bool)
+function InputModule:enableInput(bool)
     self.canInput = bool
 end
