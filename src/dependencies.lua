@@ -10,7 +10,6 @@ Quads         = require "src.managers.QuadManager"
 ModuleManager = require "src.ModuleManager"
 
 -- Done
-require "objects.BaseObject"
 require "src.modules.PositionModule"
 require "src.modules.DimensionsModule"
 require "src.modules.TextureModule"
@@ -24,12 +23,12 @@ require "src.modules.TileMapModule"
 require "src.modules.BlockMapModule"
 require "src.modules.CoinMapModule"
 require "src.modules.AnimationModule"
+require "src.modules.CameraModule"
+require "src.modules.CollidableModule"
 
 -- Doing
-require "src.modules.CameraModule"
 
 --TODO
-require "src.components.Collidable"
 require "src.components.Consummable"
 require "src.components.GameObject"
 
@@ -54,10 +53,10 @@ require "src.states.player.PlayerRunState"
 require "src.states.player.PlayerFallState"
 require "src.states.player.PlayerJumpState"
 
-
+require "objects.BaseObject"
 require "objects.PlayerCharacter"
 require "objects.Level"
 require "objects.Tile"
 require "objects.JumpBlock"
-require "src.components.TileTopper"
 require "objects.Coin"
+require "objects.TileTopper"

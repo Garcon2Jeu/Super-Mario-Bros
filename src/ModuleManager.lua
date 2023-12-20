@@ -12,6 +12,7 @@ function ModuleManager:init()
         ["Hitbox"]             = function() return HitboxModule end,
         ["Gravity"]            = function() return GravityModule end,
         ["Move"]               = function() return MoveModule end,
+        ["Collidable"]         = function() return CollidableModule end,
 
         ["StateMachineModule"] = function() return StateMachineModule end,
         ["Animation"]          = function() return AnimationModule end,

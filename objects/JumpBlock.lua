@@ -1,6 +1,6 @@
 JumpBlock = Class { __includes = {
     GameObject,
-    Collidable,
+    -- Collidable,
     Consummable
 } }
 
@@ -12,7 +12,8 @@ function JumpBlock:init(def)
     def.quad    = JumpBlockQuads[7]
 
     GameObject.init(self, def)
-    Collidable.init(self, self.getOnCollide())
+    -- Collidable.init(self, self.getOnCollide())
+    ModuleManager:plug(self, "Collidable")
     Consummable.init(self, self.getOnConsume())
 end
 

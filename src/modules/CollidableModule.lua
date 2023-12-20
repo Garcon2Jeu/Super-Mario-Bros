@@ -1,11 +1,11 @@
-Collidable = Class()
+CollidableModule = Class()
 
-function Collidable:init(def)
+function CollidableModule:init(def)
     self.collidable = true
-    self.onCollide = def or Collidable.getOnCollide()
+    self.onCollide = def or CollidableModule.getOnCollide()
 end
 
-function Collidable.getOnCollide()
+function CollidableModule.getOnCollide()
     return function(self, player, yOffset)
         player:blockY(self.y + yOffset)
     end

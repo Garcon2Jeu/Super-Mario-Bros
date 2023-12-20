@@ -54,7 +54,7 @@ function TileMapGenerator.addToppers(tileMap)
     for key, column in pairs(tileMap) do
         for key, tile in pairs(column) do
             if tile.collidable then
-                tile.topper = TileTopper { x = tile.x, y = tile.y }
+                tile:addTopper { x = tile.x, y = tile.y }
                 goto continue
             end
         end
