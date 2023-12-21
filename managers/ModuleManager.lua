@@ -6,7 +6,7 @@ function ModuleManager:init()
         ["Camera"]             = function() return CameraModule end,
 
         ["BaseObject"]         = function() return BaseObject end,
-        ["Position"]           = function() return PositionModule end,
+        ["Coordinates"]        = function() return CoordinatesModule end,
         ["Dimensions"]         = function() return DimensionsModule end,
         ["Texture"]            = function() return TextureModule end,
         ["Hitbox"]             = function() return HitboxModule end,
@@ -26,11 +26,16 @@ function ModuleManager:init()
 end
 
 function ModuleManager:plug(object, moduleName, params)
-    assert(self.modules[moduleName])
-    local module = self.modules[moduleName]()
+    local module = self:getModule(moduleName)
+
     self.extractMethods(module, object)
     module.init(object, params)
     self.updateModulesList(object, moduleName)
+end
+
+function ModuleManager:getModule(moduleName)
+    assert(self.modules[moduleName])
+    return self.modules[moduleName]()
 end
 
 function ModuleManager.extractMethods(from, to)
@@ -39,24 +44,15 @@ function ModuleManager.extractMethods(from, to)
     end
 end
 
+function ModuleManager.updateModulesList(object, moduleName)
+    object.modules = object.modules or {}
+    table.insert(object.modules, moduleName)
+end
+
 function ModuleManager:plugInBulk(object, def)
     for name, params in pairs(def) do
         self:plug(object, name, params)
     end
-end
-
-function ModuleManager:plugInBulkTest(object, modules, def)
-    for key, module in pairs(modules) do
-        self:plug(object, module, def)
-    end
-end
-
-function ModuleManager.updateModulesList(object, moduleName)
-    if not object.modules then
-        object.modules = {}
-    end
-
-    table.insert(object.modules, moduleName)
 end
 
 return ModuleManager()
@@ -64,11 +60,5 @@ return ModuleManager()
 -- function ObjectMaker:assertComponents(def)
 --     for name, value in pairs(def) do
 --         assert(self.components[name])
---     end
--- end
-
--- function ObjectMaker.extractMethods(component, object)
---     for key, value in pairs(component) do
---         object[key] = value
 --     end
 -- end

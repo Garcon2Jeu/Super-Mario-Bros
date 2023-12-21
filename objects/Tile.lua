@@ -7,7 +7,7 @@ local tilesQuads = Quads:getSetsOfQuads(tilesSheet, TILESIZE, TILESIZE, 6, 10)
 
 function Tile:init(def)
     Modules:plugInBulk(self, {
-        ["Position"] = def,
+        ["Coordinates"] = def,
         ["Dimensions"] = def
     })
 end

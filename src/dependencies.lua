@@ -16,7 +16,7 @@ require "managers.BlockMapGenerator"
 
 
 -- Modules
-require "modules.PositionModule"
+require "modules.CoordinatesModule"
 require "modules.DimensionsModule"
 require "modules.TextureModule"
 require "modules.GravityModule"

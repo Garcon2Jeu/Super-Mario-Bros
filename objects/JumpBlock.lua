@@ -10,7 +10,7 @@ function JumpBlock:init(def)
     def.quad        = jumpBlockQuads[7]
 
     Modules:plugInBulk(self, {
-        ["Position"]    = def,
+        ["Coordinates"] = def,
         ["Dimensions"]  = def,
         ["Texture"]     = def,
         ["Collidable"]  = self.getOnCollide(),

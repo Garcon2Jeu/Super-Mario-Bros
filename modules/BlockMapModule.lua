@@ -2,7 +2,7 @@ BlockMapModule = Class()
 
 function BlockMapModule:init(baseMap)
     self.blockMap = BlockMapGenerator:factory(baseMap)
-    self.blockList = {}
+    self.blockIndices = {}
     self:updateBlockList()
 end
 
@@ -10,7 +10,7 @@ function BlockMapModule:updateBlockList()
     for columnIndex, column in ipairs(self.blockMap) do
         for rowIndex, block in ipairs(column) do
             if block.modules then
-                table.insert(self.blockList,
+                table.insert(self.blockIndices,
                     { column = columnIndex, row = rowIndex }
                 )
             end
@@ -19,7 +19,7 @@ function BlockMapModule:updateBlockList()
 end
 
 function BlockMapModule:drawBlockMap()
-    for key, position in pairs(self.blockList) do
-        self.blockMap[position.column][position.row]:draw()
+    for key, index in pairs(self.blockIndices) do
+        self.blockMap[index.column][index.row]:draw()
     end
 end
