@@ -41,7 +41,7 @@ function JumpBlock.getOnConsume()
                     x      = self.x,
                     y      = self.y,
                     column = self.column,
-                    row    = self.row
+                    row    = self.row - 1
                 })
             end
         end

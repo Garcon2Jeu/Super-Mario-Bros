@@ -19,14 +19,14 @@ function BlockMapGenerator.addBlock(map)
 
     map[10][4] = block
 
-    tile = map[5][4]
+    tile = map[11][4]
 
     block = JumpBlock {
         x = tile.x,
         y = tile.y,
-        column = 5,
+        column = 11,
         row = 4
     }
 
-    map[5][4] = block
+    map[11][4] = block
 end

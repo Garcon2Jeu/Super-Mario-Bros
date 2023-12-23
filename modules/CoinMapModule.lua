@@ -3,14 +3,6 @@ CoinMapModule = Class()
 function CoinMapModule:init(baseMap)
     self.coinMap = baseMap
     self.coinIndices = {}
-
-    self.coinMap[7][4] = Coin {
-        x = self.coinMap[7][4].x,
-        y = self.coinMap[7][4].y,
-        column = 7,
-        row = 4
-    }
-    table.insert(self.coinIndices, { column = 7, row = 4 })
 end
 
 function CoinMapModule:drawCoinMap()
@@ -35,10 +27,10 @@ end
 function CoinMapModule:removeCoin(coin)
     self.coinMap[coin.column][coin.row] = { x = coin.x, y = coin.y }
 
-    for key, position in pairs(self.coinIndices) do
-        if position.column == coin.position
+    for index, position in ipairs(self.coinIndices) do
+        if position.column == coin.column
             and position.row == coin.row then
-            self.coinIndices[position.column][position.row] = nil
+            table.remove(self.coinIndices, index)
         end
     end
 end
