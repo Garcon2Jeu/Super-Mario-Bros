@@ -14,6 +14,7 @@ function ModuleManager:init()
         ["Move"]               = function() return MoveModule end,
         ["Collidable"]         = function() return CollidableModule end,
         ["Consummable"]        = function() return ConsummableModule end,
+        ["Asymmetric"]         = function() return AsymmetricModule end,
 
         ["StateMachineModule"] = function() return StateMachineModule end,
         ["Animation"]          = function() return AnimationModule end,

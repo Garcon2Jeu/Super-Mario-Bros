@@ -33,6 +33,7 @@ require "modules.AnimationModule"
 require "modules.CameraModule"
 require "modules.CollidableModule"
 require "modules.ConsummableModule"
+require "modules.AsymmetricModule"
 
 
 -- States

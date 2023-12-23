@@ -19,12 +19,11 @@ function Blob:init(level)
         ["Gravity"]            = {},
         ["Hitbox"]             = {},
         ["Move"]               = {},
+        ["Asymmetric"]         = { xOffset = TILESIZE / 2 or 0, facingRight = true },
         ["StateMachineModule"] = self:getStates(level),
     })
 
     self:changeState("fall")
-    self.xOffset     = CHARACTER_WIDTH / 2 or 0
-    self.facingRight = true
 end
 
 function Blob:getStates(level)
@@ -38,17 +37,6 @@ end
 function Blob:update(dt)
     self:updateHitbox()
     self.stateMachine:update(dt)
-end
-
-function Blob:draw()
-    love.graphics.draw(
-        self.spriteSheet, self.quad,
-        math.floor(self.x + self.xOffset),
-        math.floor(self.y),
-        0,
-        self.facingRight and -1 or 1, 1,
-        self.xOffset
-    )
 end
 
 function Blob:getHitboxOffset()
