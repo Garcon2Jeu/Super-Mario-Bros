@@ -1,8 +1,12 @@
 StartState = Class { __includes = BaseState }
 
+
+
 function StartState:init()
     self.level = Level()
     self.player = PlayerCharacter(self.level)
+
+    self.blob = Blob()
 
     Modules:plug(self, "Camera")
 end
@@ -16,6 +20,7 @@ function StartState:draw()
     self:scrollCamera()
     self.level:draw()
     self.player:draw()
+    self.blob:draw()
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
