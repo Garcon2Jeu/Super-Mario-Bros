@@ -5,16 +5,20 @@ function MoveModule:init()
     self.running = false
 end
 
+function MoveModule:setDX(dx)
+    self.dx = dx
+end
+
 function MoveModule:moveX(dt, speed)
     self.x = self.x + speed * dt
 end
 
 function MoveModule:applyPush(push)
-    self.dy = self.dy + push
+    self.dx = self.dx + push
 end
 
-function MoveModule:applyDx(dt)
-    self.x = self.x + self.dx * dt
+function MoveModule:applyDX()
+    self.x = self.x + self.dx
 end
 
 function MoveModule:isRunning()
@@ -23,4 +27,8 @@ end
 
 function MoveModule:setRunning(bool)
     self.running = bool
+end
+
+function MoveModule:applyFriction(dt, friction)
+    self.dx = self.dx + friction * dt
 end

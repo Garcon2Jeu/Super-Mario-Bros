@@ -16,18 +16,22 @@ function Blob:init(level)
     BaseObject.init(self, def)
 
     Modules:plugInBulk(self, {
-        ["Gravity"] = {},
-        ["Hitbox"] = {},
-        ["StateMachineModule"] = self:getStates(level)
+        ["Gravity"]            = {},
+        ["Hitbox"]             = {},
+        ["Move"]               = {},
+        ["StateMachineModule"] = self:getStates(level),
     })
 
     self:changeState("fall")
+    self.xOffset     = CHARACTER_WIDTH / 2 or 0
+    self.facingRight = true
 end
 
 function Blob:getStates(level)
     return {
-        ["idle"] = function() return BlobIdleState(self, creaturesQuads[10]) end,
-        ["fall"] = function() return ObjectFallState(level, self, creaturesQuads[9]) end
+        ["idle"]  = function() return BlobIdleState(self, creaturesQuads[10]) end,
+        ["fall"]  = function() return ObjectFallState(level, self, creaturesQuads[9]) end,
+        ["chase"] = function() return BlobChaseState(level, self, 1.5, { creaturesQuads[9], creaturesQuads[10] }) end,
     }
 end
 
@@ -36,10 +40,16 @@ function Blob:update(dt)
     self.stateMachine:update(dt)
 end
 
--- function Blob:draw()
---     TextureModule.draw(self)
---     self:drawPoints()
--- end
+function Blob:draw()
+    love.graphics.draw(
+        self.spriteSheet, self.quad,
+        math.floor(self.x + self.xOffset),
+        math.floor(self.y),
+        0,
+        self.facingRight and -1 or 1, 1,
+        self.xOffset
+    )
+end
 
 function Blob:getHitboxOffset()
 end

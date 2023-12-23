@@ -4,6 +4,7 @@ require "src.globals"
 Class = require "libraries.class"
 Push  = require "libraries.push"
 Timer = require "libraries.knife.timer"
+Chain = require "libraries.knife.chain"
 
 
 -- Managers
@@ -39,6 +40,8 @@ require "states.BaseState"
 
 require "states.main.StartState"
 
+require "states.objects.ObjectsFallState"
+
 require "states.player.BasePlayerState"
 require "states.player.PlayerIdleState"
 require "states.player.PlayerRunState"
@@ -46,7 +49,7 @@ require "states.player.PlayerFallState"
 require "states.player.PlayerJumpState"
 
 require "states.blob.BlobIdleState"
-require "states.objects.ObjectsFallState"
+require "states.blob.BlobChaseState"
 
 
 -- Objects

@@ -5,14 +5,6 @@ function BlobIdleState:init(blob, quad)
     self.blob:setQuad(quad)
 end
 
--- function BlobIdleState:update(dt)
---     if App:keyPressed("space") then
---         self.player:changeState("jump")
---         return
---     end
-
---     if self.player:isRunning() then
---         self.player:changeState("run")
---         return
---     end
--- end
+function BlobIdleState:update(dt)
+    self.blob:changeState("chase")
+end

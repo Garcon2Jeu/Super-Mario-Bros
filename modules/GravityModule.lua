@@ -6,6 +6,10 @@ function GravityModule:init()
     self.dy = 0
 end
 
+function GravityModule:setDY(dy)
+    self.dy = dy
+end
+
 function GravityModule:moveY(dt, speed)
     self.y = self.y + speed * dt
 end
