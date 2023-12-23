@@ -6,7 +6,7 @@ function StartState:init()
     self.level = Level()
     self.player = PlayerCharacter(self.level)
 
-    self.blob = Blob()
+    self.blob = Blob(self.level)
 
     Modules:plug(self, "Camera")
 end
@@ -14,6 +14,7 @@ end
 function StartState:update(dt)
     self.player:update(dt)
     self:updateCamera(self.player.x)
+    self.blob:update(dt)
 end
 
 function StartState:draw()

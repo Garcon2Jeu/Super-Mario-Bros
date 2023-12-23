@@ -23,9 +23,8 @@ function PlayerRunState:update(dt)
 
     -- TOFIX!!!!!! ----------------------------------------------------------------------------------------------------------------------
 
-    -- for key, objectPairs in pairs { { t1, t2 }, { b1, b2 } } do
-    --     if not self.level:isCollidable(objectPairs[1])
-    --         and not self.level:isCollidable(objectPairs[2]) then
+    -- for key, object in pairs { t1, t2, b1, b2 } do
+    --     if not self.level:isCollidable(object) then
     --         self.player:changeState("fall")
     --         return
     --     end
@@ -38,6 +37,10 @@ function PlayerRunState:update(dt)
     -- end
 
     if not self.level:isCollidable(t1) and not self.level:isCollidable(t2) then
+        self.player:changeState("fall")
+        return
+    end
+    if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
         self.player:changeState("fall")
         return
     end

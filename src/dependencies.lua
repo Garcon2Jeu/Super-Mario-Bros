@@ -45,6 +45,9 @@ require "states.player.PlayerRunState"
 require "states.player.PlayerFallState"
 require "states.player.PlayerJumpState"
 
+require "states.blob.BlobIdleState"
+require "states.objects.ObjectsFallState"
+
 
 -- Objects
 App = require "objects.App"

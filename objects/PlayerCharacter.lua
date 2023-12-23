@@ -50,7 +50,7 @@ function PlayerCharacter:getStates(level)
         ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
         ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
         ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
-        ["fall"] = function() return PlayerFallState(level, self, pinkQuads[8]) end,
+        ["fall"] = function() return ObjectFallState(level, self, pinkQuads[8]) end,
     }
 end
 
@@ -58,11 +58,6 @@ function PlayerCharacter:jump()
     if App:keyPressed("space") then
         self:applyJumpForce(JUMPFORCE)
     end
-end
-
-function PlayerCharacter:blockY(y)
-    self:setY(y)
-    self:stopDY()
 end
 
 function PlayerCharacter:run(dt)

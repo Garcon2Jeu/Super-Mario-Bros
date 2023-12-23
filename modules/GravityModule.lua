@@ -29,3 +29,8 @@ end
 function GravityModule:stopDY()
     self.dy = 0
 end
+
+function GravityModule:blockY(y)
+    self:setY(y)
+    self:stopDY()
+end
