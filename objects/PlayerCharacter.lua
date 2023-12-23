@@ -31,6 +31,7 @@ function PlayerCharacter:update(dt)
     self:updateHitbox()
     self.stateMachine:update(dt)
     self:run(dt)
+    self:getCoins()
 end
 
 function PlayerCharacter:draw()
@@ -114,4 +115,18 @@ end
 
 function PlayerCharacter:setFacingRight(bool)
     self.facingRight = bool
+end
+
+function PlayerCharacter:getCoins()
+    local t1, t2 = State.current.level:getTilesFromHitPoints(
+        State.current.level.coinMap, self, "bottom")
+    local t3, t4 = State.current.level:getTilesFromHitPoints(
+        State.current.level.coinMap, self, "top")
+
+    for key, object in pairs { t1, t2, t3, t4 } do
+        if State.current.level:isCollidable(object) then
+            object:onCollide()
+            return
+        end
+    end
 end

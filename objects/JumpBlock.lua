@@ -8,6 +8,8 @@ function JumpBlock:init(def)
     def.height      = TILESIZE
     def.spriteSheet = jumpBlockSheet
     def.quad        = jumpBlockQuads[7]
+    self.column     = def.column
+    self.row        = def.row
 
     Modules:plugInBulk(self, {
         ["Coordinates"] = def,
@@ -35,7 +37,12 @@ function JumpBlock.getOnConsume()
             if not self:isConsummed() then
                 self:consumme(true)
                 self:setQuad(jumpBlockQuads[20])
-                State.current.level:spawnCoin(self.x, self.y)
+                State.current.level:spawnCoin({
+                    x      = self.x,
+                    y      = self.y,
+                    column = self.column,
+                    row    = self.row
+                })
             end
         end
 end
