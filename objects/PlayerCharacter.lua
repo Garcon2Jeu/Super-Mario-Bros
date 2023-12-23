@@ -18,13 +18,11 @@ function PlayerCharacter:init(level)
         ["StateMachineModule"] = self:getStates(level),
         ["Gravity"]            = {},
         ["Move"]               = {},
-        ["Hitbox"]             = {}
+        ["Hitbox"]             = {},
+        ["Asymmetric"]         = { xOffset = CHARACTER_WIDTH / 2 or 0, facingRight = false },
     })
 
     self:changeState("fall")
-
-    self.xOffset     = CHARACTER_WIDTH / 2 or 0
-    self.facingRight = true
 end
 
 function PlayerCharacter:update(dt)
@@ -32,17 +30,6 @@ function PlayerCharacter:update(dt)
     self.stateMachine:update(dt)
     self:run(dt)
     self:getCoins()
-end
-
-function PlayerCharacter:draw()
-    love.graphics.draw(
-        self.spriteSheet, self.quad,
-        math.floor(self.x + self.xOffset),
-        math.floor(self.y),
-        0,
-        self.facingRight and 1 or -1, 1,
-        self.xOffset
-    )
 end
 
 function PlayerCharacter:getStates(level)
@@ -102,14 +89,6 @@ end
 function PlayerCharacter:getHitboxOffset(direction)
     return hitboxOffsets[direction][1], hitboxOffsets[direction][2],
         hitboxOffsets[direction][3], hitboxOffsets[direction][4]
-end
-
-function PlayerCharacter:isFacingRight()
-    return self.facingRight
-end
-
-function PlayerCharacter:setFacingRight(bool)
-    self.facingRight = bool
 end
 
 -- Looks like shit, pls fix that

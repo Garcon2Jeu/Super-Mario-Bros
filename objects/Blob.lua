@@ -19,7 +19,7 @@ function Blob:init(level)
         ["Gravity"]            = {},
         ["Hitbox"]             = {},
         ["Move"]               = {},
-        ["Asymmetric"]         = { xOffset = TILESIZE / 2 or 0, facingRight = true },
+        ["Asymmetric"]         = { xOffset = TILESIZE / 2 or 0, facingRight = true, reverse = true },
         ["StateMachineModule"] = self:getStates(level),
     })
 

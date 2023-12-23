@@ -40,10 +40,10 @@ function PlayerRunState:update(dt)
         self.player:changeState("fall")
         return
     end
-    if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
-        self.player:changeState("fall")
-        return
-    end
+    -- if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
+    --     self.player:changeState("fall")
+    --     return
+    -- end
 
     -- if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
     --     self.player:changeState("fall")
