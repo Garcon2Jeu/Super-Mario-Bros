@@ -117,13 +117,18 @@ function PlayerCharacter:setFacingRight(bool)
     self.facingRight = bool
 end
 
+-- Looks like shit, pls fix that
 function PlayerCharacter:getCoins()
     local t1, t2 = State.current.level:getTilesFromHitPoints(
         State.current.level.coinMap, self, "bottom")
     local t3, t4 = State.current.level:getTilesFromHitPoints(
         State.current.level.coinMap, self, "top")
+    local t5, t6 = State.current.level:getTilesFromHitPoints(
+        State.current.level.coinMap, self, "left")
+    local t7, t8 = State.current.level:getTilesFromHitPoints(
+        State.current.level.coinMap, self, "right")
 
-    for key, object in pairs { t1, t2, t3, t4 } do
+    for key, object in pairs { t1, t2, t3, t4, t5, t6, t7, t8 } do
         if State.current.level:isCollidable(object) then
             object:onCollide()
             return
