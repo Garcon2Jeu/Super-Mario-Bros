@@ -24,7 +24,7 @@ function StartState:draw()
     self.blob:draw()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    love.graphics.print(tostring(self.blob.stateMachine.debug), 50, 50)
+    love.graphics.print(tostring(self.blob.dx), 50, 50)
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
 end
 

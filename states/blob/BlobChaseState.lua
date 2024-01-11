@@ -7,7 +7,7 @@ function BlobChaseState:init(level, blob, interval, frames)
 
     Timer.every(interval,
         function()
-            self.blob:setDX(1)
+            self.blob:setDX(self.blob.facingRight and 1 or -1)
         end
     )
 end
@@ -25,6 +25,10 @@ function BlobChaseState:crawl(dt)
         self.blob:applyDX()
         self.blob:applyFriction(dt, -5)
         self.blob:setQuad(self.frames[1])
+        -- elseif self.blob.dx < -0 then
+        --     self.blob:applyDX()
+        --     self.blob:applyFriction(dt, 5)
+        --     self.blob:setQuad(self.frames[1])
     else
         self.blob:setQuad(self.frames[2])
     end

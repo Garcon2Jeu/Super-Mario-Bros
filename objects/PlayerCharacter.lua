@@ -19,7 +19,7 @@ function PlayerCharacter:init(level)
         ["Gravity"]            = {},
         ["Move"]               = {},
         ["Hitbox"]             = {},
-        ["Asymmetric"]         = { xOffset = CHARACTER_WIDTH / 2 or 0, facingRight = false },
+        ["Asymmetric"]         = { xOffset = CHARACTER_WIDTH / 2, },
     })
 
     self:changeState("fall")

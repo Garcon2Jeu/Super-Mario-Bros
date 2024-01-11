@@ -19,7 +19,7 @@ function Blob:init(level)
         ["Gravity"]            = {},
         ["Hitbox"]             = {},
         ["Move"]               = {},
-        ["Asymmetric"]         = { xOffset = TILESIZE / 2 or 0, facingRight = true, reverse = true },
+        ["Asymmetric"]         = { xOffset = TILESIZE / 2, reverse = true },
         ["StateMachineModule"] = self:getStates(level),
     })
 
@@ -36,8 +36,13 @@ end
 
 function Blob:update(dt)
     self:updateHitbox()
+    self:facePlayer()
     self.stateMachine:update(dt)
 end
 
 function Blob:getHitboxOffset()
+end
+
+function Blob:facePlayer()
+    self:setFacingRight(State.current.player.x + (State.current.player.width / 2) > self.x + (self.width / 2))
 end

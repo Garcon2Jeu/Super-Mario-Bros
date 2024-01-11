@@ -2,7 +2,7 @@ AsymmetricModule = Class()
 
 function AsymmetricModule:init(def)
     self.xOffset     = def.xOffset
-    self.facingRight = def.facingRight
+    self.facingRight = true
     self.draw        = self.overrideDrawMethod(def.reverse)
 end
 
