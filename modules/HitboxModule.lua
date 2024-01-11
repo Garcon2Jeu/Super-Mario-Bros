@@ -36,3 +36,14 @@ function HitboxModule:drawPoints()
     love.graphics.circle("fill", self.bottomLeft.x, self.bottomLeft.y, radius)
     love.graphics.circle("fill", self.bottomRight.x, self.bottomRight.y, radius)
 end
+
+function HitboxModule:drawBox()
+    love.graphics.rectangle("line", self.topLeft.x, self.topLeft.y, self.width, self.height)
+end
+
+function HitboxModule:collides(foreign)
+    return self.topLeft.x <= foreign.bottomRight.x
+        and self.bottomRight.x >= foreign.topLeft.x
+        and self.topLeft.y <= foreign.bottomRight.y
+        and self.bottomRight.y >= foreign.bottomRight.y
+end

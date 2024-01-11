@@ -23,13 +23,15 @@ function PlayerCharacter:init(level)
     })
 
     self:changeState("fall")
+    self:updateHitbox()
 end
 
-function PlayerCharacter:update(dt)
+function PlayerCharacter:update(dt, blob)
     self:updateHitbox()
     self.stateMachine:update(dt)
     self:run(dt)
     self:getCoins()
+    self:getHurtBy(blob)
 end
 
 function PlayerCharacter:getStates(level)
@@ -107,5 +109,11 @@ function PlayerCharacter:getCoins()
             object:onCollide()
             return
         end
+    end
+end
+
+function PlayerCharacter:getHurtBy(blob)
+    if self:collides(blob) then
+        self:setQuad(pinkQuads[5])
     end
 end

@@ -12,7 +12,7 @@ function StartState:init()
 end
 
 function StartState:update(dt)
-    self.player:update(dt)
+    self.player:update(dt, self.blob)
     self:updateCamera(self.player.x)
     self.blob:update(dt, self.player)
 end
@@ -24,7 +24,7 @@ function StartState:draw()
     self.blob:draw()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    love.graphics.print(tostring(self.blob.dx), 50, 50)
+    -- love.graphics.print(tostring(self.player:collides(self.blob)), 50, 50)
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
 end
 

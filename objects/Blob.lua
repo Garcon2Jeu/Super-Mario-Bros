@@ -24,6 +24,7 @@ function Blob:init(level)
     })
 
     self:changeState("fall")
+    self:updateHitbox()
 end
 
 function Blob:getStates(level)
