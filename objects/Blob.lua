@@ -34,15 +34,15 @@ function Blob:getStates(level)
     }
 end
 
-function Blob:update(dt)
+function Blob:update(dt, player)
     self:updateHitbox()
-    self:facePlayer()
+    self:facePlayer(player)
     self.stateMachine:update(dt)
 end
 
 function Blob:getHitboxOffset()
 end
 
-function Blob:facePlayer()
-    self:setFacingRight(State.current.player.x + (State.current.player.width / 2) > self.x + (self.width / 2))
+function Blob:facePlayer(player)
+    self:setFacingRight(player.x + (player.width / 2) > self.x + (self.width / 2))
 end

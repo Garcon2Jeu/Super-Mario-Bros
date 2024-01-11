@@ -14,7 +14,7 @@ end
 function StartState:update(dt)
     self.player:update(dt)
     self:updateCamera(self.player.x)
-    self.blob:update(dt)
+    self.blob:update(dt, self.player)
 end
 
 function StartState:draw()
