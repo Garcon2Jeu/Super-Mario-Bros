@@ -1,7 +1,7 @@
 Coin = Class()
 
 local coinsSheet = Assets.graphics["coins_and_bombs"]()
-local coinsQuads = Quads:getSetsOfQuads(Assets.graphics["coins_and_bombs"](), TILESIZE, TILESIZE)
+local coinsQuads = Quads:getSetsOfQuads(coinsSheet, TILESIZE, TILESIZE)
 
 function Coin:init(def)
     def.spriteSheet = coinsSheet

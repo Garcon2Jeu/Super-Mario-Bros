@@ -7,26 +7,26 @@ local heartsQuads = Quads:getSetsOfQuads(heartsSheet, 16, 16)
 
 function StartState:init()
     self.level = Level()
-    self.test = Player()
-    self.player = PlayerCharacter(self.level)
-
+    self.player = Player(self.level)
     self.blob = Blob(self.level)
 
     Modules:plug(self, "Camera")
 end
 
 function StartState:update(dt)
-    self.player:update(dt, self.blob)
-    self:updateCamera(self.player.x)
-    self.blob:update(dt, self.player)
+    self.player.avatar:update(dt, self.blob)
+    self:updateCamera(self.player.avatar.x)
+    self.blob:update(dt, self.player.avatar)
 end
 
 function StartState:draw()
+    self.player:drawUI()
+
     self:scrollCamera()
+
     self.level:draw()
-    self.player:draw()
+    self.player.avatar:draw()
     self.blob:draw()
-    self.test:draw()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     -- love.graphics.print(tostring(self.player:collides(self.blob)), 50, 50)
