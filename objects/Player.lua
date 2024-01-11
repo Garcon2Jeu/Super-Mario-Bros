@@ -11,7 +11,7 @@ function Player:init(level)
     self.coins  = 0
     self.level  = 1
 
-    self.avatar = PlayerCharacter(level)
+    self.avatar = Avatar(level)
 end
 
 function Player:drawUI()

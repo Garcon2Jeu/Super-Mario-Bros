@@ -1,4 +1,4 @@
-PlayerCharacter = Class()
+Avatar = Class()
 
 local pinkAtlas = Assets.graphics["pink_alien"]()
 local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEIGHT)
@@ -10,7 +10,7 @@ local hitboxOffsets = {
     ["top"]    = { 3, 0, -3, 0 }
 }
 
-function PlayerCharacter:init(level)
+function Avatar:init(level)
     Modules:plugInBulk(self, {
         ["Coordinates"]        = { x = CENTER_WIDTH - CHARACTER_WIDTH / 2, y = 0 },
         ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
@@ -26,7 +26,7 @@ function PlayerCharacter:init(level)
     self:updateHitbox()
 end
 
-function PlayerCharacter:update(dt, blob)
+function Avatar:update(dt, blob)
     self:updateHitbox()
     self.stateMachine:update(dt)
     self:run(dt)
@@ -34,22 +34,23 @@ function PlayerCharacter:update(dt, blob)
     self:getHurtBy(blob)
 end
 
-function PlayerCharacter:getStates(level)
+function Avatar:getStates(level)
     return {
         ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
         ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
         ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
         ["fall"] = function() return ObjectFallState(level, self, pinkQuads[8]) end,
+        ["hurt"] = function() return PlayerHurtState() end,
     }
 end
 
-function PlayerCharacter:jump()
+function Avatar:jump()
     if App:keyPressed("space") then
         self:applyJumpForce(JUMPFORCE)
     end
 end
 
-function PlayerCharacter:run(dt)
+function Avatar:run(dt)
     if love.keyboard.isDown("right") then
         self:moveX(dt, CHARACTER_SPEED)
         self:setRunning(true)
@@ -65,7 +66,7 @@ function PlayerCharacter:run(dt)
     end
 end
 
-function PlayerCharacter:blockRun(direction)
+function Avatar:blockRun(direction)
     local t1, t2 = State.current.level:getTilesFromHitPoints(
         State.current.level.tileMap, self, direction)
 
@@ -80,7 +81,7 @@ function PlayerCharacter:blockRun(direction)
     end
 end
 
-function PlayerCharacter:float(dt)
+function Avatar:float(dt)
     if love.keyboard.isDown("down") then
         self:moveY(dt, CHARACTER_SPEED)
     elseif love.keyboard.isDown("up") then
@@ -88,13 +89,13 @@ function PlayerCharacter:float(dt)
     end
 end
 
-function PlayerCharacter:getHitboxOffset(direction)
+function Avatar:getHitboxOffset(direction)
     return hitboxOffsets[direction][1], hitboxOffsets[direction][2],
         hitboxOffsets[direction][3], hitboxOffsets[direction][4]
 end
 
 -- Looks like shit, pls fix that
-function PlayerCharacter:getCoins()
+function Avatar:getCoins()
     local t1, t2 = State.current.level:getTilesFromHitPoints(
         State.current.level.coinMap, self, "bottom")
     local t3, t4 = State.current.level:getTilesFromHitPoints(
@@ -112,8 +113,9 @@ function PlayerCharacter:getCoins()
     end
 end
 
-function PlayerCharacter:getHurtBy(blob)
+function Avatar:getHurtBy(blob)
     if self:collides(blob) then
         self:setQuad(pinkQuads[5])
+        self:changeState("hurt")
     end
 end
