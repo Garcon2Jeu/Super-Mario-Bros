@@ -1,9 +1,13 @@
 StartState = Class { __includes = BaseState }
 
+local heartsSheet = Assets.graphics["hearts"]()
+local heartsQuads = Quads:getSetsOfQuads(heartsSheet, 16, 16)
+
 
 
 function StartState:init()
     self.level = Level()
+    self.test = Player()
     self.player = PlayerCharacter(self.level)
 
     self.blob = Blob(self.level)
@@ -22,6 +26,7 @@ function StartState:draw()
     self.level:draw()
     self.player:draw()
     self.blob:draw()
+    self.test:draw()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     -- love.graphics.print(tostring(self.player:collides(self.blob)), 50, 50)

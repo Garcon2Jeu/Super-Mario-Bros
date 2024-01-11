@@ -56,6 +56,7 @@ require "states.blob.BlobChaseState"
 -- Objects
 App = require "objects.App"
 require "objects.BaseObject"
+require "objects.Player"
 require "objects.PlayerCharacter"
 require "objects.Level"
 require "objects.Tile"
