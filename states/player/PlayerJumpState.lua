@@ -1,14 +1,17 @@
 PlayerJumpState = Class { __includes = BaseState }
 PlayerJumpState:setStateName("jump")
 
-function PlayerJumpState:init(level, avatar, quad)
-    self.level = level
+function PlayerJumpState:init(avatar, level, quad)
     self.avatar = avatar
+    self.level = level
     self.avatar:setQuad(quad)
     self.avatar:applyJumpForce(JUMPFORCE)
 end
 
 function PlayerJumpState:update(dt)
+    -- if App:keyPressed("space") then
+    --     self.avatar:applyJumpForce(JUMPFORCE)
+    -- end
     local b1, b2 = self.level:getTilesFromHitPoints(
         self.level.blockMap, self.avatar, "top")
 

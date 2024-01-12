@@ -28,18 +28,19 @@ end
 
 function Avatar:update(dt, blob)
     self:updateHitbox()
+    self:getHurtBy(blob)
     self.stateMachine:update(dt)
     self:run(dt)
     self:getCoins()
-    self:getHurtBy(blob)
 end
 
 function Avatar:getStates(level)
     return {
         ["idle"] = function() return PlayerIdleState(self, pinkQuads[1]) end,
-        ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
-        ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
+        ["run"]  = function() return PlayerRunState(self, level, .1, { pinkQuads[10], pinkQuads[11] }) end,
+        ["jump"] = function() return PlayerJumpState(self, level, pinkQuads[3]) end,
         ["fall"] = function() return ObjectFallState(level, self, pinkQuads[8]) end,
+        -- ["fall"] = function() return ObjectFallState(self, level, pinkQuads[8]) end, -- tf
         ["hurt"] = function() return PlayerHurtState(self, pinkQuads[5]) end,
     }
 end
@@ -114,8 +115,16 @@ function Avatar:getCoins()
 end
 
 function Avatar:getHurtBy(blob)
-    if self:collides(blob) then
-        self:setQuad(pinkQuads[5])
-        self:changeState("hurt", blob)
+    if not self:collides(blob) then
+        return
     end
+
+    if self:getCurrentStateName() == "fall" then
+        self.y = blob.y - self.height
+        self:changeState("jump")
+        return
+    end
+
+    self:setQuad(pinkQuads[5])
+    self:changeState("hurt", blob)
 end

@@ -1,9 +1,9 @@
 PlayerRunState = Class { __includes = BaseState }
 PlayerRunState:setStateName("run")
 
-function PlayerRunState:init(level, avatar, interval, frames)
-    self.level = level
+function PlayerRunState:init(avatar, level, interval, frames)
     self.avatar = avatar
+    self.level = level
 
     Modules:plug(self, "Animation",
         { interval = interval, frames = frames })
