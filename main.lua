@@ -1,5 +1,6 @@
 require "src.dependencies"
 
+
 function love.load()
     State = StateMachine {
         ["start"] = function() return StartState() end,

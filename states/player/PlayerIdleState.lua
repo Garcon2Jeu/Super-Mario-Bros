@@ -1,18 +1,19 @@
 PlayerIdleState = Class { __includes = BaseState }
+PlayerIdleState:setStateName("idle")
 
-function PlayerIdleState:init(player, quad)
-    self.player = player
-    self.player:setQuad(quad)
+function PlayerIdleState:init(avatar, quad)
+    self.avatar = avatar
+    self.avatar:setQuad(quad)
 end
 
 function PlayerIdleState:update(dt)
     if App:keyPressed("space") then
-        self.player:changeState("jump")
+        self.avatar:changeState("jump")
         return
     end
 
-    if self.player:isRunning() then
-        self.player:changeState("run")
+    if self.avatar:isRunning() then
+        self.avatar:changeState("run")
         return
     end
 end

@@ -1,4 +1,5 @@
 PlayerHurtState = Class { __includes = BaseState }
+PlayerHurtState:setStateName("hurt")
 
 local pushBack = 4
 local friction = 30

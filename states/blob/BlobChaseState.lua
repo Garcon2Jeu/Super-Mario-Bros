@@ -1,4 +1,5 @@
 BlobChaseState = Class { __includes = BaseState }
+BlobChaseState:setStateName("chase")
 
 function BlobChaseState:init(level, blob, interval, frames)
     self.level = level

@@ -1,9 +1,5 @@
 StartState = Class { __includes = BaseState }
-
-local heartsSheet = Assets.graphics["hearts"]()
-local heartsQuads = Quads:getSetsOfQuads(heartsSheet, 16, 16)
-
-
+StartState:setStateName("start")
 
 function StartState:init()
     self.level = Level()
@@ -22,10 +18,9 @@ end
 function StartState:draw()
     self.player:drawUI()
 
-
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     Assets.fonts.setMedium()
-    love.graphics.print(tostring(love.keyboard.isDown("right")), 50, 50)
+    love.graphics.print(tostring(self.player.avatar:getCurrentStateName()), 50, 50)
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     self:scrollCamera()
 

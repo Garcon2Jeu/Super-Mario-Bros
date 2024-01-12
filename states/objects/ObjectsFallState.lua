@@ -1,4 +1,5 @@
 ObjectFallState = Class { __includes = BaseState }
+ObjectFallState:setStateName("fall")
 
 function ObjectFallState:init(level, object, quad)
     self.level = level

@@ -1,4 +1,5 @@
 BlobIdleState = Class { __includes = BaseState }
+BlobIdleState:setStateName("idle")
 
 function BlobIdleState:init(blob, quad)
     self.blob = blob

@@ -1,29 +1,30 @@
 PlayerJumpState = Class { __includes = BaseState }
+PlayerJumpState:setStateName("jump")
 
-function PlayerJumpState:init(level, player, quad)
+function PlayerJumpState:init(level, avatar, quad)
     self.level = level
-    self.player = player
-    self.player:setQuad(quad)
-    self.player:applyJumpForce(JUMPFORCE)
+    self.avatar = avatar
+    self.avatar:setQuad(quad)
+    self.avatar:applyJumpForce(JUMPFORCE)
 end
 
 function PlayerJumpState:update(dt)
     local b1, b2 = self.level:getTilesFromHitPoints(
-        self.level.blockMap, self.player, "top")
+        self.level.blockMap, self.avatar, "top")
 
     if self.level:isCollidable(b1) then
-        b1:onCollide(self.player, TILESIZE)
-        self.player:changeState("fall")
+        b1:onCollide(self.avatar, TILESIZE)
+        self.avatar:changeState("fall")
     elseif self.level:isCollidable(b2) then
-        b2:onCollide(self.player, TILESIZE)
-        self.player:changeState("fall")
+        b2:onCollide(self.avatar, TILESIZE)
+        self.avatar:changeState("fall")
     end
 
 
-    self.player:applyGravity(GRAVITY)
-    self.player:applyDY(dt)
+    self.avatar:applyGravity(GRAVITY)
+    self.avatar:applyDY(dt)
 
-    if self.player:isFalling() then
-        self.player:changeState("fall")
+    if self.avatar:isFalling() then
+        self.avatar:changeState("fall")
     end
 end
