@@ -23,3 +23,11 @@ function Player:drawUI()
     Assets.fonts.setSmall()
     love.graphics.print(": " .. self.coins, 14, 14.5)
 end
+
+function Player:addHeart()
+    self.hearts = self.hearts + 1
+end
+
+function Player:removeHeart()
+    self.hearts = self.hearts - 1
+end

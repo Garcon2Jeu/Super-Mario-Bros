@@ -12,7 +12,7 @@ local hitboxOffsets = {
 
 function Avatar:init(level)
     Modules:plugInBulk(self, {
-        ["Coordinates"]        = { x = CENTER_WIDTH - CHARACTER_WIDTH / 2, y = 0 },
+        ["Coordinates"]        = { x = 50, y = 0 },
         ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
         ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },
         ["StateMachineModule"] = self:getStates(level),
@@ -40,7 +40,7 @@ function Avatar:getStates(level)
         ["run"]  = function() return PlayerRunState(level, self, .1, { pinkQuads[10], pinkQuads[11] }) end,
         ["jump"] = function() return PlayerJumpState(level, self, pinkQuads[3]) end,
         ["fall"] = function() return ObjectFallState(level, self, pinkQuads[8]) end,
-        ["hurt"] = function() return PlayerHurtState() end,
+        ["hurt"] = function() return PlayerHurtState(self, pinkQuads[5]) end,
     }
 end
 
@@ -51,12 +51,12 @@ function Avatar:jump()
 end
 
 function Avatar:run(dt)
-    if love.keyboard.isDown("right") then
+    if App.canInput and love.keyboard.isDown("right") then
         self:moveX(dt, CHARACTER_SPEED)
         self:setRunning(true)
         self:setFacingRight(true)
         self:blockRun("right")
-    elseif love.keyboard.isDown("left") then
+    elseif App.canInput and love.keyboard.isDown("left") then
         self:moveX(dt, -CHARACTER_SPEED)
         self:setRunning(true)
         self:setFacingRight(false)
@@ -116,6 +116,6 @@ end
 function Avatar:getHurtBy(blob)
     if self:collides(blob) then
         self:setQuad(pinkQuads[5])
-        self:changeState("hurt")
+        self:changeState("hurt", blob)
     end
 end

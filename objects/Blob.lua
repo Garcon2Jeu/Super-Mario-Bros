@@ -5,7 +5,7 @@ local creaturesQuads = Quads:getSetsOfQuads(creaturesSheet, TILESIZE, TILESIZE)
 
 function Blob:init(level)
     local def = {
-        x = 50,
+        x = CENTER_WIDTH - CHARACTER_WIDTH / 2,
         y = 50,
         width = TILESIZE,
         height = TILESIZE,

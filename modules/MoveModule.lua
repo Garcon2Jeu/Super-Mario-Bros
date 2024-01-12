@@ -32,3 +32,11 @@ end
 function MoveModule:applyFriction(dt, friction)
     self.dx = self.dx + friction * dt
 end
+
+function MoveModule:isPushedLeft()
+    return self.dx < 0
+end
+
+function MoveModule:isPushedRight()
+    return self.dx > 0
+end
