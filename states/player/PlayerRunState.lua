@@ -17,8 +17,8 @@ function PlayerRunState:update(dt)
         return
     end
 
-    local t1, t2 = self.level:getTilesFromHitPoints(self.level.tileMap, self.avatar, "bottom")
-    local b1, b2 = self.level:getTilesFromHitPoints(self.level.blockMap, self.avatar, "bottom")
+    local t1, t2 = self.avatar:getTilesFromHitPoints(self.level.tileMap, self.avatar, "bottom")
+    local b1, b2 = self.avatar:getTilesFromHitPoints(self.level.blockMap, self.avatar, "bottom")
 
     -- TOFIX!!!!!! ----------------------------------------------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ function PlayerRunState:update(dt)
     --     return
     -- end
 
-    if not self.level:isCollidable(t1) and not self.level:isCollidable(t2) then
+    if not self.avatar:isCollidable(t1) and not self.avatar:isCollidable(t2) then
         self.avatar:changeState("fall")
         return
     end

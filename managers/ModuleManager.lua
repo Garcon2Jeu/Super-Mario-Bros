@@ -19,6 +19,7 @@ function ModuleManager:init()
         ["StateMachineModule"] = function() return StateMachineModule end,
         ["Animation"]          = function() return AnimationModule end,
 
+        ["MapPointer"]         = function() return MapPointerModule end,
         ["BaseMap"]            = function() return BaseMapModule end,
         ["TileMap"]            = function() return TileMapModule end,
         ["BlockMap"]           = function() return BlockMapModule end,

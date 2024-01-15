@@ -20,6 +20,7 @@ function Avatar:init(level)
         ["Move"]               = {},
         ["Hitbox"]             = {},
         ["Asymmetric"]         = { xOffset = CHARACTER_WIDTH / 2, },
+        ["MapPointer"]         = {}
     })
 
     self:changeState("fall")
@@ -68,14 +69,11 @@ function Avatar:run(dt)
 end
 
 function Avatar:blockRun(direction)
-    local t1, t2 = State.current.level:getTilesFromHitPoints(
-        State.current.level.tileMap, self, direction)
-
-    local b1, b2 = State.current.level:getTilesFromHitPoints(
-        State.current.level.blockMap, self, direction)
+    local t1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, self, direction)
+    local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, self, direction)
 
     for key, object in pairs { t1, t2, b1, b2 } do
-        if State.current.level:isCollidable(object) then
+        if self:isCollidable(object) then
             self.x = direction == "right" and
                 object.x - CHARACTER_WIDTH + 1 or object.x + TILESIZE - 2
         end
@@ -95,19 +93,14 @@ function Avatar:getHitboxOffset(direction)
         hitboxOffsets[direction][3], hitboxOffsets[direction][4]
 end
 
--- Looks like shit, pls fix that
 function Avatar:getCoins()
-    local t1, t2 = State.current.level:getTilesFromHitPoints(
-        State.current.level.coinMap, self, "bottom")
-    local t3, t4 = State.current.level:getTilesFromHitPoints(
-        State.current.level.coinMap, self, "top")
-    local t5, t6 = State.current.level:getTilesFromHitPoints(
-        State.current.level.coinMap, self, "left")
-    local t7, t8 = State.current.level:getTilesFromHitPoints(
-        State.current.level.coinMap, self, "right")
+    local t1, t2 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "bottom")
+    local t3, t4 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "top")
+    local t5, t6 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "left")
+    local t7, t8 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "right")
 
     for key, object in pairs { t1, t2, t3, t4, t5, t6, t7, t8 } do
-        if State.current.level:isCollidable(object) then
+        if self:isCollidable(object) then
             object:onCollide()
             return
         end

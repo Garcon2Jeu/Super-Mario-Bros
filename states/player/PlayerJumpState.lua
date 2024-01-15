@@ -12,13 +12,13 @@ function PlayerJumpState:update(dt)
     -- if App:keyPressed("space") then
     --     self.avatar:applyJumpForce(JUMPFORCE)
     -- end
-    local b1, b2 = self.level:getTilesFromHitPoints(
+    local b1, b2 = self.avatar:getTilesFromHitPoints(
         self.level.blockMap, self.avatar, "top")
 
-    if self.level:isCollidable(b1) then
+    if self.avatar:isCollidable(b1) then
         b1:onCollide(self.avatar, TILESIZE)
         self.avatar:changeState("fall")
-    elseif self.level:isCollidable(b2) then
+    elseif self.avatar:isCollidable(b2) then
         b2:onCollide(self.avatar, TILESIZE)
         self.avatar:changeState("fall")
     end

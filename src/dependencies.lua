@@ -36,6 +36,7 @@ require "modules.CollidableModule"
 require "modules.ConsummableModule"
 require "modules.AsymmetricModule"
 require "modules.EnnemiManagerModule"
+require "modules.MapPointerModule"
 
 
 -- States
