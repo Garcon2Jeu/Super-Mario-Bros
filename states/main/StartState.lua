@@ -18,9 +18,9 @@ function StartState:draw()
     self.player:drawUI()
 
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    Assets.fonts.setMedium()
-    love.graphics.print(tostring(self.player.avatar.dy), 50, 20)
-    love.graphics.print(tostring(self.player.avatar:getCurrentStateName()), 50, 50)
+    -- Assets.fonts.setMedium()
+    -- love.graphics.print(tostring(self.player.avatar.dy), 50, 20)
+    -- love.graphics.print(tostring(self.player.avatar:getCurrentStateName()), 50, 50)
     ------------------------------------------------------DEBUG-------------------------------------------------------------------
     self:scrollCamera()
 

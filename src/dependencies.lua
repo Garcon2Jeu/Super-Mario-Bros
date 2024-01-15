@@ -14,6 +14,7 @@ Modules = require "managers.ModuleManager"
 require "managers.StateMachine"
 require "managers.TileMapGenerator"
 require "managers.BlockMapGenerator"
+require "managers.EnnemiGenerator"
 
 
 -- Modules
@@ -34,6 +35,7 @@ require "modules.CameraModule"
 require "modules.CollidableModule"
 require "modules.ConsummableModule"
 require "modules.AsymmetricModule"
+require "modules.EnnemiManagerModule"
 
 
 -- States

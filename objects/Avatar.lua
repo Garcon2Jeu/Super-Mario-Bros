@@ -115,10 +115,15 @@ function Avatar:getCoins()
 end
 
 function Avatar:getHurtBy(ennemis)
-    for key, ennemi in pairs(ennemis) do
+    if not ennemis then
+        return
+    end
+
+    for index, ennemi in ipairs(ennemis) do
         if self:collides(ennemi) then
             if self:getCurrentStateName() == "fall" then
                 self.y = ennemi.y - self.height
+                State.current.level:removeEnnemi(index)
                 self:changeState("jump")
                 return
             end

@@ -5,34 +5,22 @@ function Level:init()
     local baseMap = self:generateEmptyMap()
 
     Modules:plugInBulk(self, {
-        ["TileMap"]  = App:deepCopy(baseMap),
-        ["BlockMap"] = App:deepCopy(baseMap),
-        ["CoinMap"]  = App:deepCopy(baseMap)
+        ["TileMap"]       = App:deepCopy(baseMap),
+        ["BlockMap"]      = App:deepCopy(baseMap),
+        ["CoinMap"]       = App:deepCopy(baseMap),
+        ["EnnemiManager"] = { level = self },
     })
-
-    -- refactor --------------------
-    self.ennemis = { Blob(self) }
-    -- refactor --------------------
 end
 
 function Level:update(dt, avatar)
-    -- refactor --------------------
-    for key, ennemi in pairs(self.ennemis) do
-        ennemi:update(dt, avatar)
-    end
-    -- refactor --------------------
+    self:updateEnnemis(dt, avatar)
 end
 
 function Level:draw()
     self:drawTileMap()
     self:drawCoinMap()
     self:drawBlockMap()
-
-    -- refactor --------------------
-    for key, ennemi in pairs(self.ennemis) do
-        ennemi:draw()
-    end
-    -- refactor --------------------
+    self:drawEnnemis()
 end
 
 function Level:pointToTile(map, x, y)

@@ -23,6 +23,7 @@ function ModuleManager:init()
         ["TileMap"]            = function() return TileMapModule end,
         ["BlockMap"]           = function() return BlockMapModule end,
         ["CoinMap"]            = function() return CoinMapModule end,
+        ["EnnemiManager"]      = function() return EnnemiManagerModule end,
     }
 end
 
