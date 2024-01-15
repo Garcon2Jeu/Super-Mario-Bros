@@ -26,3 +26,15 @@ function BaseMapModule:generateEmptyMap(columns, rows)
 
     return map
 end
+
+function BaseMapModule.drawBaseMap(map)
+    Assets.colors.setYellow(.5)
+
+    for key, column in pairs(map) do
+        for key, tile in pairs(column) do
+            love.graphics.rectangle("line", tile.x, tile.y, TILESIZE, TILESIZE)
+        end
+    end
+
+    Assets.colors.reset()
+end

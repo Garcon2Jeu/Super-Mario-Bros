@@ -16,6 +16,7 @@ function EnnemiManagerModule:drawEnnemis()
     end
 end
 
-function EnnemiManagerModule:removeEnnemi(index)
-    table.remove(self.ennemis, index)
+function EnnemiManagerModule:kill(index)
+    self.ennemis[index]:die()
+    Timer.after(.5, function() table.remove(self.ennemis, index) end)
 end

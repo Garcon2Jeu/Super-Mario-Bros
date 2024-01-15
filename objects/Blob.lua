@@ -27,6 +27,16 @@ function Blob:init(level)
     self:updateHitbox()
 end
 
+function Blob:update(dt, player)
+    if self:getCurrentStateName("dead") then
+        return
+    end
+
+    self:updateHitbox()
+    self:facePlayer(player)
+    self.stateMachine:update(dt)
+end
+
 function Blob:getStates(level)
     return {
         ["idle"]  = function() return BlobIdleState(self, creaturesQuads[10]) end,
@@ -36,12 +46,6 @@ function Blob:getStates(level)
     }
 end
 
-function Blob:update(dt, player)
-    self:updateHitbox()
-    self:facePlayer(player)
-    self.stateMachine:update(dt)
-end
-
 function Blob:getHitboxOffset()
 end
 
@@ -49,6 +53,6 @@ function Blob:facePlayer(player)
     self:setFacingRight(player.x + (player.width / 2) > self.x + (self.width / 2))
 end
 
-function Blob:kill()
+function Blob:die()
     self:changeState("dead")
 end

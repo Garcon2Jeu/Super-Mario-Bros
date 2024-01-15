@@ -23,6 +23,7 @@ function Level:draw()
     self:drawEnnemis()
 end
 
+-- Refactor to MapPointerModule? ---
 function Level:pointToTile(map, x, y)
     if x < 0 or y < 0 or x > self.width or y > self.height then
         return nil
@@ -49,16 +50,4 @@ function Level:isCollidable(tile)
     return tile.collidable
 end
 
--- Debug --
-
-function Level.drawBaseMap(map)
-    Assets.colors.setYellow(.5)
-
-    for key, column in pairs(map) do
-        for key, tile in pairs(column) do
-            love.graphics.rectangle("line", tile.x, tile.y, TILESIZE, TILESIZE)
-        end
-    end
-
-    Assets.colors.reset()
-end
+-- Refactor to MapPointerModule? ---
