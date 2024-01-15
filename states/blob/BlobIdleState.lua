@@ -6,6 +6,6 @@ function BlobIdleState:init(blob, quad)
     self.blob:setQuad(quad)
 end
 
-function BlobIdleState:update(dt)
+function BlobIdleState:enter()
     self.blob:changeState("chase")
 end

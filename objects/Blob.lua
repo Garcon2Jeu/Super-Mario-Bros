@@ -3,15 +3,17 @@ Blob = Class()
 local creaturesSheet = Assets.graphics["creatures"]()
 local creaturesQuads = Quads:getSetsOfQuads(creaturesSheet, TILESIZE, TILESIZE)
 
-function Blob:init(level)
-    local def = {
-        x = CENTER_WIDTH - CHARACTER_WIDTH / 2,
-        y = 50,
-        width = TILESIZE,
-        height = TILESIZE,
-        spriteSheet = creaturesSheet,
-        quad = creaturesQuads[9]
-    }
+local def = {
+    x           = CENTER_WIDTH - CHARACTER_WIDTH / 2,
+    y           = 50,
+    width       = TILESIZE,
+    height      = TILESIZE,
+    spriteSheet = creaturesSheet,
+}
+
+function Blob:init(params)
+    def.x = params.x or def.x
+    def.y = params.y or def.y
 
     BaseObject.init(self, def)
 
@@ -20,7 +22,7 @@ function Blob:init(level)
         ["Hitbox"]             = {},
         ["Move"]               = {},
         ["Asymmetric"]         = { xOffset = TILESIZE / 2, reverse = true },
-        ["StateMachineModule"] = self:getStates(level),
+        ["StateMachineModule"] = self:getStates(params.level),
     })
 
     self:changeState("fall")
