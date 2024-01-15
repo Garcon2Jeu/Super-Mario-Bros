@@ -9,6 +9,6 @@ end
 --     self.onCollide = def
 -- end
 
--- function Collidable:isCollidable()
+-- function Collidable:isTileCollidable()
 --     return self.collidable
 -- end

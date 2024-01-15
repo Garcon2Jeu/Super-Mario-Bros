@@ -26,7 +26,7 @@ function MapPointerModule:getTilesFromHitPoints(map, object, edgeDirection)
         self:pointToTile(map, p2.x, p2.y)
 end
 
-function MapPointerModule:isCollidable(tile)
+function MapPointerModule:isTileCollidable(tile)
     if not tile then
         return false
     end

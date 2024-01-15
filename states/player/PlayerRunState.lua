@@ -23,28 +23,28 @@ function PlayerRunState:update(dt)
     -- TOFIX!!!!!! ----------------------------------------------------------------------------------------------------------------------
 
     -- for key, object in pairs { t1, t2, b1, b2 } do
-    --     if not self.level:isCollidable(object) then
+    --     if not self.level:isTileCollidable(object) then
     --         self.avatar:changeState("fall")
     --         return
     --     end
     -- end
 
-    -- if not self.level:isCollidable(t1) and not self.level:isCollidable(t2)
-    --     or not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
+    -- if not self.level:isTileCollidable(t1) and not self.level:isTileCollidable(t2)
+    --     or not self.level:isTileCollidable(b1) and not self.level:isTileCollidable(b2) then
     --     self.avatar:changeState("fall")
     --     return
     -- end
 
-    if not self.avatar:isCollidable(t1) and not self.avatar:isCollidable(t2) then
+    if not self.avatar:isTileCollidable(t1) and not self.avatar:isTileCollidable(t2) then
         self.avatar:changeState("fall")
         return
     end
-    -- if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
+    -- if not self.level:isTileCollidable(b1) and not self.level:isTileCollidable(b2) then
     --     self.avatar:changeState("fall")
     --     return
     -- end
 
-    -- if not self.level:isCollidable(b1) and not self.level:isCollidable(b2) then
+    -- if not self.level:isTileCollidable(b1) and not self.level:isTileCollidable(b2) then
     --     self.avatar:changeState("fall")
     --     return
     -- end

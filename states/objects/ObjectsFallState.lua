@@ -23,9 +23,9 @@ function ObjectFallState:checkForGround()
     local b1, b2 = self:getTilesFromHitPoints(
         self.level.blockMap, self.object, "bottom")
 
-    for key, object in pairs { t1, t2, b1, b2 } do
-        if self:isCollidable(object) then
-            object:onCollide(self.object, -self.object.height)
+    for key, tile in pairs { t1, t2, b1, b2 } do
+        if self:isTileCollidable(tile) then
+            tile:onCollide(self.object, -self.object.height)
             self.object:changeState("idle")
             return
         end

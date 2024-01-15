@@ -15,10 +15,10 @@ function PlayerJumpState:update(dt)
     local b1, b2 = self.avatar:getTilesFromHitPoints(
         self.level.blockMap, self.avatar, "top")
 
-    if self.avatar:isCollidable(b1) then
+    if self.avatar:isTileCollidable(b1) then
         b1:onCollide(self.avatar, TILESIZE)
         self.avatar:changeState("fall")
-    elseif self.avatar:isCollidable(b2) then
+    elseif self.avatar:isTileCollidable(b2) then
         b2:onCollide(self.avatar, TILESIZE)
         self.avatar:changeState("fall")
     end

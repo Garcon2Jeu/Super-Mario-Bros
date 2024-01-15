@@ -23,7 +23,7 @@
 --         self.level.blockMap, self.avatar, "bottom")
 
 --     for key, object in pairs { t1, t2, b1, b2 } do
---         if self.level:isCollidable(object) then
+--         if self.level:isTileCollidable(object) then
 --             object:onCollide(self.avatar, -CHARACTER_HEIGHT)
 --             self.avatar:changeState("idle")
 --             return

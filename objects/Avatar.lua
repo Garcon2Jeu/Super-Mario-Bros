@@ -73,7 +73,7 @@ function Avatar:blockRun(direction)
     local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, self, direction)
 
     for key, object in pairs { t1, t2, b1, b2 } do
-        if self:isCollidable(object) then
+        if self:isTileCollidable(object) then
             self.x = direction == "right" and
                 object.x - CHARACTER_WIDTH + 1 or object.x + TILESIZE - 2
         end
@@ -100,7 +100,7 @@ function Avatar:getCoins()
     local t7, t8 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "right")
 
     for key, object in pairs { t1, t2, t3, t4, t5, t6, t7, t8 } do
-        if self:isCollidable(object) then
+        if self:isTileCollidable(object) then
             object:onCollide()
             return
         end
