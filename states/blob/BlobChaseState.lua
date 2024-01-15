@@ -4,14 +4,12 @@ BlobChaseState:setStateName("chase")
 function BlobChaseState:init(level, blob, interval, frames)
     self.level = level
     self.blob = blob
-    self.frames = frames
 
-    Timer.every(interval,
-        function()
-            self.blob:setDX(self.blob.facingRight and 1 or -1)
-            Timer.after(interval / 6, function() self.blob:setDX(0) end)
-        end
-    )
+    Modules:plug(self, "Animation", {
+        interval        = interval,
+        frames          = frames,
+        customAnimation = self:getCustomAnimation(interval)
+    })
 end
 
 function BlobChaseState:update(dt)
@@ -19,7 +17,7 @@ function BlobChaseState:update(dt)
 end
 
 function BlobChaseState:exit()
-    self:removeTimer(self)
+    self:removeTimer()
 end
 
 function BlobChaseState:crawl(dt)
@@ -33,5 +31,12 @@ function BlobChaseState:crawl(dt)
         self.blob:setQuad(self.frames[1])
     else
         self.blob:setQuad(self.frames[2])
+    end
+end
+
+function BlobChaseState:getCustomAnimation(interval)
+    return function()
+        self.blob:setDX(self.blob.facingRight and 1 or -1)
+        Timer.after(interval / 6, function() self.blob:setDX(0) end)
     end
 end

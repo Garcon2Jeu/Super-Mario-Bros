@@ -32,6 +32,7 @@ function Blob:getStates(level)
         ["idle"]  = function() return BlobIdleState(self, creaturesQuads[10]) end,
         ["fall"]  = function() return ObjectFallState(level, self, creaturesQuads[9]) end,
         ["chase"] = function() return BlobChaseState(level, self, 1.5, { creaturesQuads[9], creaturesQuads[10] }) end,
+        ["dead"]  = function() return BlobDeadState(self, creaturesQuads[11]) end
     }
 end
 
@@ -46,4 +47,8 @@ end
 
 function Blob:facePlayer(player)
     self:setFacingRight(player.x + (player.width / 2) > self.x + (self.width / 2))
+end
+
+function Blob:kill()
+    self:changeState("dead")
 end

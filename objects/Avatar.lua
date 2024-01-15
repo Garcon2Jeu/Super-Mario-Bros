@@ -123,7 +123,9 @@ function Avatar:getHurtBy(ennemis)
         if self:collides(ennemi) then
             if self:getCurrentStateName() == "fall" then
                 self.y = ennemi.y - self.height
-                State.current.level:removeEnnemi(index)
+                --- Temporary ---
+                ennemi:kill()
+                --- Temporary ---
                 self:changeState("jump")
                 return
             end

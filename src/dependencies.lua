@@ -54,6 +54,7 @@ require "states.player.PlayerHurtState"
 
 require "states.blob.BlobIdleState"
 require "states.blob.BlobChaseState"
+require "states.blob.BlobDeadState"
 
 
 -- Objects
