@@ -9,12 +9,30 @@ function Level:init()
         ["BlockMap"] = App:deepCopy(baseMap),
         ["CoinMap"]  = App:deepCopy(baseMap)
     })
+
+    -- refactor --------------------
+    self.ennemis = { Blob(self) }
+    -- refactor --------------------
+end
+
+function Level:update(dt, avatar)
+    -- refactor --------------------
+    for key, ennemi in pairs(self.ennemis) do
+        ennemi:update(dt, avatar)
+    end
+    -- refactor --------------------
 end
 
 function Level:draw()
     self:drawTileMap()
     self:drawCoinMap()
     self:drawBlockMap()
+
+    -- refactor --------------------
+    for key, ennemi in pairs(self.ennemis) do
+        ennemi:draw()
+    end
+    -- refactor --------------------
 end
 
 function Level:pointToTile(map, x, y)

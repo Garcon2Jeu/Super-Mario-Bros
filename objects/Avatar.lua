@@ -26,9 +26,9 @@ function Avatar:init(level)
     self:updateHitbox()
 end
 
-function Avatar:update(dt, blob)
+function Avatar:update(dt, ennemis)
     self:updateHitbox()
-    self:getHurtBy(blob)
+    self:getHurtBy(ennemis)
     self.stateMachine:update(dt)
     self:run(dt)
     self:getCoins()
@@ -114,17 +114,17 @@ function Avatar:getCoins()
     end
 end
 
-function Avatar:getHurtBy(blob)
-    if not self:collides(blob) then
-        return
-    end
+function Avatar:getHurtBy(ennemis)
+    for key, ennemi in pairs(ennemis) do
+        if self:collides(ennemi) then
+            if self:getCurrentStateName() == "fall" then
+                self.y = ennemi.y - self.height
+                self:changeState("jump")
+                return
+            end
 
-    if self:getCurrentStateName() == "fall" then
-        self.y = blob.y - self.height
-        self:changeState("jump")
-        return
+            self:setQuad(pinkQuads[5])
+            self:changeState("hurt", ennemi)
+        end
     end
-
-    self:setQuad(pinkQuads[5])
-    self:changeState("hurt", blob)
 end

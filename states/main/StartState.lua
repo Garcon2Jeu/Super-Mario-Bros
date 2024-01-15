@@ -4,15 +4,14 @@ StartState:setStateName("start")
 function StartState:init()
     self.level = Level()
     self.player = Player(self.level)
-    self.blob = Blob(self.level)
 
     Modules:plug(self, "Camera")
 end
 
 function StartState:update(dt)
-    self.player.avatar:update(dt, self.blob)
+    self.player.avatar:update(dt, self.level.ennemis)
     self:updateCamera(self.player.avatar.x)
-    self.blob:update(dt, self.player.avatar)
+    self.level:update(dt, self.player.avatar)
 end
 
 function StartState:draw()
@@ -27,7 +26,6 @@ function StartState:draw()
 
     self.level:draw()
     self.player.avatar:draw()
-    self.blob:draw()
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
