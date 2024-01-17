@@ -12,6 +12,10 @@ function PlayerIdleState:update(dt)
         return
     end
 
+    if not self.avatar:checkForGround() then
+        self.avatar:changeState("fall")
+    end
+
     if self.avatar:isRunning() then
         self.avatar:changeState("run")
         return

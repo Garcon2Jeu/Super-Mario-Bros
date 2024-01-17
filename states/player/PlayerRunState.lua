@@ -17,7 +17,9 @@ function PlayerRunState:update(dt)
         return
     end
 
-    self:checkForGround()
+    if not self.avatar:checkForGround() then
+        self.avatar:changeState("fall")
+    end
 
     if not self.avatar:isRunning() then
         self.avatar:changeState("idle")
@@ -27,19 +29,4 @@ end
 
 function PlayerRunState:exit()
     self:removeTimer(self)
-end
-
-function PlayerRunState:checkForGround()
-    local t1, t2 = self.avatar:getTilesFromHitPoints(
-        self.level.tileMap, self.avatar, "bottom")
-    local b1, b2 = self.avatar:getTilesFromHitPoints(
-        self.level.blockMap, self.avatar, "bottom")
-
-    for key, tile in pairs { t1, t2, b1, b2 } do
-        if self.avatar:isTileCollidable(tile) then
-            return
-        end
-    end
-
-    self.avatar:changeState("fall")
 end

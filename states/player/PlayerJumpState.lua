@@ -9,9 +9,6 @@ function PlayerJumpState:init(avatar, level, quad)
 end
 
 function PlayerJumpState:update(dt)
-    -- if App:keyPressed("space") then
-    --     self.avatar:applyJumpForce(JUMPFORCE)
-    -- end
     local b1, b2 = self.avatar:getTilesFromHitPoints(
         self.level.blockMap, self.avatar, "top")
 

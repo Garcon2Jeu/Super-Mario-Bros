@@ -29,3 +29,18 @@ function MapPointerModule:isTileCollidable(tile)
 
     return tile.collidable
 end
+
+function MapPointerModule:checkForGround()
+    local t1, t2 = self:getTilesFromHitPoints(
+        State.current.level.tileMap, self, "bottom")
+    local b1, b2 = self:getTilesFromHitPoints(
+        State.current.level.blockMap, self, "bottom")
+
+    for key, tile in pairs { t1, t2, b1, b2 } do
+        if self:isTileCollidable(tile) then
+            return true
+        end
+    end
+
+    return false
+end
