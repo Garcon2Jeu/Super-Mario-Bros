@@ -23,6 +23,7 @@ function Blob:init(params)
         ["Move"]               = {},
         ["Asymmetric"]         = { xOffset = TILESIZE / 2, reverse = true },
         ["StateMachineModule"] = self:getStates(params.level),
+        ["MapPointer"]         = {}
     })
 
     self:changeState("fall")

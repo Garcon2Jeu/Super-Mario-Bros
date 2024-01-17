@@ -14,6 +14,11 @@ end
 
 function BlobChaseState:update(dt)
     self:crawl(dt)
+
+    if not self.blob:checkForGround() then
+        self.blob:changeState("fall")
+        return
+    end
 end
 
 function BlobChaseState:exit()
@@ -22,13 +27,12 @@ end
 
 function BlobChaseState:crawl(dt)
     self.blob:applyDX()
+    self.blob:setQuad(self.frames[1])
 
     if self.blob.dx > 0 then
         self.blob:applyFriction(dt, -5)
-        self.blob:setQuad(self.frames[1])
     elseif self.blob.dx < 0 then
         self.blob:applyFriction(dt, 5)
-        self.blob:setQuad(self.frames[1])
     else
         self.blob:setQuad(self.frames[2])
     end
