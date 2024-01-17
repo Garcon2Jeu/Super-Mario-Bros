@@ -29,7 +29,7 @@ end
 
 function Avatar:update(dt, ennemis)
     self:updateHitbox()
-    self:getHurtBy(ennemis)
+    self:collideWithEnnemis(ennemis)
     self.stateMachine:update(dt)
     self:run(dt)
     self:getCoins()
@@ -107,22 +107,25 @@ function Avatar:getCoins()
     end
 end
 
-function Avatar:getHurtBy(ennemis)
+function Avatar:collideWithEnnemis(ennemis)
     if not ennemis then
         return
     end
 
     for index, ennemi in ipairs(ennemis) do
-        if self:collides(ennemi) then
-            if self:getCurrentStateName() == "fall" then
-                State.current.level:kill(index)
-                self.y = ennemi.y - self.height
-                self:changeState("jump")
-                return
-            end
-
-            self:setQuad(pinkQuads[5])
-            self:changeState("hurt", ennemi)
+        if ennemi:getCurrentStateName("dead")
+            or not self:collides(ennemi) then
+            return
         end
+
+        if self:getCurrentStateName("fall") then
+            State.current.level:kill(index)
+            self.y = ennemi.y - self.height
+            self:changeState("jump")
+            return
+        end
+
+        self:setQuad(pinkQuads[5])
+        self:changeState("hurt", ennemi)
     end
 end
