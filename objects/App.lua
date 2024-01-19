@@ -41,4 +41,8 @@ function App:deepCopy(original)
     return copy
 end
 
+function App.flipCoin(max)
+    return math.random(max or 2) == 1
+end
+
 return App()

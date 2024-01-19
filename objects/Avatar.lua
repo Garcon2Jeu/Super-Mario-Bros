@@ -12,7 +12,7 @@ local hitboxOffsets = {
 
 function Avatar:init(level)
     Modules:plugInBulk(self, {
-        ["Coordinates"]        = { x = 50, y = 0 },
+        ["Coordinates"]        = { x = 0, y = 0 },
         ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
         ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },
         ["StateMachineModule"] = self:getStates(level),

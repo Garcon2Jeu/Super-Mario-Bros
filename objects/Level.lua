@@ -1,7 +1,7 @@
 Level = Class()
 
 function Level:init()
-    Modules:plug(self, "BaseMap", { columns = 20, rows = MAP_HEIGHT })
+    Modules:plug(self, "BaseMap", { columns = 100, rows = MAP_HEIGHT })
     local baseMap = self:generateEmptyMap()
 
     Modules:plugInBulk(self, {

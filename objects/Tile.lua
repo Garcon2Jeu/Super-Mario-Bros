@@ -8,14 +8,14 @@ local tilesQuads = Quads:getSetsOfQuads(tilesSheet, TILESIZE, TILESIZE, 6, 10)
 function Tile:init(def)
     Modules:plugInBulk(self, {
         ["Coordinates"] = def,
-        ["Dimensions"] = def
+        ["Dimensions"]  = def
     })
 end
 
 function Tile:addCollidable()
     Modules:plugInBulk(self, {
         ["Collidable"] = self:getOnCollide(),
-        ["Texture"] = { spriteSheet = tilesSheet, quad = tilesQuads[21][3] }
+        ["Texture"]    = { spriteSheet = tilesSheet, quad = tilesQuads[21][3] }
     })
 end
 

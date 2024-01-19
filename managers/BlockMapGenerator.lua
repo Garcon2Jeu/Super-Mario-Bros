@@ -2,7 +2,7 @@ BlockMapGenerator = Class()
 
 
 function BlockMapGenerator:factory(map)
-    self.addBlock(map)
+    -- self.addBlock(map)
 
     return map
 end

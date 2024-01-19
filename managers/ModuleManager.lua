@@ -58,6 +58,18 @@ function ModuleManager:plugInBulk(object, def)
     end
 end
 
+-- function ModuleManager:remove(object, moduleName)
+--     for moduleindex, moduleValue in ipairs(self:getModule(moduleName)) do
+--         for objectindex, objectValue in ipairs(object) do
+--             if moduleKey == objectKey then
+--                 -- object.collidable = nil
+--                 -- object.onCollide = nil
+--                 object.objectKey = nil
+--             end
+--         end
+--     end
+-- end
+
 return ModuleManager()
 
 -- function ObjectMaker:assertComponents(def)
