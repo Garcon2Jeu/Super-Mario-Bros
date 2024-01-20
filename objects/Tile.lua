@@ -5,7 +5,7 @@ local tilesSheet = Assets.graphics["tiles"]()
 local tilesQuads = Quads:getSetsOfQuads(tilesSheet, TILESIZE, TILESIZE, 6, 10)
 
 local decorationSheet = Assets.graphics["bushes_and_cacti"]()
-local decorationQuads = Quads:getSetsOfQuads(decorationSheet, TILESIZE, TILESIZE)
+local decorationQuads = Quads:getSetsOfQuads(decorationSheet, TILESIZE, TILESIZE, 1, 5)
 
 
 function Tile:init(def)
@@ -22,8 +22,8 @@ function Tile:addCollidable()
     })
 end
 
-function Tile:addDecoration()
-    Modules:plug(self, "Texture", { spriteSheet = decorationSheet, quad = decorationQuads[1] })
+function Tile:addDecoration(quadIndex)
+    Modules:plug(self, "Texture", { spriteSheet = decorationSheet, quad = decorationQuads[1][quadIndex] })
 end
 
 function Tile:addTopper(def)
@@ -34,4 +34,9 @@ function Tile.getOnCollide()
     return function(self, player, yOffset)
         player:blockY(self.y + yOffset)
     end
+end
+
+-- TO FIX BY SET
+function Tile.getDecorationQuads()
+    return decorationQuads[1]
 end

@@ -52,6 +52,7 @@ function TileMapGenerator:factory(baseMap)
     self:randomlyTerraform(tileMap, chasmData)
     self:randomlyTerraform(tileMap, pillarData)
     self:randomlyTerraform(tileMap, decorationData)
+
     self.addToppers(tileMap)
 
     return tileMap
@@ -122,7 +123,7 @@ end
 ---- starting at pillarHeightCustom if provided, or pillarHeightDefault.
 -- Requires:
 ---- tileMap     = table of Tile objects, generated with getEmptyTileMap()
----- columnIndex = number
+---- columnIndex = number variable
 -- Optionnal:
 ---- pillarHeightCustom = number
 function TileMapGenerator.addPillar(tileMap, columnIndex, pillarHeightCustom)
@@ -133,12 +134,47 @@ function TileMapGenerator.addPillar(tileMap, columnIndex, pillarHeightCustom)
     end
 end
 
+-- Description:
+---- Adds Texture Module with Decoration Quad at tile above ground tile at given columnIndex
+---- Because one decoration is split into 2 sprites,
+---- function adapts current decoration to surrounding tiles
+-- Requires:
+---- tileMap = table of Tile objects, generated with getEmptyTileMap()
+---- columnIndex = number variable
 function TileMapGenerator.addDecoration(tileMap, columnIndex)
-    for row = 1, MAP_HEIGHT do
-        if row - 1 > 1 and tileMap[columnIndex][row].collidable then
-            tileMap[columnIndex][row - 1]:addDecoration()
+    if columnIndex == 1 or columnIndex + 1 > #tileMap then
+        return
+    end
+
+    for row = 2, MAP_HEIGHT do
+        if not Modules:find(tileMap[columnIndex][row], "Collidable") then
+            goto continue
+        end
+
+        local decoQuadIndex = math.random(#Tile.getDecorationQuads())
+
+        if decoQuadIndex == 3 then
+            if Modules:find(tileMap[columnIndex + 1][row], "Collidable")
+                and not Modules:find(tileMap[columnIndex + 1][row - 1], "Texture") then
+                tileMap[columnIndex + 1][row - 1]:addDecoration(decoQuadIndex + 1)
+            else
+                decoQuadIndex = decoQuadIndex - 1
+            end
+        elseif decoQuadIndex == 4 then
+            if Modules:find(tileMap[columnIndex - 1][row], "Collidable")
+                and not Modules:find(tileMap[columnIndex - 1][row - 1], "Texture") then
+                tileMap[columnIndex - 1][row - 1]:addDecoration(decoQuadIndex - 1)
+            else
+                decoQuadIndex = decoQuadIndex + 1
+            end
+        end
+
+        if not Modules:find(tileMap[columnIndex][row - 1], "Texture") then
+            tileMap[columnIndex][row - 1]:addDecoration(decoQuadIndex)
             return
         end
+
+        ::continue::
     end
 end
 
