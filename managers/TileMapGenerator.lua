@@ -110,11 +110,9 @@ function TileMapGenerator:randomlyTerraform(tileMap, formationData)
     end
 end
 
--- RIGHT HERE BITCH!!!!!
 function TileMapGenerator.addChasm(tileMap, columnIndex)
     for key, tile in pairs(tileMap[columnIndex]) do
-        tile.collidable = nil
-        tile.onCollide = nil
+        Modules:unplugInBulk(tile, { "Texture", "Collidable" })
     end
 end
 

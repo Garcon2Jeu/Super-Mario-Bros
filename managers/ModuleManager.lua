@@ -58,17 +58,33 @@ function ModuleManager:plugInBulk(object, def)
     end
 end
 
--- function ModuleManager:remove(object, moduleName)
---     for moduleindex, moduleValue in ipairs(self:getModule(moduleName)) do
---         for objectindex, objectValue in ipairs(object) do
---             if moduleKey == objectKey then
---                 -- object.collidable = nil
---                 -- object.onCollide = nil
---                 object.objectKey = nil
---             end
---         end
---     end
--- end
+-- Warning! Doesn't remove fields, only "nils" their value
+-- (before: object.key = "value" -> after: object.key = nil)
+function ModuleManager:unplug(object, moduleName)
+    for key, value in pairs(self:getModule(moduleName)) do
+        object[key] = nil
+    end
+
+    for key, value in pairs(self:getModule(moduleName).defaultDef) do
+        object[key] = nil
+    end
+
+    table.removeByValue(object.modules, moduleName)
+end
+
+function ModuleManager:unplugInBulk(object, def)
+    for key, moduleName in pairs(def) do
+        self:unplug(object, moduleName)
+    end
+end
+
+function ModuleManager:find(object, moduleName)
+    if not object or not object.modules then
+        return false
+    end
+
+    return table.indexOfValue(object.modules, moduleName)
+end
 
 return ModuleManager()
 

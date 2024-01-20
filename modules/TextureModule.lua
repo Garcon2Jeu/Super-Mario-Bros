@@ -1,5 +1,10 @@
 TextureModule = Class()
 
+TextureModule.defaultDef = {
+    spriteSheet = nil,
+    quad = nil
+}
+
 function TextureModule:init(def)
     self.spriteSheet = def.spriteSheet
     self.quad = def.quad
@@ -16,3 +21,7 @@ end
 function TextureModule:draw()
     love.graphics.draw(self.spriteSheet, self.quad, self.x, self.y)
 end
+
+-- function TextureModule.getDefaultDef()
+--     return TextureModule.defaultDef
+-- end

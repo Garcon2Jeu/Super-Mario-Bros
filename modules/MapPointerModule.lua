@@ -23,11 +23,7 @@ function MapPointerModule:getTilesFromHitPoints(map, object, edgeDirection)
 end
 
 function MapPointerModule:isTileCollidable(tile)
-    if not tile then
-        return false
-    end
-
-    return tile.collidable
+    return Modules:find(tile, "Collidable")
 end
 
 function MapPointerModule:checkForGround()

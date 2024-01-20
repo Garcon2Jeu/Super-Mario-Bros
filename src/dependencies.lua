@@ -5,6 +5,7 @@ Class = require "libraries.class"
 Push  = require "libraries.push"
 Timer = require "libraries.knife.timer"
 Chain = require "libraries.knife.chain"
+require "libraries.tableUtils"
 
 
 -- Managers
