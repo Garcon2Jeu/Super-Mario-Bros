@@ -45,4 +45,13 @@ function App.flipCoin(max)
     return math.random(max or 2) == 1
 end
 
+function App:tableRemove(t, string)
+    for index, value in ipairs(t) do
+        if value == string then
+            table.remove(t, index)
+            return
+        end
+    end
+end
+
 return App()

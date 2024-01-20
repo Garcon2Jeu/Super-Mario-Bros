@@ -1,40 +1,57 @@
 TileMapGenerator = Class()
 
 
-local noPillarCountSpacer = -10
-local pillarChance        = 7
-local pillarHeightDefault = 4
-local pillarWidthMin      = 3
-local pillarWidthMax      = 7
+local pillarData = {
+    countSpacer   = -10,
+    chance        = 7,
+    heightDefault = 4,
+    widthMin      = 3,
+    widthMax      = 7,
+    heightMin     = 6,
+    heightMax     = 4,
+}
+
+pillarData.method =
+    function(tileMap, columnIndex)
+        TileMapGenerator.addPillar(
+            tileMap,
+            columnIndex,
+            math.random(pillarData.heightMax, pillarData.heightMin)
+        )
+    end
 
 
-local noChasmCountSpacer = 10
-local chasmChance        = 7
-local chasmWidthMin      = 2
-local chasmWidthMax      = 2
+local chasmData = {
+    countSpacer = 10,
+    chance      = 7,
+    widthMin    = 2,
+    widthMax    = 2,
+    method      =
+        function(tileMap, columnIndex)
+            TileMapGenerator.addChasm(tileMap, columnIndex)
+        end
+}
+
+
+local decorationData = {
+    countSpacer = 3,
+    chance      = 2,
+    widthMin    = 1,
+    widthMax    = 2,
+    method      =
+        function(tileMap, columnIndex)
+            TileMapGenerator.addDecoration(tileMap, columnIndex)
+        end
+}
 
 
 function TileMapGenerator:factory(baseMap)
     local tileMap = self.getEmptyTileMap(baseMap)
 
     self.addGround(tileMap)
-
-    self:randomlyTerraform(tileMap, {
-        countSpacer = noChasmCountSpacer,
-        chance      = chasmChance,
-        widthMin    = chasmWidthMin,
-        widthMax    = chasmWidthMax,
-        method      = function(tileMap, columnIndex) self.addChasm(tileMap, columnIndex) end
-    })
-
-    self:randomlyTerraform(tileMap, {
-        countSpacer = noPillarCountSpacer,
-        chance      = pillarChance,
-        widthMin    = pillarWidthMin,
-        widthMax    = pillarWidthMax,
-        method      = function(tileMap, columnIndex) self.addPillar(tileMap, columnIndex) end
-    })
-
+    self:randomlyTerraform(tileMap, chasmData)
+    self:randomlyTerraform(tileMap, pillarData)
+    self:randomlyTerraform(tileMap, decorationData)
     self.addToppers(tileMap)
 
     return tileMap
@@ -66,7 +83,7 @@ function TileMapGenerator.addGround(tileMap)
 end
 
 -- Description:
----- Randomly adds one type of geographical elements to a tileMap
+---- Randomly adds one type of geographical elements to a tileMap.
 -- Requires:
 ---- tileMap = table of Tile objects, generated with getEmptyTileMap()
 ---- formationData = table of information needed to complete method:
@@ -93,6 +110,7 @@ function TileMapGenerator:randomlyTerraform(tileMap, formationData)
     end
 end
 
+-- RIGHT HERE BITCH!!!!!
 function TileMapGenerator.addChasm(tileMap, columnIndex)
     for key, tile in pairs(tileMap[columnIndex]) do
         tile.collidable = nil
@@ -110,9 +128,18 @@ end
 -- Optionnal:
 ---- pillarHeightCustom = number
 function TileMapGenerator.addPillar(tileMap, columnIndex, pillarHeightCustom)
-    for row = pillarHeightCustom or pillarHeightDefault, MAP_HEIGHT do
+    for row = pillarHeightCustom or pillarData.heightDefault, MAP_HEIGHT do
         if not tileMap[columnIndex][row].collidable then
             tileMap[columnIndex][row]:addCollidable()
+        end
+    end
+end
+
+function TileMapGenerator.addDecoration(tileMap, columnIndex)
+    for row = 1, MAP_HEIGHT do
+        if row - 1 > 1 and tileMap[columnIndex][row].collidable then
+            tileMap[columnIndex][row - 1]:addDecoration()
+            return
         end
     end
 end
