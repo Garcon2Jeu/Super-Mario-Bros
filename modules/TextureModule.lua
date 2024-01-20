@@ -1,9 +1,11 @@
 TextureModule = Class()
 
-TextureModule.defaultDef = {
-    spriteSheet = nil,
-    quad = nil
+
+TextureModule.fieldNames = {
+    "spriteSheet",
+    "quad"
 }
+
 
 function TextureModule:init(def)
     self.spriteSheet = def.spriteSheet

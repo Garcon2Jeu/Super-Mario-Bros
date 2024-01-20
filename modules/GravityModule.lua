@@ -1,5 +1,11 @@
 GravityModule = Class()
 
+
+GravityModule.fieldNames = {
+    "dy"
+}
+
+
 local gravity_force = GRAVITY
 
 function GravityModule:init()

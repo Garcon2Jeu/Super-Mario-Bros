@@ -1,6 +1,13 @@
 AnimationModule = Class()
 
 
+AnimationModule.fieldNames = {
+    "frames",
+    "frameIndex",
+    "timer"
+}
+
+
 -- Requires:
 ---- def.frames = list of variables of type Quad
 ---- def.interval = time between frame changes, number type variable

@@ -1,5 +1,12 @@
 MoveModule = Class()
 
+
+MoveModule.fieldNames = {
+    "dx",
+    "running"
+}
+
+
 function MoveModule:init()
     self.dx = 0
     self.running = false

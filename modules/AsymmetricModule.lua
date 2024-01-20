@@ -1,5 +1,12 @@
 AsymmetricModule = Class()
 
+
+AsymmetricModule.fieldNames = {
+    "xOffset",
+    "facingRight"
+}
+
+
 function AsymmetricModule:init(def)
     self.xOffset     = def.xOffset
     self.facingRight = true

@@ -1,5 +1,13 @@
 ConsummableModule = Class()
 
+
+ConsummableModule.fieldNames = {
+    "consummable",
+    "consummed",
+    "onConsume",
+}
+
+
 function ConsummableModule:init(def)
     self.consummable = true
     self.consummed = false

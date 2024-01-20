@@ -1,5 +1,12 @@
 BlockMapModule = Class()
 
+
+BlockMapModule.fieldNames = {
+    "blockMap",
+    "blockIndices"
+}
+
+
 function BlockMapModule:init(baseMap)
     self.blockMap = BlockMapGenerator:factory(baseMap)
     self.blockIndices = {}

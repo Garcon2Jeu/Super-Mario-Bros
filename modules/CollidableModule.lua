@@ -1,9 +1,11 @@
 CollidableModule = Class()
 
-CollidableModule.defaultDef = {
-    collidable = nil,
-    onCollide = nil
+
+CollidableModule.fieldNames = {
+    "collidable",
+    "onCollide"
 }
+
 
 function CollidableModule:init(def)
     self.collidable = true

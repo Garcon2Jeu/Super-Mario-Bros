@@ -1,5 +1,12 @@
 DimensionsModule = Class()
 
+
+DimensionsModule.fieldNames = {
+    "width",
+    "height"
+}
+
+
 function DimensionsModule:init(def)
     self.width = def.width or 0
     self.height = def.height or 0

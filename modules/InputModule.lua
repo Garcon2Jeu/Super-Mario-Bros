@@ -1,5 +1,12 @@
 InputModule = Class()
 
+
+InputModule.fieldNames = {
+    "keysPressed",
+    "canInput"
+}
+
+
 function InputModule:init()
     self.keysPressed = {}
     self.canInput = true

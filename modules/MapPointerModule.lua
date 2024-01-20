@@ -1,5 +1,9 @@
 MapPointerModule = Class()
 
+
+-- MapPointerModule.fieldNames = {}
+
+
 function MapPointerModule:pointToTile(map, x, y)
     if x < 0 or y < 0
         -- Ugly?!--

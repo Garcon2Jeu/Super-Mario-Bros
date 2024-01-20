@@ -1,5 +1,14 @@
 HitboxModule = Class()
 
+
+HitboxModule.fieldNames = {
+    "topLeft",
+    "topRight",
+    "bottomLeft",
+    "bottomRight"
+}
+
+
 local radius = .5
 
 function HitboxModule:updateHitbox()

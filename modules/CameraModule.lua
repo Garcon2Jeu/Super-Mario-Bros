@@ -1,5 +1,11 @@
 CameraModule = Class()
 
+
+CameraModule.fieldNames = {
+    "cameraScroll"
+}
+
+
 function CameraModule:init()
     self.cameraScroll = 0
 end

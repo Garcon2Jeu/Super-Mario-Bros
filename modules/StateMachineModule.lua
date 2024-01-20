@@ -1,5 +1,11 @@
 StateMachineModule = Class()
 
+
+StateMachineModule.fieldNames = {
+    "stateMachine",
+}
+
+
 function StateMachineModule:init(def)
     self.stateMachine = StateMachine(def)
 end

@@ -1,5 +1,12 @@
 CoinMapModule = Class()
 
+
+CoinMapModule.fieldNames = {
+    "coinMap",
+    "coinIndices"
+}
+
+
 function CoinMapModule:init(baseMap)
     self.coinMap = baseMap
     self.coinIndices = {}

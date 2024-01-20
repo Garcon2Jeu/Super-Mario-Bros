@@ -1,5 +1,14 @@
 BaseMapModule = Class()
 
+
+BaseMapModule.fieldNames = {
+    "columns",
+    "rows",
+    "width",
+    "height"
+}
+
+
 function BaseMapModule:init(def)
     self.columns = def.columns
     self.rows    = def.rows

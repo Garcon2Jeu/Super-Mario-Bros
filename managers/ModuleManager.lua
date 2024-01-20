@@ -65,8 +65,8 @@ function ModuleManager:unplug(object, moduleName)
         object[key] = nil
     end
 
-    for key, value in pairs(self:getModule(moduleName).defaultDef) do
-        object[key] = nil
+    for key, value in pairs(self:getModule(moduleName).fieldNames) do
+        object[value] = nil
     end
 
     table.removeByValue(object.modules, moduleName)

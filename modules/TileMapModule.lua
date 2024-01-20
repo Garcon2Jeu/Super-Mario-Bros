@@ -1,5 +1,10 @@
 TileMapModule = Class()
 
+
+TileMapModule.fieldNames = {
+    "tileMap",
+}
+
 function TileMapModule:init(baseMap)
     self.tileMap = TileMapGenerator:factory(baseMap)
 end

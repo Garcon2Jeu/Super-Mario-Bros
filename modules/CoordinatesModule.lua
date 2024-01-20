@@ -1,5 +1,11 @@
 CoordinatesModule = Class()
 
+
+CoordinatesModule.fieldNames = {
+    "x",
+    "y",
+}
+
 function CoordinatesModule:init(def)
     self.x = def.x or 0
     self.y = def.y or 0

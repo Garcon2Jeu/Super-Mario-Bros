@@ -1,5 +1,11 @@
 EnnemiManagerModule = Class()
 
+
+EnnemiManagerModule.fieldNames = {
+    "ennemis"
+}
+
+
 function EnnemiManagerModule:init(def)
     self.ennemis = EnnemiGenerator:factory(def.level)
 end
