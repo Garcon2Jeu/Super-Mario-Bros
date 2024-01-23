@@ -1,32 +1,42 @@
 BlockMapGenerator = Class()
 
+local jumpBlockData = {
+    countSpacer = 7,
+    chance      = 7,
+    widthMin    = 1,
+    widthMax    = 2,
+}
 
-function BlockMapGenerator:factory(map)
-    -- self.addBlock(map)
+local blockMaxHeight = 2
+local blockGroundSpacer = 3
 
-    return map
+function BlockMapGenerator:factory(def)
+    jumpBlockData.method =
+        function(blockMap, columnIndex)
+            BlockMapGenerator.addBlock(blockMap, columnIndex, def.tileMap)
+        end
+
+    BaseMapModule.randomlyTerraform(def.baseMap, jumpBlockData)
+
+    return def.baseMap
 end
 
-function BlockMapGenerator.addBlock(map)
-    local tile = map[10][4]
+function BlockMapGenerator.addBlock(blockMap, columnIndex, tileMap)
+    for rowIndex = blockMaxHeight, #tileMap[columnIndex] do
+        if Modules:find(tileMap[columnIndex][rowIndex], "Collidable") then
+            rowIndex = rowIndex - blockGroundSpacer
 
-    local block = JumpBlock {
-        x = tile.x,
-        y = tile.y,
-        column = 10,
-        row = 4
-    }
+            if rowIndex < blockMaxHeight then
+                return
+            end
 
-    map[10][4] = block
-
-    tile = map[11][4]
-
-    block = JumpBlock {
-        x = tile.x,
-        y = tile.y,
-        column = 11,
-        row = 4
-    }
-
-    map[11][4] = block
+            blockMap[columnIndex][rowIndex] = JumpBlock {
+                x = tileMap[columnIndex][rowIndex].x,
+                y = tileMap[columnIndex][rowIndex].y,
+                column = columnIndex,
+                row = rowIndex
+            }
+            return
+        end
+    end
 end

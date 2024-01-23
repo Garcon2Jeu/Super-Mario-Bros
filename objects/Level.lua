@@ -4,9 +4,10 @@ function Level:init()
     Modules:plug(self, "BaseMap", { columns = 100, rows = MAP_HEIGHT })
     local baseMap = self:generateEmptyMap()
 
+    Modules:plug(self, "TileMap", table.deepCopy(baseMap))
+
     Modules:plugInBulk(self, {
-        ["TileMap"]       = table.deepCopy(baseMap),
-        ["BlockMap"]      = table.deepCopy(baseMap),
+        ["BlockMap"]      = { baseMap = table.deepCopy(baseMap), tileMap = self.tileMap },
         ["CoinMap"]       = table.deepCopy(baseMap),
         ["EnnemiManager"] = { level = self },
     })

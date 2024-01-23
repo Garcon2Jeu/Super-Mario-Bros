@@ -20,6 +20,8 @@ function Tile:addCollidable()
         ["Collidable"] = self:getOnCollide(),
         ["Texture"]    = { spriteSheet = tilesSheet, quad = tilesQuads[21][3] }
     })
+
+    self.ground = true
 end
 
 function Tile:addDecoration(quadIndex)

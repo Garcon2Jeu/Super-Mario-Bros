@@ -17,53 +17,44 @@ end
 function StartState:draw()
     self.player:drawUI()
     self:scrollCamera()
-
     self.level:draw()
-
-    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    local tile = self.level.tileMap[3][7]
-    love.graphics.rectangle("line", tile.x, tile.y, TILESIZE, TILESIZE)
-
-    if not Modules:find(tile, "Collidable") then
-        return
-    end
-
-    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
     self.player.avatar:draw()
+    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    -- self:drawHitboxToTiles()
+    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
--- function StartState:drawHitboxToTiles()
---     self.player.avatar:drawPoints()
+function StartState:drawHitboxToTiles()
+    self.player.avatar:drawPoints()
 
---     local t1, t2 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "right")
---     local t3, t4 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "left")
---     local t5, t6 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "bottom")
---     local t7, t8 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "top")
+    -- local t1, t2 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "right")
+    -- local t3, t4 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "left")
+    -- local t5, t6 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "bottom")
+    -- local t7, t8 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "top")
 
---     local b1, b2 = self.player.avatar:getTilesFromHitPoints(self.level.blockMap, self.player.avatar, "bottom")
-
-
---     if not t1 and not t2
---         or not t3 and not t4
---         or not t5 and not t6
---         or not t7 and not t8
---         or not b1 and not b2 then
---         return
---     end
-
---     love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t3.x, t3.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t4.x, t4.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t5.x, t5.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t6.x, t6.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t7.x, t7.y, TILESIZE, TILESIZE)
---     love.graphics.rectangle("line", t8.x, t8.y, TILESIZE, TILESIZE)
+    local b1, b2 = self.player.avatar:getTilesFromHitPoints(self.level.blockMap, self.player.avatar, "bottom")
 
 
---     love.graphics.print(tostring(b1.collidable), 50, 20)
---     love.graphics.print(tostring(b2.collidable), 50, 50)
--- end
+    -- if not t1 and not t2
+    --     or not t3 and not t4
+    --     or not t5 and not t6
+    --     or not t7 and not t8
+    if not b1 and not b2 then
+        return
+    end
+
+    -- love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t3.x, t3.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t4.x, t4.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t5.x, t5.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t6.x, t6.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t7.x, t7.y, TILESIZE, TILESIZE)
+    -- love.graphics.rectangle("line", t8.x, t8.y, TILESIZE, TILESIZE)
+
+    love.graphics.rectangle("line", b1.x, b1.y, TILESIZE, TILESIZE)
+    love.graphics.rectangle("line", b2.x, b2.y, TILESIZE, TILESIZE)
+end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------

@@ -2,7 +2,7 @@ TileMapGenerator = Class()
 
 
 local pillarData = {
-    countSpacer   = -10,
+    countSpacer   = 10,
     chance        = 7,
     heightDefault = 4,
     widthMin      = 3,
@@ -34,7 +34,7 @@ local chasmData = {
 
 
 local decorationData = {
-    countSpacer = 3,
+    countSpacer = 1,
     chance      = 2,
     widthMin    = 1,
     widthMax    = 2,
@@ -49,9 +49,10 @@ function TileMapGenerator:factory(baseMap)
     local tileMap = self.getEmptyTileMap(baseMap)
 
     self.addGround(tileMap)
-    self:randomlyTerraform(tileMap, chasmData)
-    self:randomlyTerraform(tileMap, pillarData)
-    self:randomlyTerraform(tileMap, decorationData)
+
+    BaseMapModule.randomlyTerraform(tileMap, chasmData)
+    BaseMapModule.randomlyTerraform(tileMap, pillarData)
+    BaseMapModule.randomlyTerraform(tileMap, decorationData)
 
     self.addToppers(tileMap)
 
@@ -79,34 +80,6 @@ function TileMapGenerator.addGround(tileMap)
             if index >= GROUND_ROW then
                 tile:addCollidable()
             end
-        end
-    end
-end
-
--- Description:
----- Randomly adds one type of geographical elements to a tileMap.
--- Requires:
----- tileMap = table of Tile objects, generated with getEmptyTileMap()
----- formationData = table of information needed to complete method:
------- countSpacer        = number variable, must be positive, defines number of tiles between generated elements
------- chance             = number variable, must be positive, defines chance of element being generated at current loop.
-------                      Divide number by 100 (ex: 2 = 50% chance of being generated)
------- widthMin, widthMax = number variables, must be positive, defines minimum and maxium width of generated element
------- method             = function variable, method to execute to add element (ex: addChasm(), addPillar())
-function TileMapGenerator:randomlyTerraform(tileMap, formationData)
-    local formationCount = 1
-
-    for columnIndex, v in ipairs(tileMap) do
-        formationCount = formationCount - 1
-
-        if formationCount <= -math.abs(formationData.countSpacer) then
-            formationCount = App.flipCoin(formationData.chance)
-                and math.random(formationData.widthMin, formationData.widthMax)
-                or formationCount
-        end
-
-        if formationCount > 0 then
-            formationData.method(tileMap, columnIndex)
         end
     end
 end
