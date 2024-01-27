@@ -5,12 +5,9 @@ function Level:init()
     local baseMap = self:generateEmptyMap()
 
     Modules:plug(self, "TileMap", table.deepCopy(baseMap))
-
-    Modules:plugInBulk(self, {
-        ["BlockMap"]      = { baseMap = table.deepCopy(baseMap), tileMap = self.tileMap },
-        ["CoinMap"]       = table.deepCopy(baseMap),
-        ["EnnemiManager"] = { level = self },
-    })
+    Modules:plug(self, "BlockMap", { baseMap = table.deepCopy(baseMap), tileMap = self.tileMap })
+    Modules:plug(self, "CoinMap", table.deepCopy(baseMap))
+    Modules:plug(self, "EnnemiManager", { level = self })
 end
 
 function Level:update(dt, avatar)

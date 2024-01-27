@@ -115,17 +115,20 @@ function Avatar:collideWithEnnemis(ennemis)
     for index, ennemi in ipairs(ennemis) do
         if ennemi:getCurrentStateName("dead")
             or not self:collides(ennemi) then
-            return
+            goto continue
         end
 
         if self:getCurrentStateName("fall") then
             State.current.level:kill(index)
             self.y = ennemi.y - self.height
             self:changeState("jump")
-            return
+
+            goto continue
         end
 
         self:setQuad(pinkQuads[5])
         self:changeState("hurt", ennemi)
+
+        ::continue::
     end
 end
