@@ -8,10 +8,13 @@ function Level:init()
     Modules:plug(self, "BlockMap", { baseMap = table.deepCopy(baseMap), tileMap = self.tileMap })
     Modules:plug(self, "CoinMap", table.deepCopy(baseMap))
     Modules:plug(self, "EnnemiManager", { level = self })
+
+    self.background = Background(#self.tileMap)
 end
 
-function Level:update(dt, avatar)
+function Level:update(dt, avatar, cameraScroll)
     self:updateEnnemis(dt, avatar)
+    self.background:update(dt, cameraScroll)
 end
 
 function Level:draw()

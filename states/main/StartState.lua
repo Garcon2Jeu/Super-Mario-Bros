@@ -10,11 +10,12 @@ end
 
 function StartState:update(dt)
     self.player.avatar:update(dt, self.level.ennemis)
+    self.level:update(dt, self.player.avatar, self.cameraScroll)
     self:updateCamera(self.player.avatar.x)
-    self.level:update(dt, self.player.avatar)
 end
 
 function StartState:draw()
+    self.level.background:draw()
     self.player:drawUI()
     self:scrollCamera()
     self.level:draw()
