@@ -9,9 +9,9 @@ function StartState:init()
 end
 
 function StartState:update(dt)
-    self.player.avatar:update(dt, self.level.ennemis)
+    self.player.avatar:update(dt, self.level)
     self.level:update(dt, self.player.avatar, self.cameraScroll)
-    self:updateCamera(self.player.avatar.x)
+    self:updateCamera(self.player.avatar.x, self.level.tileMapWidth)
 end
 
 function StartState:draw()
@@ -20,9 +20,13 @@ function StartState:draw()
     self:scrollCamera()
     self.level:draw()
     self.player.avatar:draw()
-    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    -- self:drawHitboxToTiles()
-    -- ------------------------------------------------------DEBUG-------------------------------------------------------------------
+
+    love.graphics.print(tostring(self.level.tileMap[#self.level.tileMap][1].x), 50, 30)
+    love.graphics.rectangle("fill", self.cameraScroll + VIRTUAL_WIDTH, VIRTUAL_HEIGHT / 2, 5, 5)
+
+    for index, column in ipairs(self.level.tileMap) do
+        love.graphics.print(tostring(index), column[1].x, column[1].y)
+    end
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------

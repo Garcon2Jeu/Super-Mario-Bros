@@ -12,7 +12,7 @@ local hitboxOffsets = {
 
 function Avatar:init(level)
     Modules:plugInBulk(self, {
-        ["Coordinates"]        = { x = 0, y = 0 },
+        ["Coordinates"]        = { x = level.tileMap[2][1].x, y = 0 },
         ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
         ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },
         ["StateMachineModule"] = self:getStates(level),
@@ -27,11 +27,12 @@ function Avatar:init(level)
     self:updateHitbox()
 end
 
-function Avatar:update(dt, ennemis)
+function Avatar:update(dt, level)
     self:updateHitbox()
-    self:collideWithEnnemis(ennemis)
+    self:collideWithEnnemis(level.ennemis)
     self.stateMachine:update(dt)
     self:run(dt)
+    self:clampToTileMap(level.tileMap)
     self:getCoins()
 end
 
@@ -65,6 +66,14 @@ function Avatar:run(dt)
         self:blockRun("left")
     else
         self:setRunning(false)
+    end
+end
+
+function Avatar:clampToTileMap(tileMap)
+    if self.x <= tileMap[1][1].x then
+        self.x = 0
+    elseif self.x + CHARACTER_WIDTH >= tileMap[#tileMap][1].x + TILESIZE then
+        self.x = tileMap[#tileMap][1].x
     end
 end
 

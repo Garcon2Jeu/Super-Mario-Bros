@@ -7,6 +7,7 @@ TileMapModule.fieldNames = {
 
 function TileMapModule:init(baseMap)
     self.tileMap = TileMapGenerator:factory(baseMap)
+    self.tileMapWidth = self.tileMap[#self.tileMap][1].x + TILESIZE
 end
 
 function TileMapModule:drawTileMap()
