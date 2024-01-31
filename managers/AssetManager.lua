@@ -65,6 +65,10 @@ function AssetsManager.getFontsMethods()
     local largeFont  = love.graphics.newFont("assets/fonts/font.ttf", 32)
     local titleFont  = love.graphics.newFont("assets/fonts/ArcadeAlternate.ttf", 32)
 
+    for key, font in pairs { smallFont, mediumFont, largeFont, titleFont } do
+        font:setFilter("nearest", "nearest")
+    end
+
     return {
         setSmall  = function() love.graphics.setFont(smallFont) end,
         setMedium = function() love.graphics.setFont(mediumFont) end,

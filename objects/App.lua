@@ -18,7 +18,7 @@ function App.setupWindow()
     Push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
         resize = true,
-        vsync = false
+        vsync = true
     })
 end
 
