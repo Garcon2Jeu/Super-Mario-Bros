@@ -3,10 +3,10 @@ require "src.dependencies"
 
 function love.load()
     State = StateMachine {
-        ["start"] = function() return StartState() end,
+        ["play"] = function() return PlayState() end,
     }
 
-    State:change("start")
+    State:change("play")
 end
 
 function love.update(dt)

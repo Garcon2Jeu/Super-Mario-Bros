@@ -1,36 +1,29 @@
-StartState = Class { __includes = BaseState }
-StartState:setStateName("start")
+PlayState = Class { __includes = BaseState }
+PlayState:setStateName("start")
 
-function StartState:init()
+function PlayState:init()
     self.level = Level()
     self.player = Player(self.level)
 
     Modules:plug(self, "Camera")
 end
 
-function StartState:update(dt)
+function PlayState:update(dt)
     self.player.avatar:update(dt, self.level)
     self.level:update(dt, self.player.avatar, self.cameraScroll)
     self:updateCamera(self.player.avatar.x, self.level.tileMapWidth)
 end
 
-function StartState:draw()
+function PlayState:draw()
     self.level.background:draw()
     self.player:drawUI()
     self:scrollCamera()
     self.level:draw()
     self.player.avatar:draw()
-
-    love.graphics.print(tostring(self.level.tileMap[#self.level.tileMap][1].x), 50, 30)
-    love.graphics.rectangle("fill", self.cameraScroll + VIRTUAL_WIDTH, VIRTUAL_HEIGHT / 2, 5, 5)
-
-    for index, column in ipairs(self.level.tileMap) do
-        love.graphics.print(tostring(index), column[1].x, column[1].y)
-    end
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
-function StartState:drawHitboxToTiles()
+function PlayState:drawHitboxToTiles()
     self.player.avatar:drawPoints()
 
     -- local t1, t2 = self.player.avatar:getTilesFromHitPoints(self.level.tileMap, self.player.avatar, "right")

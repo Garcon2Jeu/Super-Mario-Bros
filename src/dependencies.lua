@@ -43,7 +43,7 @@ require "modules.MapPointerModule"
 -- States
 require "states.BaseState"
 
-require "states.main.StartState"
+require "states.main.PlayState"
 
 require "states.objects.ObjectsFallState"
 
