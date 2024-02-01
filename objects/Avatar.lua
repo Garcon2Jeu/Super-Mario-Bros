@@ -78,11 +78,11 @@ function Avatar:clampToTileMap(tileMap)
 end
 
 function Avatar:blockRun(direction)
-    local t1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, self, direction)
-    local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, self, direction)
+    local t1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, direction)
+    local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, direction)
 
     for key, object in pairs { t1, t2, b1, b2 } do
-        if self:isTileCollidable(object) then
+        if Modules:find(object, "Collidable") then
             self.x = direction == "right" and
                 object.x - CHARACTER_WIDTH + 1 or object.x + TILESIZE - 2
         end
@@ -103,13 +103,13 @@ function Avatar:getHitboxOffset(direction)
 end
 
 function Avatar:getCoins()
-    local t1, t2 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "bottom")
-    local t3, t4 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "top")
-    local t5, t6 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "left")
-    local t7, t8 = self:getTilesFromHitPoints(State.current.level.coinMap, self, "right")
+    local t1, t2 = self:getTilesFromHitPoints(State.current.level.coinMap, "bottom")
+    local t3, t4 = self:getTilesFromHitPoints(State.current.level.coinMap, "top")
+    local t5, t6 = self:getTilesFromHitPoints(State.current.level.coinMap, "left")
+    local t7, t8 = self:getTilesFromHitPoints(State.current.level.coinMap, "right")
 
     for key, object in pairs { t1, t2, t3, t4, t5, t6, t7, t8 } do
-        if self:isTileCollidable(object) then
+        if Modules:find(object, "Collidable") then
             object:onCollide()
             return
         end

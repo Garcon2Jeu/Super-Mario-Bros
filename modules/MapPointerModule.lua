@@ -18,26 +18,35 @@ function MapPointerModule:pointToTile(map, x, y)
     return map[column][row]
 end
 
-function MapPointerModule:getTilesFromHitPoints(map, object, edgeDirection)
-    local x1, y1, x2, y2 = object:getHitboxOffset(edgeDirection)
-    local p1, p2 = object:getHitboxEdge(edgeDirection, x1, y1, x2, y2)
+-- function MapPointerModule:getTilesFromHitPoints(map, object, edgeDirection)
+--     local x1, y1, x2, y2 = object:getHitboxOffset(edgeDirection)
+--     local p1, p2 = object:getHitboxEdge(edgeDirection, x1, y1, x2, y2)
+
+--     return self:pointToTile(map, p1.x, p1.y),
+--         self:pointToTile(map, p2.x, p2.y)
+-- end
+
+function MapPointerModule:getTilesFromHitPoints(map, edgeDirection)
+    local x1, y1, x2, y2 = self:getHitboxOffset(edgeDirection)
+    local p1, p2 = self:getHitboxEdge(edgeDirection, x1, y1, x2, y2)
 
     return self:pointToTile(map, p1.x, p1.y),
         self:pointToTile(map, p2.x, p2.y)
 end
 
-function MapPointerModule:isTileCollidable(tile)
-    return Modules:find(tile, "Collidable")
-end
+-- DEPRECATED --> USE Modules:find(object, "Collidable") instead
+---- function MapPointerModule:isTileCollidable(tile)
+----     return Modules:find(tile or self, "Collidable")
+---- end
 
 function MapPointerModule:checkForGround()
     local t1, t2 = self:getTilesFromHitPoints(
-        State.current.level.tileMap, self, "bottom")
+        State.current.level.tileMap, "bottom")
     local b1, b2 = self:getTilesFromHitPoints(
-        State.current.level.blockMap, self, "bottom")
+        State.current.level.blockMap, "bottom")
 
     for key, tile in pairs { t1, t2, b1, b2 } do
-        if self:isTileCollidable(tile) then
+        if Modules:find(tile, "Collidable") then
             return true
         end
     end

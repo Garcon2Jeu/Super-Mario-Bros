@@ -2,8 +2,6 @@ ObjectFallState = Class { __includes = BaseState }
 ObjectFallState:setStateName("fall")
 
 function ObjectFallState:init(level, object, quad)
-    Modules:plug(self, "MapPointer")
-
     self.object = object
     self.level = level
 
@@ -17,14 +15,19 @@ function ObjectFallState:update(dt)
 end
 
 function ObjectFallState:checkForGround()
-    local t1, t2 = self:getTilesFromHitPoints(
-        self.level.tileMap, self.object, "bottom")
+    -- local t1, t2 = self:getTilesFromHitPoints(
+    --     self.level.tileMap, self.object, "bottom")
 
-    local b1, b2 = self:getTilesFromHitPoints(
-        self.level.blockMap, self.object, "bottom")
+    -- local b1, b2 = self:getTilesFromHitPoints(
+    --     self.level.blockMap, self.object, "bottom")
+    local t1, t2 = self.object:getTilesFromHitPoints(
+        self.level.tileMap, "bottom")
+
+    local b1, b2 = self.object:getTilesFromHitPoints(
+        self.level.blockMap, "bottom")
 
     for key, tile in pairs { t1, t2, b1, b2 } do
-        if self:isTileCollidable(tile) then
+        if Modules:find(tile, "Collidable") then
             tile:onCollide(self.object, -self.object.height)
             self.object:changeState("idle")
             return

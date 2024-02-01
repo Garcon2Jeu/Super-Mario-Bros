@@ -59,3 +59,15 @@ end
 function Blob:die()
     self:changeState("dead")
 end
+
+function Blob:blockRun(direction)
+    local t1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, direction)
+    local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, direction)
+
+    for key, object in pairs { t1, t2, b1, b2 } do
+        if Modules:find(object, "Collidable") then
+            self.x = direction == "right" and
+                object.x - CHARACTER_WIDTH + 1 or object.x + TILESIZE - 2
+        end
+    end
+end
