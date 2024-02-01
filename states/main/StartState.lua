@@ -1,9 +1,6 @@
 StartState           = Class { __includes = BaseState }
 
-StartState           = Class()
 StartState.stateName = "base"
-
-
 
 function StartState:init()
     self.level = Level()
@@ -17,7 +14,6 @@ end
 
 function StartState:draw()
     self.level.background:draw()
-    -- self.level:draw()
     self:drawTitles()
 end
 
