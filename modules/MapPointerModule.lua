@@ -49,13 +49,14 @@ function MapPointerModule:checkForGround()
 end
 
 function MapPointerModule:checkforWall()
-    local tl1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, "left")
-    local tr1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, "right")
+    local t1, t2 = self:getTilesFromHitPoints(
+        State.current.level.tileMap,
+        self.facingRight and "right" or "left")
+    local b1, b2 = self:getTilesFromHitPoints(
+        State.current.level.blockMap,
+        self.facingRight and "right" or "left")
 
-    local bl1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, "left")
-    local br1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, "right")
-
-    for key, object in pairs { tl1, tr1, bl1, br1 } do
+    for key, object in pairs { t1, b1 } do
         if Modules:find(object, "Collidable") then
             return object
         end

@@ -28,10 +28,7 @@ function PlayState:draw()
     self:scrollCamera()
     self.level:draw()
     self.avatar:draw()
-
-
-
-    love.graphics.printf("test", self.cameraScroll, 50, VIRTUAL_WIDTH, "center")
+    self:drawHitboxToTiles()
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
@@ -39,11 +36,12 @@ function PlayState:drawHitboxToTiles()
     for key, ennemi in pairs(self.level.ennemis) do
         ennemi:drawPoints()
 
-        local t1, t2 = ennemi:getTilesFromHitPoints(State.current.level.tileMap, "left")
+        local tl1, tl2 = ennemi:getTilesFromHitPoints(State.current.level.tileMap, "left")
+        local tr1, tr2 = ennemi:getTilesFromHitPoints(State.current.level.tileMap, "right")
 
-        if t1 and t2 then
-            love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
-            -- love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
+        if tl1 and tl2 and tr1 and tr2 then
+            love.graphics.rectangle("line", tl1.x, tl1.y, TILESIZE, TILESIZE)
+            love.graphics.rectangle("line", tr1.x, tr1.y, TILESIZE, TILESIZE)
         end
     end
 end
