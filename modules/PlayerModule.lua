@@ -33,3 +33,7 @@ end
 function PlayerModule:hasLost()
     return self.hearts == 0 or self.y >= VIRTUAL_HEIGHT
 end
+
+function PlayerModule:addCoin()
+    self.coins = self.coins + 1
+end

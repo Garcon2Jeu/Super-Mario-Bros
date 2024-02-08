@@ -26,5 +26,6 @@ end
 function Coin.getOnConsume()
     return function(self)
         State.current.level:removeCoin(self)
+        State.current.avatar:addCoin()
     end
 end
