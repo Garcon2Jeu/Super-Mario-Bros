@@ -3,6 +3,13 @@ Blob = Class()
 local creaturesSheet = Assets.graphics["creatures"]()
 local creaturesQuads = Quads:getSetsOfQuads(creaturesSheet, TILESIZE, TILESIZE)
 
+local hitboxOffsets = {
+    ["bottom"] = { x1 = 2, y1 = 0, x2 = -2, y2 = 0 },
+    ["right"]  = { x1 = -1, y1 = 1, x2 = -1, y2 = -5 },
+    ["left"]   = { x1 = 1, y1 = 1, x2 = 1, y2 = -5 },
+    ["top"]    = { x1 = 3, y1 = 0, x2 = -3, y2 = 0 }
+}
+
 local def = {
     x           = CENTER_WIDTH - CHARACTER_WIDTH / 2,
     y           = 50,
@@ -19,7 +26,7 @@ function Blob:init(params)
 
     Modules:plugInBulk(self, {
         ["Gravity"]            = {},
-        ["Hitbox"]             = {},
+        ["Hitbox"]             = { offsets = hitboxOffsets },
         ["Move"]               = {},
         ["Asymmetric"]         = { xOffset = TILESIZE / 2, reverse = true },
         ["StateMachineModule"] = self:getStates(params.level),
@@ -31,13 +38,12 @@ function Blob:init(params)
 end
 
 function Blob:update(dt, player)
-    if self:getCurrentStateName("dead") then
-        return
-    end
-
     self:updateHitbox()
     self:facePlayer(player)
     self.stateMachine:update(dt)
+
+    self:blockRun("left")
+    self:blockRun("right")
 end
 
 function Blob:getStates(level)
@@ -49,7 +55,8 @@ function Blob:getStates(level)
     }
 end
 
-function Blob:getHitboxOffset()
+function Blob:getHitboxOffset(direction)
+    return hitboxOffsets[direction]
 end
 
 function Blob:facePlayer(player)
@@ -64,10 +71,10 @@ function Blob:blockRun(direction)
     local t1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, direction)
     local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, direction)
 
-    for key, object in pairs { t1, t2, b1, b2 } do
+    for key, object in pairs { t1, b1 } do
         if Modules:find(object, "Collidable") then
             self.x = direction == "right" and
-                object.x - CHARACTER_WIDTH + 1 or object.x + TILESIZE - 2
+                object.x - CHARACTER_WIDTH - 1 or object.x + TILESIZE + 1
         end
     end
 end

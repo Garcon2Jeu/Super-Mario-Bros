@@ -4,19 +4,21 @@ PlayerHurtState:setStateName("hurt")
 local pushBack = 4
 local friction = 30
 
-function PlayerHurtState:init(avatar)
+function PlayerHurtState:init(avatar, quad)
     App:enableInput(false)
     State.current.player:removeHeart()
     self.avatar = avatar
+    self.avatar:setQuad(quad)
+    -- self.avatar:toggleCollidable()
 end
 
-function PlayerHurtState:enter(blob)
-    self.rightSideCollision = self.avatar.x < blob.x
+function PlayerHurtState:enter(ennemi)
+    self.rightSideCollision = self.avatar.x < ennemi.x
     self.friction = self.rightSideCollision and friction or -friction
 
     self.avatar.x = self.rightSideCollision
-        and blob.x - self.avatar.width - 1
-        or blob.x + blob.width + 1
+        and ennemi.x - self.avatar.width - 1
+        or ennemi.x + ennemi.width + 1
 
     self.avatar:setDX(self.rightSideCollision and -pushBack or pushBack)
 end

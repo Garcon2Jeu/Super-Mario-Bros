@@ -5,7 +5,7 @@ local ennemiData = {
     countSpacer = 5,
     chance = 4,
     widthMin = 1,
-    widthMax = 2,
+    widthMax = 1,
 }
 
 function EnnemiGenerator:factory(level)

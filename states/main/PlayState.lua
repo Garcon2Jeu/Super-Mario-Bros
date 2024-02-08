@@ -29,11 +29,11 @@ function PlayState:drawHitboxToTiles()
     for key, ennemi in pairs(self.level.ennemis) do
         ennemi:drawPoints()
 
-        local t1, t2 = ennemi:getTilesFromHitPoints(self.level.tileMap, "left")
+        local t1, t2 = ennemi:getTilesFromHitPoints(State.current.level.tileMap, "left")
 
         if t1 and t2 then
             love.graphics.rectangle("line", t1.x, t1.y, TILESIZE, TILESIZE)
-            love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
+            -- love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
         end
     end
 end

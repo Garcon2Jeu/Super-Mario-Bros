@@ -4,10 +4,10 @@ local pinkAtlas = Assets.graphics["pink_alien"]()
 local pinkQuads = Quads:getSetsOfQuads(pinkAtlas, CHARACTER_WIDTH, CHARACTER_HEIGHT)
 
 local hitboxOffsets = {
-    ["bottom"] = { 2, 0, -2, 0 },
-    ["right"]  = { -1, 1, -1, -5 },
-    ["left"]   = { 1, 1, 1, -5 },
-    ["top"]    = { 3, 0, -3, 0 }
+    ["bottom"] = { x1 = 2, y1 = 0, x2 = -2, y2 = 0 },
+    ["right"]  = { x1 = -1, y1 = 1, x2 = -1, y2 = -5 },
+    ["left"]   = { x1 = 1, y1 = 1, x2 = 1, y2 = -5 },
+    ["top"]    = { x1 = 3, y1 = 0, x2 = -3, y2 = 0 }
 }
 
 function Avatar:init(level)
@@ -18,7 +18,7 @@ function Avatar:init(level)
         ["StateMachineModule"] = self:getStates(level),
         ["Gravity"]            = {},
         ["Move"]               = {},
-        ["Hitbox"]             = {},
+        ["Hitbox"]             = { offsets = hitboxOffsets },
         ["Asymmetric"]         = { xOffset = CHARACTER_WIDTH / 2, },
         ["MapPointer"]         = {}
     })
@@ -97,11 +97,6 @@ function Avatar:float(dt)
     end
 end
 
-function Avatar:getHitboxOffset(direction)
-    return hitboxOffsets[direction][1], hitboxOffsets[direction][2],
-        hitboxOffsets[direction][3], hitboxOffsets[direction][4]
-end
-
 function Avatar:getCoins()
     local t1, t2 = self:getTilesFromHitPoints(State.current.level.coinMap, "bottom")
     local t3, t4 = self:getTilesFromHitPoints(State.current.level.coinMap, "top")
@@ -123,6 +118,7 @@ function Avatar:collideWithEnnemis(ennemis)
 
     for index, ennemi in ipairs(ennemis) do
         if ennemi:getCurrentStateName("dead")
+            and not self:getCurrentStateName("hurt")
             or not self:collides(ennemi) then
             goto continue
         end
@@ -135,7 +131,7 @@ function Avatar:collideWithEnnemis(ennemis)
             goto continue
         end
 
-        self:setQuad(pinkQuads[5])
+        -- self:setQuad(pinkQuads[5])
         self:changeState("hurt", ennemi)
 
         ::continue::

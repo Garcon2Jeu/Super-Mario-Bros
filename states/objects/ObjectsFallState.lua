@@ -15,11 +15,6 @@ function ObjectFallState:update(dt)
 end
 
 function ObjectFallState:checkForGround()
-    -- local t1, t2 = self:getTilesFromHitPoints(
-    --     self.level.tileMap, self.object, "bottom")
-
-    -- local b1, b2 = self:getTilesFromHitPoints(
-    --     self.level.blockMap, self.object, "bottom")
     local t1, t2 = self.object:getTilesFromHitPoints(
         self.level.tileMap, "bottom")
 
