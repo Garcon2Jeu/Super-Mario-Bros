@@ -17,6 +17,9 @@ end
 function PlayState:draw()
     self.level.background:draw()
     self.player:drawUI()
+    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    love.graphics.print(tostring(self.level.ennemis[1].x), 50, 50)
+    ------------------------------------------------------DEBUG-------------------------------------------------------------------
     self:scrollCamera()
     self.level:draw()
     self.player.avatar:draw()
@@ -36,6 +39,10 @@ function PlayState:drawHitboxToTiles()
             -- love.graphics.rectangle("line", t2.x, t2.y, TILESIZE, TILESIZE)
         end
     end
+end
+
+function PlayState:drawViewPort()
+    love.graphics.rectangle("line", self.viewPort.x, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------

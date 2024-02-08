@@ -41,9 +41,7 @@ function Blob:update(dt, player)
     self:updateHitbox()
     self:facePlayer(player)
     self.stateMachine:update(dt)
-
-    self:blockRun("left")
-    self:blockRun("right")
+    self:blockRun()
 end
 
 function Blob:getStates(level)
@@ -67,14 +65,18 @@ function Blob:die()
     self:changeState("dead")
 end
 
-function Blob:blockRun(direction)
-    local t1, t2 = self:getTilesFromHitPoints(State.current.level.tileMap, direction)
-    local b1, b2 = self:getTilesFromHitPoints(State.current.level.blockMap, direction)
+function Blob:blockRun()
+    local collidableTile = self:checkforWall()
 
-    for key, object in pairs { t1, b1 } do
-        if Modules:find(object, "Collidable") then
-            self.x = direction == "right" and
-                object.x - CHARACTER_WIDTH - 1 or object.x + TILESIZE + 1
-        end
+    if collidableTile then
+        self.dx = 0
+        self.x = self.facingRight
+            and collidableTile.x - CHARACTER_WIDTH - 1
+            or collidableTile.x + TILESIZE + 1
+        return
+    end
+
+    if self:checkForChasm() then
+        self.facingRight = not self.facingRight
     end
 end

@@ -13,6 +13,10 @@ function BlobChaseState:init(level, blob, interval, frames)
 end
 
 function BlobChaseState:update(dt)
+    if not State.current:isInView(self.blob) then
+        self.blob:changeState("idle")
+    end
+
     self:crawl(dt)
 
     if not self.blob:checkForGround() then

@@ -12,6 +12,10 @@ CameraModule.fieldNames = {
 
 function CameraModule:init()
     self.cameraScroll = 0
+    self.viewPort = {
+        x = 0,
+        y = 0,
+    }
 end
 
 -- Description:
@@ -31,9 +35,17 @@ function CameraModule:updateCamera(referenceX, tileMapWidth)
         self.cameraScroll = tileMapWidth - VIRTUAL_WIDTH
     else
         self.cameraScroll = math.floor(referenceX - cameraOffset)
+        self.viewPort.x = self.cameraScroll
     end
 end
 
 function CameraModule:scrollCamera()
     love.graphics.translate(-self.cameraScroll, 0)
+end
+
+function CameraModule:isInView(object)
+    return object.x >= self.cameraScroll
+        and object.x <= self.cameraScroll + VIRTUAL_WIDTH
+        and object.y >= 0
+        and object.y <= VIRTUAL_WIDTH
 end
