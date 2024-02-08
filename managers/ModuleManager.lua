@@ -6,6 +6,7 @@ function ModuleManager:init()
         ["Camera"]             = function() return CameraModule end,
 
         ["BaseObject"]         = function() return BaseObject end,
+        ["Player"]             = function() return PlayerModule end,
         ["Coordinates"]        = function() return CoordinatesModule end,
         ["Dimensions"]         = function() return DimensionsModule end,
         ["Texture"]            = function() return TextureModule end,

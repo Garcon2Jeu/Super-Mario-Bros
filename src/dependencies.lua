@@ -38,6 +38,7 @@ require "modules.ConsummableModule"
 require "modules.AsymmetricModule"
 require "modules.EnnemiManagerModule"
 require "modules.MapPointerModule"
+require "modules.PlayerModule"
 
 
 -- States
@@ -45,6 +46,7 @@ require "states.BaseState"
 
 require "states.main.StartState"
 require "states.main.PlayState"
+require "states.main.OverState"
 
 require "states.objects.ObjectsFallState"
 
@@ -63,7 +65,6 @@ require "states.blob.BlobDeadState"
 -- Objects
 App = require "objects.App"
 require "objects.BaseObject"
-require "objects.Player"
 require "objects.Avatar"
 require "objects.Level"
 require "objects.Tile"

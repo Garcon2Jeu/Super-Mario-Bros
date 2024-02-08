@@ -6,10 +6,9 @@ local friction = 30
 
 function PlayerHurtState:init(avatar, quad)
     App:enableInput(false)
-    State.current.player:removeHeart()
     self.avatar = avatar
+    self.avatar:removeHeart()
     self.avatar:setQuad(quad)
-    -- self.avatar:toggleCollidable()
 end
 
 function PlayerHurtState:enter(ennemi)
@@ -30,12 +29,13 @@ function PlayerHurtState:update(dt)
     if self.rightSideCollision and self.avatar:isPushedRight()
         or not self.rightSideCollision and self.avatar:isPushedLeft() then
         self.avatar.dx = 0
-        Timer.after(.2, self:getOnCollideMethod())
+        self.timer = Timer.after(.2, self:getOnCollideMethod())
     end
 end
 
 function PlayerHurtState:exit()
     App:enableInput(true)
+    self.timer:remove()
 end
 
 -- Add Collidable Module to Avatar & Blobs

@@ -35,7 +35,6 @@ function CameraModule:updateCamera(referenceX, tileMapWidth)
         self.cameraScroll = tileMapWidth - VIRTUAL_WIDTH
     else
         self.cameraScroll = math.floor(referenceX - cameraOffset)
-        self.viewPort.x = self.cameraScroll
     end
 end
 

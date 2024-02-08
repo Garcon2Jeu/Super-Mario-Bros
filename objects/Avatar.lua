@@ -12,6 +12,7 @@ local hitboxOffsets = {
 
 function Avatar:init(level)
     Modules:plugInBulk(self, {
+        ["Player"]             = {},
         ["Coordinates"]        = { x = level.tileMap[2][1].x, y = 0 },
         ["Dimensions"]         = { width = CHARACTER_WIDTH, height = CHARACTER_HEIGHT },
         ["Texture"]            = { spriteSheet = pinkAtlas, quad = pinkQuads[1] },
@@ -131,9 +132,7 @@ function Avatar:collideWithEnnemis(ennemis)
             goto continue
         end
 
-        -- self:setQuad(pinkQuads[5])
         self:changeState("hurt", ennemi)
-
         ::continue::
     end
 end

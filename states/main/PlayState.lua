@@ -3,28 +3,35 @@ PlayState:setStateName("start")
 
 function PlayState:init()
     self.level = Level()
-    self.player = Player(self.level)
+    self.avatar = Avatar(self.level)
 
     Modules:plug(self, "Camera")
 end
 
 function PlayState:update(dt)
-    self.player.avatar:update(dt, self.level)
-    self.level:update(dt, self.player.avatar, self.cameraScroll)
-    self:updateCamera(self.player.avatar.x, self.level.tileMapWidth)
+    self.avatar:update(dt, self.level)
+    self.level:update(dt, self.avatar, self.cameraScroll)
+    self:updateCamera(self.avatar.x, self.level.tileMapWidth)
+
+    if self.avatar:hasLost() then
+        State:change("over", {
+            level = self.level,
+            cameraScroll = self.cameraScroll
+        })
+        return
+    end
 end
 
 function PlayState:draw()
     self.level.background:draw()
-    self.player:drawUI()
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
-    love.graphics.print(tostring(self.level.ennemis[1].x), 50, 50)
-    ------------------------------------------------------DEBUG-------------------------------------------------------------------
+    self.avatar:drawUI()
     self:scrollCamera()
     self.level:draw()
-    self.player.avatar:draw()
+    self.avatar:draw()
 
-    self:drawHitboxToTiles()
+
+
+    love.graphics.printf("test", self.cameraScroll, 50, VIRTUAL_WIDTH, "center")
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------
