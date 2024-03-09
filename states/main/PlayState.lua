@@ -5,7 +5,7 @@ function PlayState:init()
     self.level = Level()
     self.avatar = Avatar(self.level)
 
-    self.goal = Goal()
+
 
     Modules:plug(self, "Camera")
 end
@@ -31,7 +31,6 @@ function PlayState:draw()
     self.level:draw()
     self.avatar:draw()
     -- self:drawHitboxToTiles()
-    self.goal:draw()
 end
 
 ------------------------------------------------------DEBUG-------------------------------------------------------------------

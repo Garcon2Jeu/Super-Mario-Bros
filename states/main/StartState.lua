@@ -4,6 +4,7 @@ StartState.stateName = "base"
 
 function StartState:init()
     self.level = Level()
+    self.goal = Goal()
 end
 
 function StartState:update(dt)
@@ -15,6 +16,8 @@ end
 function StartState:draw()
     self.level.background:draw()
     self:drawTitles()
+
+    self.goal:draw()
 end
 
 function StartState:enter() end
