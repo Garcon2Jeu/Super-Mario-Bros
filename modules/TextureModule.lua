@@ -23,8 +23,13 @@ function TextureModule:setQuad(quad)
 end
 
 function TextureModule:draw()
-    love.graphics.draw(self.spriteSheet,
-        self.quad, self.x, self.y, 0, self.sx, self.sy)
+    if self.quad then
+        love.graphics.draw(self.spriteSheet,
+            self.quad, self.x, self.y, 0, self.sx, self.sy)
+    else
+        love.graphics.draw(self.spriteSheet,
+            self.x, self.y, 0, self.sx, self.sy)
+    end
 end
 
 -- function TextureModule.getDefaultDef()
