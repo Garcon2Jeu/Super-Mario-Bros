@@ -19,21 +19,23 @@ end
 function BaseMapModule:generateEmptyMap(columns, rows)
     local map = {}
 
-    for column = 1, columns or self.columns do
+    for columnIndex = 1, columns or self.columns do
         local tileColumn = {}
-        local x = (column - 1) * TILESIZE
 
-        for row = 1, rows or self.rows do
-            table.insert(tileColumn, {
-                x = x,
-                y = (row - 1) * TILESIZE,
-            })
-        end
-
+        self:insertTiles(rows, tileColumn, columnIndex)
         table.insert(map, tileColumn)
     end
 
     return map
+end
+
+function BaseMapModule:insertTiles(rows, tileColumn, columnIndex)
+    for rowIndex = 1, rows or self.rows do
+        table.insert(tileColumn, {
+            x = (columnIndex - 1) * TILESIZE,
+            y = (rowIndex - 1) * TILESIZE,
+        })
+    end
 end
 
 function BaseMapModule.drawBaseMap(map)
@@ -74,5 +76,20 @@ function BaseMapModule.randomlyTerraform(map, formationData)
         if formationCount > 0 then
             formationData.method(map, columnIndex)
         end
+    end
+end
+
+function BaseMapModule:emptyColumns(map, startColumn, endColumn)
+    for columnIndex = startColumn or 1, endColumn or #map, 1 do
+        self:emptyTiles(map[columnIndex])
+    end
+end
+
+function BaseMapModule:emptyTiles(column)
+    for rowIndex = 1, #column or self.rows do
+        column[rowIndex] = {
+            x = column[rowIndex].x,
+            y = column[rowIndex].y
+        }
     end
 end

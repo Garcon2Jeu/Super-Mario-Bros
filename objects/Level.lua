@@ -14,7 +14,9 @@ function Level:init()
     Modules:plug(self, "CoinMap", table.deepCopy(baseMap))
     Modules:plug(self, "EnnemiManager", { level = self })
 
+    self:cleanEnd()
     self.background = Background(#self.tileMap)
+    self.goal = Goal(self)
 end
 
 function Level:update(dt, avatar, cameraScroll)
@@ -27,4 +29,14 @@ function Level:draw()
     self:drawCoinMap()
     self:drawBlockMap()
     self:drawEnnemis()
+    self.goal:draw()
+end
+
+function Level:cleanEnd()
+    TileMapGenerator:resetColumns(self.tileMap, #self.tileMap - 5)
+    self:emptyColumns(self.blockMap, #self.blockMap - 5)
+
+    for columnIndex = #self.tileMap - 5, #self.tileMap do
+        TileMapGenerator.addGroundColumn(self.tileMap[columnIndex])
+    end
 end

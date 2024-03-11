@@ -24,9 +24,9 @@ for i = 0, polesSet.amount - 1 do
     )
 end
 
-function Goal:init()
+function Goal:init(level)
     Modules:plugInBulk(self, {
-        ["Coordinates"] = { x = 5, y = 5 },
+        ["Coordinates"] = { x = level.tileMap[#level.tileMap - 1][1].x, y = level.tileMap[#level.tileMap][GROUND_ROW].y - 48 },
         ["Texture"]     = { spriteSheet = goalAtlas, quad = polesQuads[1] },
     })
 

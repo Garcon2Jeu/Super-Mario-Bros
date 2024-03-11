@@ -1,6 +1,9 @@
 TileMapGenerator = Class()
 
 
+local levelEnd = 5
+
+
 local pillarData = {
     countSpacer   = 10,
     chance        = 7,
@@ -48,7 +51,7 @@ local decorationData = {
 function TileMapGenerator:factory(baseMap)
     local tileMap = self.getEmptyTileMap(baseMap)
 
-    self.addGround(tileMap)
+    self.levelGroundFill(tileMap)
 
     BaseMapModule.randomlyTerraform(tileMap, chasmData)
     BaseMapModule.randomlyTerraform(tileMap, pillarData)
@@ -74,12 +77,16 @@ function TileMapGenerator.getEmptyTileMap(baseMap)
     return tileMap
 end
 
-function TileMapGenerator.addGround(tileMap)
+function TileMapGenerator.levelGroundFill(tileMap)
     for key, column in pairs(tileMap) do
-        for index, tile in ipairs(column) do
-            if index >= GROUND_ROW then
-                tile:addCollidable()
-            end
+        TileMapGenerator.addGroundColumn(column)
+    end
+end
+
+function TileMapGenerator.addGroundColumn(column)
+    for index, tile in ipairs(column) do
+        if index >= GROUND_ROW then
+            tile:addCollidable()
         end
     end
 end
@@ -164,5 +171,20 @@ function TileMapGenerator.addToppers(tileMap)
             end
         end
         ::continue::
+    end
+end
+
+function TileMapGenerator:resetColumns(map, startColumn, endColumn)
+    for columnIndex = startColumn or 1, endColumn or #map, 1 do
+        self:resetTiles(map[columnIndex])
+    end
+end
+
+function TileMapGenerator:resetTiles(column)
+    for rowIndex = 1, #column or self.rows do
+        column[rowIndex] = Tile {
+            x = column[rowIndex].x,
+            y = column[rowIndex].y
+        }
     end
 end
