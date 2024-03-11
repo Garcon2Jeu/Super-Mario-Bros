@@ -30,17 +30,17 @@ function Flag:init(goal)
     Modules:plugInBulk(self, {
         ["Coordinates"]        = { x = goal.x + 6, y = goal.y + 33 },
         ["Texture"]            = { spriteSheet = goalAtlas, quad = flagsQuads[3] },
-        ["StateMachineModule"] = self:getStates(),
+        ["StateMachineModule"] = self:getStates(goal),
         ["Animation"]          = { frames = { flagsQuads[1], flagsQuads[2] }, interval = flagsSet.interval },
     })
 
-    self:changeState("locked")
+    self:changeState("unlocked")
 end
 
-function Flag:getStates()
+function Flag:getStates(goal)
     return {
         ["locked"]    = function() return FlagLockedState() end,
         ["unlocked"]  = function() return FlagUnlockedState(self, flagsQuads[3]) end,
-        ["attainned"] = function() return FlagAttainnedState(self) end
+        ["attainned"] = function() return FlagAttainnedState(self, goal) end
     }
 end

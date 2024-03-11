@@ -35,6 +35,7 @@ function Avatar:update(dt, level)
     self:run(dt)
     self:clampToTileMap(level.tileMap)
     self:getCoins()
+    self:attainGoal(level)
 end
 
 function Avatar:getStates(level)
@@ -134,5 +135,12 @@ function Avatar:collideWithEnnemis(ennemis)
 
         self:changeState("hurt", ennemi)
         ::continue::
+    end
+end
+
+function Avatar:attainGoal(level)
+    if self.x + self.width >= level.goal.x
+        and not level.goal.flag:getCurrentStateName("attainned") then
+        level.goal.flag:changeState("attainned")
     end
 end

@@ -2,11 +2,11 @@ FlagAttainnedState = Class { __includes = BaseState }
 
 FlagAttainnedState.stateName = "base"
 
-function FlagAttainnedState:init(flag)
+function FlagAttainnedState:init(flag, goal)
     self.flag = flag
 
     Timer.tween(2, {
-        [self.flag] = { y = self.flag.y - 30 }
+        [self.flag] = { y = goal.y + 3 }
     })
 end
 
@@ -19,7 +19,7 @@ function FlagAttainnedState:draw()
 end
 
 function FlagAttainnedState:exit()
-    self.flag:removeTimer()
+    -- self.flag:removeTimer()
 end
 
 function FlagAttainnedState:setStateName(stateName)

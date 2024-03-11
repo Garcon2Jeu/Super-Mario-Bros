@@ -22,6 +22,7 @@ end
 function Level:update(dt, avatar, cameraScroll)
     self:updateEnnemis(dt, avatar)
     self.background:update(dt, cameraScroll)
+    self.goal.flag.stateMachine:update(dt)
 end
 
 function Level:draw()
