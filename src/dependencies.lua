@@ -61,6 +61,10 @@ require "states.blob.BlobIdleState"
 require "states.blob.BlobChaseState"
 require "states.blob.BlobDeadState"
 
+require "states.goal.FlagLockedState"
+require "states.goal.FlagUnlockedState"
+require "states.goal.FlagAttainnedState"
+
 
 -- Objects
 App = require "objects.App"
@@ -74,3 +78,4 @@ require "objects.TileTopper"
 require "objects.Blob"
 require "objects.Background"
 require "objects.Goal"
+require "objects.Flag"

@@ -11,6 +11,8 @@ function StartState:update(dt)
     if App:keyPressed("return") then
         State:change("play")
     end
+
+    self.goal:update(dt)
 end
 
 function StartState:draw()
