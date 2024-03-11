@@ -35,6 +35,7 @@ end
 function Level:cleanEnd()
     TileMapGenerator:resetColumns(self.tileMap, #self.tileMap - 5)
     self:emptyColumns(self.blockMap, #self.blockMap - 5)
+    self:updateBlockList()
 
     for columnIndex = #self.tileMap - 5, #self.tileMap do
         TileMapGenerator.addGroundColumn(self.tileMap[columnIndex])

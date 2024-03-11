@@ -14,6 +14,8 @@ function BlockMapModule:init(baseMap)
 end
 
 function BlockMapModule:updateBlockList()
+    self.blockIndices = {}
+
     for columnIndex, column in ipairs(self.blockMap) do
         for rowIndex, block in ipairs(column) do
             if block.modules then
