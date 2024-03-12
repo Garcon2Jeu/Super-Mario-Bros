@@ -1,6 +1,6 @@
 FlagUnlockedState = Class { __includes = BaseState }
 
-FlagUnlockedState.stateName = "base"
+FlagUnlockedState.stateName = "unlocked"
 
 function FlagUnlockedState:init(flag, flagQuad)
     self.flag = flag

@@ -1,6 +1,6 @@
 FlagLockedState = Class { __includes = BaseState }
 
-FlagLockedState.stateName = "base"
+FlagLockedState.stateName = "locked"
 
 function FlagLockedState:setStateName(stateName)
     self.stateName = stateName

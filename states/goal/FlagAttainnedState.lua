@@ -1,6 +1,6 @@
 FlagAttainnedState = Class { __includes = BaseState }
 
-FlagAttainnedState.stateName = "base"
+FlagAttainnedState.stateName = "attainned"
 
 function FlagAttainnedState:init(flag, goal)
     self.flag = flag

@@ -15,6 +15,7 @@ function Level:init()
     Modules:plug(self, "EnnemiManager", { level = self })
 
     self:cleanEnd()
+    self:addLockAndKey()
     self.background = Background(#self.tileMap)
     self.goal = Goal(self)
 end

@@ -6,6 +6,9 @@ local heartsQuads = Quads:getSetsOfQuads(heartsSheet, TILESIZE, TILESIZE)
 local coinsSheet = Assets.graphics["coins_and_bombs"]()
 local coinQuad = Quads:getSetsOfQuads(coinsSheet, TILESIZE, TILESIZE)[3]
 
+local locksKeysAtlas = Assets.graphics["keys_and_locks"]()
+local keysQuads = Quads:getSetsOfQuads(locksKeysAtlas, TILESIZE, 13, 1, 2)[1]
+
 function PlayerModule:init()
     self.hearts     = 3
     self.coins      = 0
@@ -13,6 +16,10 @@ function PlayerModule:init()
 end
 
 function PlayerModule:drawUI()
+    if self.hasKey then
+        love.graphics.draw(locksKeysAtlas, keysQuads[1], 5, 20)
+    end
+
     for i = 1, self.hearts do
         love.graphics.draw(heartsSheet, heartsQuads[5], 5 + (i - 1) * 10, 5, 0, .5, .5)
     end
@@ -36,4 +43,8 @@ end
 
 function PlayerModule:addCoin()
     self.coins = self.coins + 1
+end
+
+function PlayerModule:giveKey()
+    self.hasKey = true
 end

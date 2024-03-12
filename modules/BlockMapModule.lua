@@ -32,3 +32,18 @@ function BlockMapModule:drawBlockMap()
         self.blockMap[index.column][index.row]:draw()
     end
 end
+
+function BlockMapModule:addLockAndKey()
+    local lockIndices = {
+        column = self.blockIndices[1].column,
+        row = self.blockIndices[1].row
+    }
+
+    local keyIndices = {
+        column = self.blockIndices[#self.blockIndices].column,
+        row = self.blockIndices[#self.blockIndices].row
+    }
+
+    self.blockMap[lockIndices.column][lockIndices.row]:makeLock()
+    self.blockMap[keyIndices.column][keyIndices.row]:giveKey()
+end

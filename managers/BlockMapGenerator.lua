@@ -34,7 +34,7 @@ function BlockMapGenerator.addBlock(blockMap, columnIndex, tileMap)
                 x = tileMap[columnIndex][rowIndex].x,
                 y = tileMap[columnIndex][rowIndex].y,
                 column = columnIndex,
-                row = rowIndex
+                row = rowIndex,
             }
             return
         end

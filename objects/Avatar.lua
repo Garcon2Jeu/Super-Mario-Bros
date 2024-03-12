@@ -140,7 +140,7 @@ end
 
 function Avatar:attainGoal(level)
     if self.x + self.width >= level.goal.x
-        and not level.goal.flag:getCurrentStateName("attainned") then
+        and level.goal.flag:getCurrentStateName("unlocked") then
         level.goal.flag:changeState("attainned")
     end
 end

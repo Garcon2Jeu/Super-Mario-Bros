@@ -34,7 +34,7 @@ function Flag:init(goal)
         ["Animation"]          = { frames = { flagsQuads[1], flagsQuads[2] }, interval = flagsSet.interval },
     })
 
-    self:changeState("unlocked")
+    self:changeState("locked")
 end
 
 function Flag:getStates(goal)
