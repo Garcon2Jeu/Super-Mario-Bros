@@ -5,9 +5,16 @@ FlagAttainnedState.stateName = "attainned"
 function FlagAttainnedState:init(flag, goal)
     self.flag = flag
 
-    Timer.tween(2, {
-        [self.flag] = { y = goal.y + 3 }
-    })
+    Chain(
+        function(next)
+            Timer.tween(2, {
+                [self.flag] = { y = goal.y + 3 }
+            }):finish(next)
+        end,
+        function()
+            State.current.level:toNextLevel()
+        end
+    )()
 end
 
 function FlagAttainnedState:update(dt)
@@ -19,7 +26,7 @@ function FlagAttainnedState:draw()
 end
 
 function FlagAttainnedState:exit()
-    -- self.flag:removeTimer()
+    self.flag:removeTimer()
 end
 
 function FlagAttainnedState:setStateName(stateName)

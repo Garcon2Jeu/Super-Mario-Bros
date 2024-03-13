@@ -43,3 +43,7 @@ function Level:cleanEnd()
         TileMapGenerator.addGroundColumn(self.tileMap[columnIndex])
     end
 end
+
+function Level:toNextLevel()
+    State:change("play")
+end
