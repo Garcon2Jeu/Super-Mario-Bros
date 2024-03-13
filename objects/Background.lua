@@ -9,7 +9,7 @@ local backgroundQuads = Quads:getSetsOfQuads(
     backgroundQuadHeight
 )
 
-function Background:init(tileMapLength)
+function Background:init(tileMapLength, quadIndex)
     Modules:plugInBulk(self, {
         ["Coordinates"] = { x = 0, y = 0 },
         ["Texture"] = {
@@ -37,4 +37,8 @@ function Background:draw()
             self.sx,
             self.sy)
     end
+end
+
+function Background:changeTexture(index)
+    self:setQuad(backgroundQuads[index])
 end

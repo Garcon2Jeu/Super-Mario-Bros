@@ -22,10 +22,6 @@ function PlayState:update(dt)
         })
         return
     end
-
-    if App:keyPressed("g") then
-        self.level:toNextLevel()
-    end
 end
 
 function PlayState:draw()

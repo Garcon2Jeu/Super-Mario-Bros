@@ -15,22 +15,7 @@ function Level:init(def)
     self:addLockAndKey()
     self.background = Background(#self.tileMap)
     self.goal = Goal(self)
-
-    if self.level > 1 then
-        local tileQuadIndex = math.random(60)
-        local topperQuadIndex = math.random(108)
-        for key, column in pairs(self.tileMap) do
-            for key, tile in pairs(column) do
-                if tile.ground then
-                    tile:changeGroundTexture(tileQuadIndex)
-
-                    if tile.topper then
-                        tile.topper:changeTexture(topperQuadIndex)
-                    end
-                end
-            end
-        end
-    end
+    self:changeTextures()
 end
 
 function Level:update(dt, avatar, cameraScroll)
@@ -63,4 +48,25 @@ function Level:toNextLevel()
         columns = self.columns + 25,
         rows = MAP_HEIGHT
     })
+end
+
+function Level:changeTextures()
+    if self.level > 1 then
+        self.background:changeTexture(math.random(3))
+
+        local tileQuadIndex = math.random(60)
+        local topperQuadIndex = math.random(108)
+
+        for key, column in pairs(self.tileMap) do
+            for key, tile in pairs(column) do
+                if tile.ground then
+                    tile:changeGroundTexture(tileQuadIndex)
+
+                    if tile.topper then
+                        tile.topper:changeTexture(topperQuadIndex)
+                    end
+                end
+            end
+        end
+    end
 end
