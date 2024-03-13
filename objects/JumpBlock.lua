@@ -38,6 +38,7 @@ function JumpBlock.getOnConsume()
     return
         function(self)
             if not self:isConsummed() then
+                Assets.audio["powerup_reveal"]:play()
                 self:consumme(true)
                 self:setSpriteSheet(jumpBlockSheet)
                 self:setQuad(jumpBlockQuads[20])

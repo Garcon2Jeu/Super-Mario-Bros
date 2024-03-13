@@ -30,11 +30,13 @@ end
 function Coin:getOnConsume()
     if not self.isKey then
         return function(self)
+            Assets.audio["pickup"]:play()
             State.current.level:removeCoin(self)
             State.current.avatar:addCoin()
         end
     else
         return function(self)
+            Assets.audio["pickup"]:play()
             State.current.level:removeCoin(self)
             State.current.avatar:giveKey()
         end

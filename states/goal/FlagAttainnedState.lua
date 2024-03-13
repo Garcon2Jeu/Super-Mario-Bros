@@ -3,6 +3,7 @@ FlagAttainnedState = Class { __includes = BaseState }
 FlagAttainnedState.stateName = "attainned"
 
 function FlagAttainnedState:init(flag, goal)
+    Assets.audio["win"]:play()
     self.flag = flag
 
     Chain(

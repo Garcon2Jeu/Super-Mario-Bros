@@ -2,6 +2,7 @@ PlayerJumpState = Class { __includes = BaseState }
 PlayerJumpState:setStateName("jump")
 
 function PlayerJumpState:init(avatar, level, quad)
+    Assets.audio["jump"]:play()
     self.avatar = avatar
     self.level = level
     self.avatar:setQuad(quad)

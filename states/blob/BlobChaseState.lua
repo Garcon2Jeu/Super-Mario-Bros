@@ -44,6 +44,7 @@ end
 
 function BlobChaseState:getCustomAnimation(interval)
     return function()
+        Assets.audio["kill2"]:play()
         self.blob:setDX(self.blob.facingRight and 1 or -1)
         Timer.after(interval / 6, function() self.blob:setDX(0) end)
     end

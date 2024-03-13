@@ -9,6 +9,9 @@ function love.load()
     }
 
     State:change("start")
+
+    Assets.audio["music"]:play()
+    Assets.audio["music"]:setLooping(true)
 end
 
 function love.update(dt)

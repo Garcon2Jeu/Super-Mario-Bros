@@ -12,6 +12,7 @@ end
 
 function StartState:update(dt)
     if App:keyPressed("return") then
+        Assets.audio["jump"]:play()
         State:change("play", {
             level = 1,
             columns = 100,

@@ -2,7 +2,7 @@ AssetsManager = Class()
 
 function AssetsManager:init()
     self.graphics = self.getGraphicsMethods()
-    self.audio    = self.getAudioMethods()
+    self.audio    = self.getAudio()
     self.colors   = self.getColorsMethods()
     self.fonts    = self.getFontsMethods()
 end
@@ -36,16 +36,17 @@ function AssetsManager.getGraphicsMethods()
     }
 end
 
-function AssetsManager.getAudioMethods()
+function AssetsManager.getAudio()
     return {
-        ["death"]          = function() return love.audio.newSource("assets/audio/death.wav", "static") end,
-        ["empty_block"]    = function() return love.audio.newSource("assets/audio/empty_block.wav", "static") end,
-        ["jump"]           = function() return love.audio.newSource("assets/audio/jump.wav", "static") end,
-        ["kill"]           = function() return love.audio.newSource("assets/audio/kill.wav", "static") end,
-        ["kill2"]          = function() return love.audio.newSource("assets/audio/kill2.wav", "static") end,
-        ["music"]          = function() return love.audio.newSource("assets/audio/music.wav", "static") end,
-        ["pickup"]         = function() return love.audio.newSource("assets/audio/pickup.wav", "static") end,
-        ["powerup_reveal"] = function() return love.audio.newSource("assets/audio/powerup_reveal.wav", "static") end,
+        ["death"]          = love.audio.newSource("assets/audio/death.wav", "static"),
+        ["empty_block"]    = love.audio.newSource("assets/audio/empty_block.wav", "static"),
+        ["jump"]           = love.audio.newSource("assets/audio/jump.wav", "static"),
+        ["kill"]           = love.audio.newSource("assets/audio/kill.wav", "static"),
+        ["kill2"]          = love.audio.newSource("assets/audio/kill2.wav", "static"),
+        ["music"]          = love.audio.newSource("assets/audio/music.wav", "static"),
+        ["pickup"]         = love.audio.newSource("assets/audio/pickup.wav", "static"),
+        ["powerup_reveal"] = love.audio.newSource("assets/audio/powerup_reveal.wav", "static"),
+        ["win"]            = love.audio.newSource("assets/audio/win.wav", "static"),
     }
 end
 

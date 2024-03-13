@@ -5,6 +5,7 @@ local pushBack = 4
 local friction = 30
 
 function PlayerHurtState:init(avatar, quad)
+    Assets.audio["kill"]:play()
     App:enableInput(false)
     self.avatar = avatar
     self.avatar:removeHeart()
