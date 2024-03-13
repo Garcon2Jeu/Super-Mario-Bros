@@ -42,3 +42,7 @@ end
 function Tile.getDecorationQuads()
     return decorationQuads[1]
 end
+
+function Tile:changeGroundTexture(index)
+    self:setQuad(tilesQuads[index][3])
+end

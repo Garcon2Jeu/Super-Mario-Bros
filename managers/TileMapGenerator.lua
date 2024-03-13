@@ -94,6 +94,7 @@ end
 function TileMapGenerator.addChasm(tileMap, columnIndex)
     for key, tile in pairs(tileMap[columnIndex]) do
         Modules:unplugInBulk(tile, { "Texture", "Collidable" })
+        tile.ground = nil
     end
 end
 

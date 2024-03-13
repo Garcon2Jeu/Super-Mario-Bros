@@ -13,3 +13,7 @@ function TileTopper:init(def)
 
     BaseObject.init(self, def)
 end
+
+function TileTopper:changeTexture(index)
+    self:setQuad(toppersQuads[index][1])
+end
