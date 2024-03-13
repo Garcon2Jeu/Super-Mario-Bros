@@ -24,6 +24,8 @@ function PlayerModule:drawUI()
         love.graphics.draw(heartsSheet, heartsQuads[5], 5 + (i - 1) * 10, 5, 0, .5, .5)
     end
 
+    love.graphics.print("Level " .. State.current.level.level, VIRTUAL_WIDTH - 40, 5)
+
     love.graphics.draw(coinsSheet, coinQuad, 5, 14, 0, .5, .5)
     Assets.fonts.setSmall()
     love.graphics.print(": " .. self.coins, 14, 14.5)

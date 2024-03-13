@@ -1,12 +1,9 @@
 Level = Class()
 
-local levelData = {
-    columns = 100,
-    rows = MAP_HEIGHT
-}
 
-function Level:init()
-    Modules:plug(self, "BaseMap", levelData)
+function Level:init(def)
+    self.level = def.level
+    Modules:plug(self, "BaseMap", def)
     local baseMap = self:generateEmptyMap()
 
     Modules:plug(self, "TileMap", table.deepCopy(baseMap))
@@ -45,5 +42,9 @@ function Level:cleanEnd()
 end
 
 function Level:toNextLevel()
-    State:change("play")
+    State:change("play", {
+        level = self.level + 1,
+        columns = self.columns + 25,
+        rows = MAP_HEIGHT
+    })
 end

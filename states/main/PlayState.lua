@@ -2,12 +2,12 @@ PlayState = Class { __includes = BaseState }
 PlayState:setStateName("start")
 
 function PlayState:init()
-    self.level = Level()
-    self.avatar = Avatar(self.level)
-
-
-
     Modules:plug(self, "Camera")
+end
+
+function PlayState:enter(def)
+    self.level = Level(def)
+    self.avatar = Avatar(self.level)
 end
 
 function PlayState:update(dt)
@@ -21,6 +21,10 @@ function PlayState:update(dt)
             cameraScroll = self.cameraScroll
         })
         return
+    end
+
+    if App:keyPressed("g") then
+        self.level:toNextLevel()
     end
 end
 

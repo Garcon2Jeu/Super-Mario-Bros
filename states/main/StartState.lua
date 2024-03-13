@@ -3,12 +3,20 @@ StartState           = Class { __includes = BaseState }
 StartState.stateName = "base"
 
 function StartState:init()
-    self.level = Level()
+    self.level = Level {
+        level = 0,
+        columns = 100,
+        rows = MAP_HEIGHT
+    }
 end
 
 function StartState:update(dt)
     if App:keyPressed("return") then
-        State:change("play")
+        State:change("play", {
+            level = 1,
+            columns = 100,
+            rows = MAP_HEIGHT
+        })
     end
 end
 
